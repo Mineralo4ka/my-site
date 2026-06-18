@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #09090b;
+  color: #fff;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+img,
+video {
+  max-width: 100%;
+}
+
+::selection {
+  background: #fff;
+  color: #09090b;
+}
