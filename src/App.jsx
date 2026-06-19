@@ -102,7 +102,7 @@ const projects = [
       "A4Food-ролик про шоколадный квадрат: юмор с поваром, процесс приготовления, крупные планы и динамичная TikTok-подача.",
   },
   {
-    title: "GGSel опросы",
+    title: "GGSel",
     category: "Reels",
     year: "2026",
     format: "9:16",
@@ -112,7 +112,7 @@ const projects = [
       "Уличный опрос GGSel про выбор между деньгами и Steam: живые реакции, брендированные элементы, крупные планы и быстрые склейки.",
   },
   {
-    title: "GGSel игровой",
+    title: "GGSel",
     category: "Tiktok",
     year: "2026",
     format: "9:16",
@@ -122,7 +122,7 @@ const projects = [
       "Игровой ролик GGSel со сравнением GTA San Andreas и Vice City: ведущая, геймплейные вставки, счёт и динамичные мемные акценты.",
   },
   {
-    title: "BigCity недвижка",
+    title: "BigCity",
     category: "Reels",
     year: "2024",
     format: "9:16",
@@ -132,7 +132,7 @@ const projects = [
       "Недвижимость BigCity: ролик про рассрочку от застройщиков, ипотеку и проценты с инфографикой, примерами квартир и продающим темпом.",
   },
   {
-    title: "BigCity недвижка",
+    title: "BigCity",
     category: "Reels",
     year: "2024",
     format: "9:16",
@@ -256,9 +256,22 @@ const services = [
 ];
 
 const process = [
-  "Разбираю исходники, задачу и площадку публикации.",
-  "Собираю структуру: хук, смысловые блоки, темп и акценты.",
-  "Делаю чистовой монтаж, звук, титры и финальный экспорт.",
+  {
+    title: "Бриф",
+    description: "Смотрю исходники, цель ролика, аудиторию и понимаю, какой монтаж сработает лучше.",
+  },
+  {
+    title: "Структура",
+    description: "Собираю основу: где начать, что оставить, что убрать и как вести зрителя дальше.",
+  },
+  {
+    title: "Монтаж",
+    description: "Добавляю ритм, титры, звук, графику и делаю ролик плотным, понятным и аккуратным.",
+  },
+  {
+    title: "Сдача",
+    description: "Отдаю версии под нужные площадки и вношу правки без хаоса и лишней переписки.",
+  },
 ];
 
 function PlayIcon({ className = "" }) {
@@ -276,9 +289,6 @@ function ButtonLink({ href, children, variant = "primary", newTab = false }) {
   const variants = {
     primary: "bg-white text-neutral-950 hover:bg-neutral-200",
     secondary: "border border-white/20 bg-white/5 text-white hover:bg-white/10",
-    instagram:
-      "bg-gradient-to-r from-[#f58529] via-[#dd2a7b] to-[#8134af] text-white hover:brightness-110",
-    telegram: "bg-[#229ed9] text-white hover:bg-[#1d8fc4]",
   };
 
   const className = `${baseClassName} ${variants[variant] || variants.primary}`;
@@ -365,7 +375,9 @@ function ProjectPreview({ project, featured = false }) {
               />
             )}
             <span className="absolute inset-0 bg-black/35" />
-            <span className="relative flex h-16 w-16 items-center justify-center rounded-lg bg-white text-2xl text-neutral-950 shadow-xl transition hover:scale-105">
+            <span
+              className="relative flex h-16 w-16 items-center justify-center rounded-lg bg-white text-2xl text-neutral-950 shadow-xl transition hover:scale-105"
+            >
               <PlayIcon />
             </span>
           </button>
@@ -380,12 +392,14 @@ function ProjectPreview({ project, featured = false }) {
           </div>
         )}
         <div className="pointer-events-none absolute left-4 top-4 flex flex-wrap gap-2">
-          <span className="rounded-lg bg-black/60 px-3 py-1 text-xs font-bold text-white backdrop-blur">
+          <span className="rounded-lg bg-white/90 px-3 py-1 text-xs font-bold text-neutral-950 backdrop-blur">
             {project.category}
           </span>
-          <span className="rounded-lg bg-white px-3 py-1 text-xs font-bold text-neutral-950">
-            {project.format}
-          </span>
+          {!isVertical && (
+            <span className="rounded-lg bg-white px-3 py-1 text-xs font-bold text-neutral-950">
+              {project.format}
+            </span>
+          )}
         </div>
       </div>
 
@@ -400,9 +414,169 @@ function ProjectPreview({ project, featured = false }) {
   );
 }
 
+function buildBriefMessage(formData) {
+  const getValue = (name) => formData.get(name)?.toString().trim() || "Не указано";
+
+  return [
+    "Новый бриф на монтаж",
+    "",
+    `Имя: ${getValue("name")}`,
+    `Контакт: ${getValue("contact")}`,
+    `Формат: ${getValue("format")}`,
+    `Площадка: ${getValue("platform")}`,
+    `Сроки: ${getValue("deadline")}`,
+    "",
+    `Задача: ${getValue("task")}`,
+  ].join("\n");
+}
+
+function BriefModal({ isSending, onClose, onSubmit, status }) {
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 px-5 py-8 backdrop-blur">
+      <div className="max-h-full w-full max-w-3xl overflow-y-auto rounded-lg border border-white/10 bg-neutral-950 shadow-2xl">
+        <div className="flex items-start justify-between gap-5 border-b border-white/10 p-6">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-neutral-500">
+              Короткий бриф
+            </p>
+            <h2 className="mt-2 text-3xl font-black text-white md:text-4xl">
+              Расскажите о проекте
+            </h2>
+          </div>
+          <button
+            type="button"
+            className="rounded-lg border border-white/10 px-3 py-2 text-sm font-bold text-neutral-300 transition hover:bg-white/10 hover:text-white"
+            onClick={onClose}
+          >
+            Закрыть
+          </button>
+        </div>
+
+        <form className="grid gap-5 p-6" onSubmit={onSubmit}>
+          <div className="grid gap-4 md:grid-cols-2">
+            <label className="grid gap-2 text-sm font-bold text-neutral-200">
+              Имя
+              <input
+                name="name"
+                className="min-h-12 rounded-lg border border-white/10 bg-white/5 px-4 text-white outline-none transition focus:border-white/40"
+                placeholder="Как к вам обращаться"
+                required
+              />
+            </label>
+
+            <label className="grid gap-2 text-sm font-bold text-neutral-200">
+              Контакт
+              <input
+                name="contact"
+                className="min-h-12 rounded-lg border border-white/10 bg-white/5 px-4 text-white outline-none transition focus:border-white/40"
+                placeholder="Telegram, Instagram или телефон"
+                required
+              />
+            </label>
+
+            <label className="grid gap-2 text-sm font-bold text-neutral-200">
+              Формат
+              <select
+                name="format"
+                className="min-h-12 rounded-lg border border-white/10 bg-neutral-900 px-4 text-white outline-none transition focus:border-white/40"
+              >
+                <option>Reels / Shorts / TikTok</option>
+                <option>Горизонтальное 16:9</option>
+                <option>Нарезка из длинного видео</option>
+                <option>Реклама / промо</option>
+                <option>Пока не знаю</option>
+              </select>
+            </label>
+
+            <label className="grid gap-2 text-sm font-bold text-neutral-200">
+              Площадка
+              <input
+                name="platform"
+                className="min-h-12 rounded-lg border border-white/10 bg-white/5 px-4 text-white outline-none transition focus:border-white/40"
+                placeholder="YouTube, Instagram, TikTok..."
+              />
+            </label>
+
+            <label className="grid gap-2 text-sm font-bold text-neutral-200">
+              Сроки
+              <input
+                name="deadline"
+                className="min-h-12 rounded-lg border border-white/10 bg-white/5 px-4 text-white outline-none transition focus:border-white/40"
+                placeholder="Например: до пятницы"
+              />
+            </label>
+          </div>
+
+          <label className="grid gap-2 text-sm font-bold text-neutral-200">
+            Задача
+            <textarea
+              name="task"
+              className="min-h-32 resize-y rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white outline-none transition focus:border-white/40"
+              placeholder="Что нужно смонтировать, какая цель ролика, есть ли референсы?"
+              required
+            />
+          </label>
+
+          {status && <p className="text-sm font-medium text-neutral-300">{status}</p>}
+
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <button
+              type="submit"
+              className="inline-flex min-h-12 items-center justify-center rounded-lg bg-white px-6 text-sm font-black text-neutral-950 transition hover:bg-neutral-200 disabled:cursor-not-allowed disabled:opacity-60"
+              disabled={isSending}
+            >
+              {isSending ? "Отправляю..." : "Отправить в Telegram"}
+            </button>
+            <button
+              type="button"
+              className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/15 px-6 text-sm font-black text-white transition hover:bg-white/10"
+              onClick={onClose}
+            >
+              Вернуться на сайт
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
+  const [isBriefOpen, setIsBriefOpen] = useState(false);
+  const [isBriefSending, setIsBriefSending] = useState(false);
+  const [briefStatus, setBriefStatus] = useState("");
   const verticalProjects = projects.filter((project) => project.format === "9:16");
   const horizontalProjects = projects.filter((project) => project.format === "16:9");
+
+  async function handleBriefSubmit(event) {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const message = buildBriefMessage(new FormData(form));
+
+    setIsBriefSending(true);
+    setBriefStatus("Отправляю бриф...");
+
+    try {
+      const response = await fetch("/api/brief", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: message }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Telegram request failed");
+      }
+
+      form.reset();
+      setBriefStatus("Готово. Бриф отправлен в Telegram.");
+    } catch (error) {
+      console.error(error);
+      setBriefStatus("Не получилось отправить бриф. Проверьте настройки Telegram-бота.");
+    } finally {
+      setIsBriefSending(false);
+    }
+  }
 
   return (
     <div className="min-h-screen bg-neutral-950 text-white">
@@ -484,9 +658,6 @@ export default function App() {
             <div>
               <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                 <div>
-                  <p className="text-sm font-bold uppercase tracking-[0.18em] text-neutral-500">
-                    Работы
-                  </p>
                   <h3 className="mt-2 text-3xl font-black md:text-4xl">Вертикальные видео</h3>
                 </div>
                 <p className="max-w-xl text-neutral-300">
@@ -522,20 +693,14 @@ export default function App() {
 
         <section id="services" className="px-5 py-20">
           <div className="mx-auto max-w-7xl">
-            <div className="grid gap-8 lg:grid-cols-[0.35fr_1fr] lg:items-start">
-              <div className="flex items-center gap-4 pt-3 text-xs font-black uppercase tracking-[0.28em] text-neutral-500">
-                <span>Услуги</span>
-              </div>
-
-              <div>
-                <h2 className="max-w-4xl text-4xl font-black leading-tight md:text-6xl">
-                  С чем я могу помочь?
-                </h2>
-                <p className="mt-5 max-w-3xl text-lg leading-8 text-neutral-300">
-                  Понятные форматы работы для экспертов, брендов и авторов, которым нужен
-                  регулярный контент без случайного монтажа
-                </p>
-              </div>
+            <div>
+              <h2 className="max-w-4xl text-4xl font-black leading-tight md:text-6xl">
+                С чем я могу помочь?
+              </h2>
+              <p className="mt-5 max-w-3xl text-lg leading-8 text-neutral-300">
+                Понятные форматы работы для экспертов, брендов и авторов, которым нужен
+                регулярный контент без случайного монтажа
+              </p>
             </div>
 
             <div className="mt-12 grid gap-5 lg:grid-cols-3">
@@ -545,11 +710,11 @@ export default function App() {
                   className="relative min-h-[28rem] overflow-hidden rounded-lg border border-white/10 bg-neutral-900 p-7 shadow-2xl shadow-black/20"
                 >
                   <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-white/10" />
-                  <span className="absolute right-7 top-7 text-sm font-black text-neutral-400">
+                  <span className="absolute right-7 top-7 text-sm font-black text-white/70">
                     {service.id}
                   </span>
 
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-white text-lg font-black text-neutral-950">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-white/15 bg-white text-lg font-black text-neutral-950">
                     {service.marker}
                   </div>
 
@@ -561,7 +726,7 @@ export default function App() {
                   <ul className="mt-8 space-y-4">
                     {service.features.map((feature) => (
                       <li key={feature} className="flex gap-3 text-sm leading-6 text-neutral-200">
-                        <span className="mt-0.5 font-black text-red-400" aria-hidden="true">
+                        <span className="mt-0.5 font-black text-white" aria-hidden="true">
                           ✓
                         </span>
                         <span>{feature}</span>
@@ -577,19 +742,23 @@ export default function App() {
         <section id="process" className="px-5 py-16">
           <div className="mx-auto max-w-7xl">
             <div className="mb-8">
-              <p className="text-sm font-bold uppercase tracking-[0.18em] text-neutral-500">
-                Процесс
-              </p>
-              <h2 className="mt-3 text-4xl font-black md:text-5xl">Как строится работа?</h2>
+              <h2 className="text-4xl font-black md:text-5xl">Как строится работа?</h2>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-3">
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               {process.map((step, index) => (
-                <div key={step} className="rounded-lg border border-white/10 bg-neutral-900 p-6">
-                  <span className="text-sm font-black text-neutral-500">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <p className="mt-4 leading-7 text-neutral-200">{step}</p>
+                <div
+                  key={step.title}
+                  className="rounded-lg border border-white/10 bg-neutral-900 p-6 shadow-xl shadow-black/10"
+                >
+                  <div className="flex items-center gap-4">
+                    <span className="text-sm font-black text-white/80">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="h-px flex-1 bg-white/10" />
+                  </div>
+                  <h3 className="mt-12 text-2xl font-black text-white">{step.title}</h3>
+                  <p className="mt-5 leading-7 text-neutral-300">{step.description}</p>
                 </div>
               ))}
             </div>
@@ -597,28 +766,63 @@ export default function App() {
         </section>
 
         <section id="contact" className="px-5 py-20">
-          <div className="mx-auto max-w-4xl text-center">
-            <p className="text-sm font-bold uppercase tracking-[0.18em] text-neutral-500">
-              Контакты
-            </p>
-            <h2 className="mt-4 text-4xl font-black leading-tight md:text-6xl">
-              Есть материал? Соберём из него сильное видео.
-            </h2>
-            <p className="mx-auto mt-5 max-w-2xl leading-7 text-neutral-300">
-              Напишите, какой формат нужен, где будет публикация и какие исходники уже есть
-            </p>
-            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-              {/* <ButtonLink href={`mailto:${profile.email}`}>{profile.email}</ButtonLink> */}
-              <ButtonLink href={profile.instagram} variant="instagram" newTab>
-                Instagram
-              </ButtonLink>
-              <ButtonLink href={profile.telegram} variant="telegram" newTab>
-                Telegram
-              </ButtonLink>
+          <div className="mx-auto max-w-7xl overflow-hidden rounded-lg border border-white/10 bg-neutral-900 p-8 text-white shadow-2xl shadow-black/20 md:p-12">
+            <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+              <div>
+                <h2 className="max-w-4xl text-5xl font-black leading-none tracking-tight md:text-7xl">
+                  Начнём с короткого брифа
+                </h2>
+                <p className="mt-6 max-w-2xl text-lg leading-8 text-white/85">
+                  Расскажите, что нужно смонтировать, где будет публикация и какие
+                  исходники уже есть. Я отвечу с направлением монтажа под задачу.
+                </p>
+              </div>
+
+              <div className="rounded-lg border border-white/10 bg-white/[0.04] p-6 backdrop-blur">
+                <div className="grid gap-4">
+                  {[
+                    ["01", "Заполните короткий бриф"],
+                    ["02", "Я оценю задачу и формат"],
+                    ["03", "Вернусь с понятным планом"],
+                  ].map(([number, text]) => (
+                    <div key={number} className="flex items-center gap-4">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white text-sm font-black text-neutral-950">
+                        {number}
+                      </span>
+                      <span className="text-sm font-bold leading-6 text-white/90">{text}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 border-t border-white/10 pt-6">
+                  <p className="mb-4 text-sm leading-6 text-white/80">
+                    Форма займёт пару минут и заменит длинную переписку на старте.
+                  </p>
+                  <button
+                    type="button"
+                    className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-white px-6 text-sm font-black uppercase tracking-[0.12em] text-neutral-950 transition hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-900"
+                    onClick={() => {
+                      setBriefStatus("");
+                      setIsBriefOpen(true);
+                    }}
+                  >
+                    Начать работу →
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </section>
       </main>
+
+      {isBriefOpen && (
+        <BriefModal
+          isSending={isBriefSending}
+          status={briefStatus}
+          onClose={() => setIsBriefOpen(false)}
+          onSubmit={handleBriefSubmit}
+        />
+      )}
 
       <footer className="border-t border-white/10 px-5 py-8 text-center text-sm text-neutral-500">
         © 2026 {profile.name}. All rights reserved.
