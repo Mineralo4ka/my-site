@@ -1,0 +1,13 @@
+.git
+.agents
+.codex
+.vscode
+node_modules
+logs
+*.log
+*.local
+.env
+.env.*
+!.env.example
+Dockerfile
+compose.yaml

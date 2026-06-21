@@ -1,0 +1,11 @@
+services:
+  nehold-creator:
+    build: .
+    container_name: nehold-creator
+    restart: unless-stopped
+    env_file:
+      - .env.local
+    environment:
+      PORT: 3000
+    ports:
+      - "127.0.0.1:3000:3000"

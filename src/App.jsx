@@ -24,7 +24,7 @@ const projects = [
     format: "16:9",
     accent: "#f97316",
     video: "/videos/DS_podcast.mp4",
-    cover: "/images/covers/DS_codecs.jpg",
+    cover: "/images/covers/DS_codecs.webp",
     description:
       "Подкаст DeepSchool «Под капотом»: разговор про видеокодеки, AI-модели и тимлидинг с аккуратной склейкой спикеров и брендированными перебивками.",
   },
@@ -35,7 +35,7 @@ const projects = [
     format: "16:9",
     accent: "#6366f1",
     video: "/videos/DS_15quest.mp4",
-    cover: "/images/covers/DS_auto.jpg",
+    cover: "/images/covers/DS_auto.webp",
     description:
       "Формат «15 вопросов ML-инженеру» про автономный транспорт: talking-head, титры, именные плашки и спокойная экспертная подача.",
   },
@@ -46,7 +46,7 @@ const projects = [
     format: "16:9",
     accent: "#0ea5e9",
     video: "/videos/DS_MOK.mp4",
-    cover: "/images/covers/DS_MOK.jpg",
+    cover: "/images/covers/DS_MOK.webp",
     description:
       "Мок-собеседование CV-инженера: созвон, разбор задачи про искусство, обучающие вставки и чистая структура интервью.",
   },
@@ -57,7 +57,7 @@ const projects = [
     format: "16:9",
     accent: "#f59e0b",
     video: "/videos/KURS_horizont.mp4",
-    cover: "/images/covers/kurs_horizont.jpg",
+    cover: "/images/covers/kurs_horizont.webp",
     description:
       "Обзор девайсов KURS для бульдога: ведущий в военной стилистике, предметные крупные планы, детали креплений и динамичная демонстрация.",
   },
@@ -68,6 +68,8 @@ const projects = [
     format: "9:16",
     accent: "#14b8a6",
     video: "/videos/KURS_gangsters.mp4",
+    cover: "/images/covers/KURS_gangsters.webp",
+    originalUrl: "https://www.youtube.com/shorts/75chU5_slkI",
     description:
       "Вертикальная объяснялка KURS о том, почему гангстеры держат пистолеты под углом: ведущий, кино-вставки, титры и быстрый монтаж.",
   },
@@ -78,6 +80,8 @@ const projects = [
     format: "9:16",
     accent: "#ec4899",
     video: "/videos/KURS_animation.mp4",
+    cover: "/images/covers/KURS_animation.webp",
+    originalUrl: "https://www.youtube.com/shorts/cTog6z753tU",
     description:
       "Анимационный short KURS про глубину бункера и разные калибры: рисованные схемы, понятная визуализация и темп образовательного Reels.",
   },
@@ -88,6 +92,8 @@ const projects = [
     format: "9:16",
     accent: "#eab308",
     video: "/videos/A4_drink.mp4",
+    cover: "/images/covers/A4_drink.webp",
+    originalUrl: "https://www.youtube.com/shorts/mxN8SbFI2iA",
     description:
       "A4Food-ролик с приготовлением напитка: блогерская подача, реакция героев, крупные планы ингредиентов и яркие субтитры.",
   },
@@ -97,9 +103,11 @@ const projects = [
     year: "2026",
     format: "9:16",
     accent: "#eab308",
-    video: "/videos/A4_kvadrat.mp4",
+    video: "/videos/A4_kobyakov.mp4",
+    cover: "/images/covers/A4_kobyakov.webp",
+    originalUrl: "https://www.youtube.com/shorts/sQvOVc_ESzw",
     description:
-      "A4Food-ролик про шоколадный квадрат: юмор с поваром, процесс приготовления, крупные планы и динамичная TikTok-подача.",
+      "A4 с Кобяковым, обзор снеков: ведущий, линейка вкусов на столе, брендовые вставки, реакции и быстрый TikTok-темп.",
   },
   {
     title: "GGSel",
@@ -108,6 +116,8 @@ const projects = [
     format: "9:16",
     accent: "#38bdf8",
     video: "/videos/ggsel_opros.mp4",
+    cover: "/images/covers/ggsel_opros.webp",
+    originalUrl: "https://www.instagram.com/reel/DSeyiABjWZb/",
     description:
       "Уличный опрос GGSel про выбор между деньгами и Steam: живые реакции, брендированные элементы, крупные планы и быстрые склейки.",
   },
@@ -118,6 +128,8 @@ const projects = [
     format: "9:16",
     accent: "#22c55e",
     video: "/videos/ggsel_vicecity.mp4",
+    cover: "/images/covers/ggsel_vicecity.webp",
+    originalUrl: "https://www.youtube.com/shorts/M8zkgS2w0RA",
     description:
       "Игровой ролик GGSel со сравнением GTA San Andreas и Vice City: ведущая, геймплейные вставки, счёт и динамичные мемные акценты.",
   },
@@ -128,6 +140,8 @@ const projects = [
     format: "9:16",
     accent: "#9f22c5",
     video: "/videos/BigCity_kvartira.mp4",
+    cover: "/images/covers/BigCity_kvartira.webp",
+    originalUrl: "https://www.youtube.com/shorts/3ASJzRhvYFs",
     description:
       "Недвижимость BigCity: ролик про рассрочку от застройщиков, ипотеку и проценты с инфографикой, примерами квартир и продающим темпом.",
   },
@@ -138,18 +152,21 @@ const projects = [
     format: "9:16",
     accent: "#9f22c5",
     video: "/videos/BigCity_moscow.mp4",
+    cover: "/images/covers/BigCity_moscow.webp",
+    originalUrl: "https://www.youtube.com/shorts/mIBveDn0rIo",
     description:
       "BigCity о будущем Москвы: ведущий, архивные кадры, карта Нового Арбата и визуализация небоскрёба в коротком городском формате.",
   },
   {
-    title: "Faina",
+    title: "Faina Li",
     category: "Reels",
     year: "2024",
     format: "9:16",
     accent: "#9f22c5",
-    video: "/videos/faina.mp4",
+    video: "/videos/faina_li.mp4",
+    cover: "/images/covers/faina_li.webp",
     description:
-      "Ролик Faina про изучение английского: сравнение Duolingo и Bamboo Bridge, ведущая, реакции ученицы и акцент на пользе продукта.",
+      "Ролик про Китайский язык с Фаиной Ли и о том как старики проводят время на пенсиии",
   },
   {
     title: "MyCSGO",
@@ -158,6 +175,7 @@ const projects = [
     format: "9:16",
     accent: "#9f22c5",
     video: "/videos/MyCSGO.mp4",
+    cover: "/images/covers/MyCSGO.webp",
     description:
       "MyCSGO short с открытием кейсов: ведущий, колесо выбора, скины CS и быстрые реакции под азартный игровой формат.",
   },
@@ -168,6 +186,7 @@ const projects = [
     format: "9:16",
     accent: "#9f22c5",
     video: "/videos/MarketCSGO.mp4",
+    cover: "/images/covers/MarketCSGO.webp",
     description:
       "MarketCSGO short про CS-граффити на Inferno: ведущий, игровые фрагменты, киберспортивные вставки и объясняющие титры.",
   },
@@ -178,6 +197,7 @@ const projects = [
     format: "9:16",
     accent: "#9f22c5",
     video: "/videos/fudzi.mp4",
+    cover: "/images/covers/fudzi.webp",
     description:
       "Fudziyama food-ролик с дегустацией азиатских блюд: острый соус, креветка темпура, реакции героев и сочные крупные планы.",
   },
@@ -188,6 +208,7 @@ const projects = [
     format: "9:16",
     accent: "#9f22c5",
     video: "/videos/CubeMarket.mp4",
+    cover: "/images/covers/CubeMarket.webp",
     description:
       "CubeMarket-ролик про мультфильм «Тачки»: нарезка Pixar, ведущий с игрушками, коллекционные машинки и товарный акцент.",
   },
@@ -198,6 +219,7 @@ const projects = [
     format: "9:16",
     accent: "#9f22c5",
     video: "/videos/Anecole.mp4",
+    cover: "/images/covers/Anecole.webp",
     description:
       "Anecole short про английский знаменитостей: разбор речи Владимира Познера, субтитры, вставки интервью и образовательный темп.",
   },
@@ -208,6 +230,7 @@ const projects = [
     format: "9:16",
     accent: "#9f22c5",
     video: "/videos/Alena_dodo.mp4",
+    cover: "/images/covers/Alena_dodo.webp",
     description:
       "Reels Алены Котляровой про китайскую Dodo Pizza: обзор меню, атмосфера заведения, детали упаковки и живой тревел-репортаж.",
   },
@@ -305,15 +328,28 @@ function ButtonLink({ href, children, variant = "primary", newTab = false }) {
   );
 }
 
+function getHoverPreviewPath(videoPath) {
+  const fileName = videoPath?.split("/").pop();
+  const baseName = fileName?.replace(/\.[^.]+$/, "");
+
+  return baseName ? `/images/covers/${baseName}-hover.webp` : "";
+}
+
+function canUseHoverPreview() {
+  return window.matchMedia?.("(hover: hover) and (pointer: fine)").matches;
+}
+
 function ProjectPreview({ project, featured = false }) {
   const videoRef = useRef(null);
   const [hasStarted, setHasStarted] = useState(false);
+  const [isHoverPreviewVisible, setIsHoverPreviewVisible] = useState(false);
   const isVertical = project.format === "9:16";
-  const isHorizontal = !isVertical;
   const hasVideo = Boolean(project.video);
-  const shouldShowCover = hasVideo && isHorizontal && !hasStarted;
+  const shouldShowCover = hasVideo && !hasStarted;
+  const hoverPreview = getHoverPreviewPath(project.video);
+  const shouldShowHoverPreview = shouldShowCover && isHoverPreviewVisible && hoverPreview;
 
-  function handleHorizontalPlay() {
+  function handlePlay() {
     const video = videoRef.current;
 
     if (!video) {
@@ -322,6 +358,7 @@ function ProjectPreview({ project, featured = false }) {
 
     video.muted = false;
     video.volume = 1;
+    setIsHoverPreviewVisible(false);
     setHasStarted(true);
     video.play().catch(() => setHasStarted(false));
   }
@@ -337,12 +374,13 @@ function ProjectPreview({ project, featured = false }) {
             ref={videoRef}
             className="h-full w-full object-cover"
             src={project.video}
-            autoPlay={isVertical}
-            muted={isVertical}
+            poster={project.cover}
+            autoPlay={false}
+            muted={false}
             loop={isVertical}
             playsInline
-            preload="metadata"
-            controls={isVertical || hasStarted}
+            preload="none"
+            controls={hasStarted}
           />
         ) : (
           <div
@@ -358,13 +396,20 @@ function ProjectPreview({ project, featured = false }) {
             type="button"
             aria-label={`Смотреть ${project.title}`}
             className="absolute inset-0 z-10 flex items-center justify-center bg-neutral-950 text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-950"
-            onClick={handleHorizontalPlay}
+            onClick={handlePlay}
+            onMouseEnter={() => {
+              if (canUseHoverPreview()) {
+                setIsHoverPreviewVisible(true);
+              }
+            }}
+            onMouseLeave={() => setIsHoverPreviewVisible(false)}
           >
             {project.cover ? (
               <img
                 src={project.cover}
                 alt={`Обложка ${project.title}`}
                 className="absolute inset-0 h-full w-full object-cover"
+                loading="lazy"
               />
             ) : (
               <span
@@ -372,6 +417,15 @@ function ProjectPreview({ project, featured = false }) {
                 style={{
                   background: `linear-gradient(135deg, ${project.accent}, #18181b 52%, #020617)`,
                 }}
+              />
+            )}
+            {shouldShowHoverPreview && (
+              <img
+                src={hoverPreview}
+                alt=""
+                className="absolute inset-0 h-full w-full object-cover"
+                loading="lazy"
+                aria-hidden="true"
               />
             )}
             <span className="absolute inset-0 bg-black/35" />
@@ -409,6 +463,16 @@ function ProjectPreview({ project, featured = false }) {
           <span className="text-sm font-bold text-neutral-400">{project.year}</span>
         </div>
         <p className="mt-3 text-sm leading-6 text-neutral-300">{project.description}</p>
+        {project.originalUrl && (
+          <a
+            href={project.originalUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-5 inline-flex min-h-11 items-center justify-center rounded-lg border border-white/15 px-4 text-sm font-black text-white transition hover:bg-white/10"
+          >
+            Смотреть полное видео
+          </a>
+        )}
       </div>
     </article>
   );
@@ -430,7 +494,7 @@ function buildBriefMessage(formData) {
   ].join("\n");
 }
 
-function BriefModal({ isSending, onClose, onSubmit, status }) {
+function BriefModal({ isSending, onClose, onSubmit, quickContactUrl, status }) {
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 px-5 py-8 backdrop-blur">
       <div className="max-h-full w-full max-w-3xl overflow-y-auto rounded-lg border border-white/10 bg-neutral-950 shadow-2xl">
@@ -534,6 +598,20 @@ function BriefModal({ isSending, onClose, onSubmit, status }) {
             >
               Вернуться на сайт
             </button>
+          </div>
+
+          <div className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
+            <p className="text-sm leading-6 text-neutral-300">
+              Если не хочется заполнять поля, можно сразу написать мне в Telegram.
+            </p>
+            <a
+              href={quickContactUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-lg border border-white/15 px-4 text-sm font-black text-white transition hover:bg-white/10 sm:w-auto"
+            >
+              Лень заполнять заявку
+            </a>
           </div>
         </form>
       </div>
@@ -818,6 +896,7 @@ export default function App() {
       {isBriefOpen && (
         <BriefModal
           isSending={isBriefSending}
+          quickContactUrl={profile.telegram}
           status={briefStatus}
           onClose={() => setIsBriefOpen(false)}
           onSubmit={handleBriefSubmit}

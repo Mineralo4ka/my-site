@@ -30,6 +30,69 @@ TELEGRAM_CHAT_ID=123456789
 
 На VPS сайт нужно запускать как Node-приложение, потому что форма брифа отправляет данные на `/api/brief`.
 
+### Вариант через Docker
+
+Этот вариант удобнее PM2: контейнер сам держит Node-сервер в фоне и перезапускается после ребута.
+
+1. Установите Docker на сервере:
+
+```bash
+curl -fsSL https://get.docker.com | sh
+sudo systemctl enable --now docker
+```
+
+2. Локально соберите проект:
+
+```bash
+npm run build
+```
+
+3. Через FileZilla загрузите на сервер:
+
+- `dist`
+- `server`
+- `Dockerfile`
+- `compose.yaml`
+- `.env.local`
+
+Файл `.env.local` должен лежать рядом с `compose.yaml`.
+
+4. Проверьте `.env.local`:
+
+```env
+TELEGRAM_BOT_TOKEN=ваш_токен_бота
+TELEGRAM_CHAT_ID=ваш_chat_id
+```
+
+5. Запустите контейнер:
+
+```bash
+docker compose up -d --build
+```
+
+6. Проверьте:
+
+```bash
+docker compose ps
+curl http://127.0.0.1:3000
+```
+
+Nginx на сервере должен проксировать домен на `http://127.0.0.1:3000`.
+
+Обновление сайта после новой локальной сборки и загрузки `dist`:
+
+```bash
+docker compose up -d --build
+```
+
+Логи:
+
+```bash
+docker compose logs -f nehold-creator
+```
+
+### Вариант без Docker
+
 1. Соберите проект локально:
 
 ```bash

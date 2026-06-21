@@ -1,6 +1,6 @@
 import { createServer } from "node:http";
-import { existsSync, readFileSync } from "node:fs";
-import { readFile } from "node:fs/promises";
+import { createReadStream, existsSync, readFileSync } from "node:fs";
+import { readFile, stat } from "node:fs/promises";
 import { extname, join, normalize, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { handleBriefPayload, TelegramBriefError } from "./telegram.js";
@@ -24,6 +24,8 @@ const contentTypes = {
   ".svg": "image/svg+xml",
   ".webp": "image/webp",
 };
+
+const cacheableExtensions = new Set([".css", ".ico", ".js", ".jpg", ".jpeg", ".mp4", ".png", ".svg", ".webp"]);
 
 function loadLocalEnv() {
   const envPath = join(rootDir, ".env.local");
@@ -112,15 +114,50 @@ async function serveStatic(req, res) {
   }
 
   try {
-    const content = await readFile(filePath);
     const ext = extname(filePath);
-    const isAsset = filePath.includes(`${join("dist", "assets")}`);
+    const fileStat = await stat(filePath);
+    const contentType = contentTypes[ext] || "application/octet-stream";
+    const cacheControl = cacheableExtensions.has(ext)
+      ? "public, max-age=31536000, immutable"
+      : "no-cache";
+
+    if (ext === ".mp4" && req.headers.range) {
+      const [startPart, endPart] = req.headers.range.replace("bytes=", "").split("-");
+      const start = Number.parseInt(startPart, 10);
+      const end = endPart ? Number.parseInt(endPart, 10) : fileStat.size - 1;
+
+      if (
+        Number.isNaN(start) ||
+        Number.isNaN(end) ||
+        start < 0 ||
+        end >= fileStat.size ||
+        start > end
+      ) {
+        res.writeHead(416, {
+          "Content-Range": `bytes */${fileStat.size}`,
+        });
+        res.end();
+        return;
+      }
+
+      res.writeHead(206, {
+        "Accept-Ranges": "bytes",
+        "Cache-Control": cacheControl,
+        "Content-Length": end - start + 1,
+        "Content-Range": `bytes ${start}-${end}/${fileStat.size}`,
+        "Content-Type": contentType,
+      });
+      createReadStream(filePath, { start, end }).pipe(res);
+      return;
+    }
 
     res.writeHead(200, {
-      "Cache-Control": isAsset ? "public, max-age=31536000, immutable" : "no-cache",
-      "Content-Type": contentTypes[ext] || "application/octet-stream",
+      "Accept-Ranges": ext === ".mp4" ? "bytes" : "none",
+      "Cache-Control": cacheControl,
+      "Content-Length": fileStat.size,
+      "Content-Type": contentType,
     });
-    res.end(content);
+    createReadStream(filePath).pipe(res);
   } catch {
     const indexPath = join(distDir, "index.html");
     const content = await readFile(indexPath);
