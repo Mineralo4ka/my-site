@@ -297,17 +297,129 @@ const process = [
   },
 ];
 
-function PlayIcon({ className = "" }) {
+function ArrowLeftIcon({ className = "" }) {
   return (
-    <span aria-hidden="true" className={`inline-block ${className}`}>
-      ▶
-    </span>
+    <svg
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m12 19-7-7 7-7" />
+      <path d="M19 12H5" />
+    </svg>
   );
 }
 
-function ButtonLink({ href, children, variant = "primary", newTab = false }) {
+function BriefIcon({ className = "" }) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M8 6h13" />
+      <path d="M8 12h13" />
+      <path d="M8 18h13" />
+      <path d="M3 6h.01" />
+      <path d="M3 12h.01" />
+      <path d="M3 18h.01" />
+    </svg>
+  );
+}
+
+function ExternalLinkIcon({ className = "" }) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M15 3h6v6" />
+      <path d="M10 14 21 3" />
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+    </svg>
+  );
+}
+
+function MessageIcon({ className = "" }) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z" />
+    </svg>
+  );
+}
+
+function PlayIcon({ className = "" }) {
+  return (
+    <svg aria-hidden="true" className={className} fill="currentColor" viewBox="0 0 24 24">
+      <path d="M8 5v14l11-7z" />
+    </svg>
+  );
+}
+
+function SendIcon({ className = "" }) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m22 2-7 20-4-9-9-4Z" />
+      <path d="M22 2 11 13" />
+    </svg>
+  );
+}
+
+function XIcon({ className = "" }) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M18 6 6 18" />
+      <path d="m6 6 12 12" />
+    </svg>
+  );
+}
+
+function ButtonLink({ href, children, variant = "primary", newTab = false, icon: Icon = null }) {
   const baseClassName =
-    "inline-flex min-h-11 items-center justify-center rounded-lg px-5 text-sm font-bold transition focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-950";
+    "inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-5 text-sm font-bold transition focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-950";
 
   const variants = {
     primary: "bg-white text-neutral-950 hover:bg-neutral-200",
@@ -323,7 +435,8 @@ function ButtonLink({ href, children, variant = "primary", newTab = false }) {
       target={newTab ? "_blank" : undefined}
       rel={newTab ? "noreferrer" : undefined}
     >
-      {children}
+      {Icon && <Icon className="h-4 w-4 shrink-0" />}
+      <span>{children}</span>
     </a>
   );
 }
@@ -343,11 +456,12 @@ function ProjectPreview({ project, featured = false }) {
   const videoRef = useRef(null);
   const [hasStarted, setHasStarted] = useState(false);
   const [isHoverPreviewVisible, setIsHoverPreviewVisible] = useState(false);
+  const [isHoverPreviewRequested, setIsHoverPreviewRequested] = useState(false);
   const isVertical = project.format === "9:16";
   const hasVideo = Boolean(project.video);
   const shouldShowCover = hasVideo && !hasStarted;
   const hoverPreview = getHoverPreviewPath(project.video);
-  const shouldShowHoverPreview = shouldShowCover && isHoverPreviewVisible && hoverPreview;
+  const shouldRenderHoverPreview = shouldShowCover && isHoverPreviewRequested && hoverPreview;
 
   function handlePlay() {
     const video = videoRef.current;
@@ -372,10 +486,13 @@ function ProjectPreview({ project, featured = false }) {
         className="project-frame relative overflow-hidden bg-neutral-950"
         style={{ aspectRatio: isVertical ? "9 / 16" : "16 / 9" }}
       >
+        <div className="project-accent-sheen pointer-events-none absolute inset-0 z-0" />
+        <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+
         {hasVideo ? (
           <video
             ref={videoRef}
-            className="h-full w-full object-cover"
+            className="relative z-10 h-full w-full object-cover"
             src={project.video}
             poster={project.cover}
             autoPlay={false}
@@ -387,7 +504,7 @@ function ProjectPreview({ project, featured = false }) {
           />
         ) : (
           <div
-            className="h-full w-full"
+            className="relative z-10 h-full w-full"
             style={{
               background: `linear-gradient(135deg, ${project.accent}, #18181b 52%, #020617)`,
             }}
@@ -398,10 +515,11 @@ function ProjectPreview({ project, featured = false }) {
           <button
             type="button"
             aria-label={`Смотреть ${project.title}`}
-            className="group absolute inset-0 z-10 flex items-center justify-center bg-neutral-950 text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-950"
+            className="group absolute inset-0 z-20 flex items-center justify-center bg-neutral-950 text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-950"
             onClick={handlePlay}
             onMouseEnter={() => {
               if (canUseHoverPreview()) {
+                setIsHoverPreviewRequested(true);
                 setIsHoverPreviewVisible(true);
               }
             }}
@@ -422,11 +540,13 @@ function ProjectPreview({ project, featured = false }) {
                 }}
               />
             )}
-            {shouldShowHoverPreview && (
+            {shouldRenderHoverPreview && (
               <img
                 src={hoverPreview}
                 alt=""
-                className="absolute inset-0 h-full w-full object-cover"
+                className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-200 ${
+                  isHoverPreviewVisible ? "opacity-100" : "opacity-0"
+                }`}
                 loading="lazy"
                 aria-hidden="true"
               />
@@ -435,21 +555,19 @@ function ProjectPreview({ project, featured = false }) {
             <span
               className="play-button relative flex h-16 w-16 items-center justify-center rounded-lg bg-white text-2xl text-neutral-950 shadow-xl transition duration-300 group-hover:scale-105"
             >
-              <PlayIcon />
+              <PlayIcon className="h-6 w-6" />
             </span>
           </button>
         )}
 
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-        <div className="project-accent-sheen pointer-events-none absolute inset-0" />
         {!hasVideo && !featured && (
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+          <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center">
             <span className="flex h-14 w-14 items-center justify-center rounded-lg bg-white text-neutral-950 shadow-xl">
-              <PlayIcon />
+              <PlayIcon className="h-6 w-6" />
             </span>
           </div>
         )}
-        <div className="pointer-events-none absolute left-4 top-4 flex flex-wrap gap-2">
+        <div className="pointer-events-none absolute left-4 top-4 z-30 flex flex-wrap gap-2">
           <span className="rounded-lg bg-white/90 px-3 py-1 text-xs font-bold text-neutral-950 backdrop-blur">
             {project.category}
           </span>
@@ -472,9 +590,10 @@ function ProjectPreview({ project, featured = false }) {
             href={project.originalUrl}
             target="_blank"
             rel="noreferrer"
-            className="mt-5 inline-flex min-h-11 items-center justify-center rounded-lg border border-white/15 px-4 text-sm font-black text-white transition hover:bg-white/10"
+            className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-white/15 px-4 text-sm font-black text-white transition hover:bg-white/10"
           >
-            Смотреть полное видео
+            <ExternalLinkIcon className="h-4 w-4 shrink-0" />
+            <span>Смотреть полное видео</span>
           </a>
         )}
       </div>
@@ -498,7 +617,7 @@ function buildBriefMessage(formData) {
   ].join("\n");
 }
 
-function BriefModal({ isSending, onClose, onSubmit, quickContactUrl, status }) {
+function BriefModal({ isSending, onClose, onSubmit, status }) {
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 px-5 py-8 backdrop-blur">
       <div className="max-h-full w-full max-w-3xl overflow-y-auto rounded-lg border border-white/10 bg-neutral-950 shadow-2xl">
@@ -513,10 +632,11 @@ function BriefModal({ isSending, onClose, onSubmit, quickContactUrl, status }) {
           </div>
           <button
             type="button"
-            className="rounded-lg border border-white/10 px-3 py-2 text-sm font-bold text-neutral-300 transition hover:bg-white/10 hover:text-white"
+            className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/10 px-3 py-2 text-sm font-bold text-neutral-300 transition hover:bg-white/10 hover:text-white"
             onClick={onClose}
           >
-            Закрыть
+            <XIcon className="h-4 w-4 shrink-0" />
+            <span>Закрыть</span>
           </button>
         </div>
 
@@ -590,32 +710,20 @@ function BriefModal({ isSending, onClose, onSubmit, quickContactUrl, status }) {
           <div className="flex flex-col gap-3 sm:flex-row">
             <button
               type="submit"
-              className="inline-flex min-h-12 items-center justify-center rounded-lg bg-white px-6 text-sm font-black text-neutral-950 transition hover:bg-neutral-200 disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-neutral-950 transition hover:bg-neutral-200 disabled:cursor-not-allowed disabled:opacity-60"
               disabled={isSending}
             >
-              {isSending ? "Отправляю..." : "Отправить в Telegram"}
+              <SendIcon className="h-4 w-4 shrink-0" />
+              <span>{isSending ? "Отправляю..." : "Отправить в Telegram"}</span>
             </button>
             <button
               type="button"
-              className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/15 px-6 text-sm font-black text-white transition hover:bg-white/10"
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/15 px-6 text-sm font-black text-white transition hover:bg-white/10"
               onClick={onClose}
             >
-              Вернуться на сайт
+              <ArrowLeftIcon className="h-4 w-4 shrink-0" />
+              <span>Вернуться на сайт</span>
             </button>
-          </div>
-
-          <div className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
-            <p className="text-sm leading-6 text-neutral-300">
-              Если не хочется заполнять поля, можно сразу написать мне в Telegram.
-            </p>
-            <a
-              href={quickContactUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-lg border border-white/15 px-4 text-sm font-black text-white transition hover:bg-white/10 sm:w-auto"
-            >
-              Лень заполнять заявку
-            </a>
           </div>
         </form>
       </div>
@@ -684,7 +792,7 @@ export default function App() {
             ))}
           </div>
 
-          <ButtonLink href="#contact">Обсудить проект</ButtonLink>
+          <ButtonLink href="#contact" icon={MessageIcon}>Обсудить проект</ButtonLink>
         </nav>
       </header>
 
@@ -704,8 +812,8 @@ export default function App() {
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
-                <ButtonLink href="#work">Смотреть работы</ButtonLink>
-                <ButtonLink href="#contact" variant="secondary">
+                <ButtonLink href="#work" icon={PlayIcon}>Смотреть работы</ButtonLink>
+                <ButtonLink href="#contact" variant="secondary" icon={MessageIcon}>
                   Написать
                 </ButtonLink>
               </div>
@@ -885,16 +993,28 @@ export default function App() {
                   <p className="mb-4 text-sm leading-6 text-white/80">
                     Форма займёт пару минут и заменит длинную переписку на старте.
                   </p>
-                  <button
-                    type="button"
-                    className="inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-white px-6 text-sm font-black uppercase tracking-[0.12em] text-neutral-950 transition hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-900"
-                    onClick={() => {
-                      setBriefStatus("");
-                      setIsBriefOpen(true);
-                    }}
-                  >
-                    Начать работу →
-                  </button>
+                  <div className="flex flex-col gap-3 sm:flex-row">
+                    <button
+                      type="button"
+                      className="inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-black uppercase tracking-[0.12em] text-neutral-950 transition hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-900"
+                      onClick={() => {
+                        setBriefStatus("");
+                        setIsBriefOpen(true);
+                      }}
+                    >
+                      <BriefIcon className="h-4 w-4 shrink-0" />
+                      <span>Заполнить бриф</span>
+                    </button>
+                    <a
+                      href={profile.telegram}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-lg border border-white/15 px-5 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-900"
+                    >
+                      <MessageIcon className="h-4 w-4 shrink-0" />
+                      <span>Написать мне</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -905,7 +1025,6 @@ export default function App() {
       {isBriefOpen && (
         <BriefModal
           isSending={isBriefSending}
-          quickContactUrl={profile.telegram}
           status={briefStatus}
           onClose={() => setIsBriefOpen(false)}
           onSubmit={handleBriefSubmit}

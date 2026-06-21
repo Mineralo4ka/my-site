@@ -55,18 +55,12 @@ video:-webkit-full-screen {
   pointer-events: none;
   content: "";
   background:
-    linear-gradient(90deg, rgb(255 255 255 / 0.035) 1px, transparent 1px),
-    linear-gradient(180deg, rgb(255 255 255 / 0.03) 1px, transparent 1px),
     linear-gradient(115deg, transparent 0 44%, rgb(20 184 166 / 0.07) 50%, transparent 58%),
     linear-gradient(245deg, transparent 0 52%, rgb(249 115 22 / 0.055) 58%, transparent 66%);
   background-position:
     center,
-    center,
-    center,
     center;
   background-size:
-    56px 56px,
-    56px 56px,
     100% 100%,
     100% 100%;
   mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.72), transparent 78%);
@@ -180,22 +174,6 @@ video:-webkit-full-screen {
   transform: translateY(-3px);
 }
 
-.project-frame::after {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  content: "";
-  background:
-    linear-gradient(90deg, transparent 0 24%, rgb(255 255 255 / 0.045) 25%, transparent 26% 74%, rgb(255 255 255 / 0.045) 75%, transparent 76%),
-    linear-gradient(180deg, transparent 0 24%, rgb(255 255 255 / 0.04) 25%, transparent 26% 74%, rgb(255 255 255 / 0.04) 75%, transparent 76%);
-  opacity: 0;
-  transition: opacity 300ms ease;
-}
-
-.project-card:hover .project-frame::after {
-  opacity: 1;
-}
-
 .project-accent-sheen {
   background:
     linear-gradient(135deg, color-mix(in srgb, var(--project-accent) 34%, transparent), transparent 34%),
@@ -249,18 +227,27 @@ video:-webkit-full-screen {
 
 @supports (animation-timeline: view()) {
   .reveal-surface {
-    opacity: 0.01;
-    transform: translateY(18px);
-    animation: surface-reveal 700ms ease both;
+    --reveal-opacity: 0.16;
+    --reveal-y: 12px;
+    opacity: var(--reveal-opacity);
+    transform: translateY(var(--reveal-y));
+    animation: surface-reveal 420ms ease-out both;
     animation-timeline: view();
-    animation-range: entry 0% cover 26%;
+    animation-range: entry 0% cover 14%;
+  }
+
+  .project-card.reveal-surface {
+    --reveal-opacity: 0.28;
+    --reveal-y: 8px;
+    animation-duration: 320ms;
+    animation-range: entry 0% cover 8%;
   }
 }
 
 @keyframes surface-reveal {
   from {
-    opacity: 0.01;
-    transform: translateY(18px);
+    opacity: var(--reveal-opacity, 0.16);
+    transform: translateY(var(--reveal-y, 12px));
   }
 
   to {
