@@ -21,6 +21,10 @@ body {
     sans-serif;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 img,
 video {
   max-width: 100%;
@@ -37,4 +41,250 @@ video:-webkit-full-screen {
 ::selection {
   background: #fff;
   color: #09090b;
+}
+
+.site-shell {
+  position: relative;
+  isolation: isolate;
+}
+
+.site-shell::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(90deg, rgb(255 255 255 / 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgb(255 255 255 / 0.03) 1px, transparent 1px),
+    linear-gradient(115deg, transparent 0 44%, rgb(20 184 166 / 0.07) 50%, transparent 58%),
+    linear-gradient(245deg, transparent 0 52%, rgb(249 115 22 / 0.055) 58%, transparent 66%);
+  background-position:
+    center,
+    center,
+    center,
+    center;
+  background-size:
+    56px 56px,
+    56px 56px,
+    100% 100%,
+    100% 100%;
+  mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.72), transparent 78%);
+}
+
+.hero-section {
+  position: relative;
+}
+
+.site-logo {
+  outline-offset: 6px;
+}
+
+.logo-mark {
+  position: relative;
+  overflow: hidden;
+  transform-origin: 50% 58%;
+  box-shadow: 0 10px 28px rgb(0 0 0 / 0.28);
+  transition:
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.logo-mark::before {
+  position: absolute;
+  inset: -40%;
+  content: "";
+  background: conic-gradient(
+    from 120deg,
+    transparent 0 42%,
+    rgb(20 184 166 / 0.34) 48%,
+    rgb(249 115 22 / 0.3) 55%,
+    transparent 62% 100%
+  );
+  opacity: 0;
+  transform: rotate(-24deg) scale(0.82);
+  transition:
+    opacity 240ms ease,
+    transform 360ms ease;
+}
+
+.logo-mark img {
+  position: relative;
+  z-index: 1;
+  filter: grayscale(1) contrast(1.08);
+  transition:
+    filter 220ms ease,
+    transform 220ms ease;
+}
+
+.site-logo:hover .logo-mark {
+  box-shadow:
+    0 14px 34px rgb(0 0 0 / 0.34),
+    0 0 26px rgb(20 184 166 / 0.18);
+  transform: translateY(-1px) rotate(-3deg);
+}
+
+.site-logo:hover .logo-mark::before {
+  opacity: 1;
+  transform: rotate(34deg) scale(1);
+}
+
+.site-logo:hover .logo-mark img {
+  filter: grayscale(0) contrast(1.08) saturate(1.08);
+  transform: scale(1.08) rotate(3deg);
+}
+
+.site-logo:active .logo-mark {
+  animation: logo-click 260ms ease both;
+}
+
+@keyframes logo-click {
+  0% {
+    transform: translateY(-1px) scale(1) rotate(-3deg);
+  }
+
+  45% {
+    transform: translateY(0) scale(0.9) rotate(2deg);
+  }
+
+  100% {
+    transform: translateY(-1px) scale(1.03) rotate(-3deg);
+  }
+}
+
+.project-card,
+.service-card,
+.process-card,
+.portrait-card,
+.contact-card,
+.stat-card {
+  transition:
+    border-color 220ms ease,
+    background-color 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.project-card {
+  box-shadow:
+    0 22px 60px rgb(0 0 0 / 0.28),
+    inset 0 1px 0 rgb(255 255 255 / 0.03);
+}
+
+.project-card:hover {
+  border-color: color-mix(in srgb, var(--project-accent) 44%, rgb(255 255 255 / 0.12));
+  box-shadow:
+    0 28px 75px rgb(0 0 0 / 0.36),
+    0 0 0 1px color-mix(in srgb, var(--project-accent) 30%, transparent),
+    0 0 44px color-mix(in srgb, var(--project-accent) 15%, transparent);
+  transform: translateY(-3px);
+}
+
+.project-frame::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(90deg, transparent 0 24%, rgb(255 255 255 / 0.045) 25%, transparent 26% 74%, rgb(255 255 255 / 0.045) 75%, transparent 76%),
+    linear-gradient(180deg, transparent 0 24%, rgb(255 255 255 / 0.04) 25%, transparent 26% 74%, rgb(255 255 255 / 0.04) 75%, transparent 76%);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.project-card:hover .project-frame::after {
+  opacity: 1;
+}
+
+.project-accent-sheen {
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--project-accent) 34%, transparent), transparent 34%),
+    linear-gradient(315deg, color-mix(in srgb, var(--project-accent) 18%, transparent), transparent 42%);
+  opacity: 0;
+  transition: opacity 320ms ease;
+}
+
+.project-card:hover .project-accent-sheen {
+  opacity: 1;
+}
+
+.play-button {
+  box-shadow:
+    0 16px 40px rgb(0 0 0 / 0.35),
+    0 0 0 0 color-mix(in srgb, var(--project-accent) 34%, transparent);
+}
+
+.project-card:hover .play-button {
+  box-shadow:
+    0 16px 40px rgb(0 0 0 / 0.42),
+    0 0 0 7px color-mix(in srgb, var(--project-accent) 18%, transparent);
+}
+
+.project-meta {
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.025), transparent 38%),
+    linear-gradient(90deg, color-mix(in srgb, var(--project-accent) 9%, transparent), transparent 58%);
+}
+
+.service-card:hover,
+.process-card:hover,
+.portrait-card:hover,
+.contact-card:hover,
+.stat-card:hover {
+  border-color: rgb(255 255 255 / 0.18);
+  background-color: rgb(38 38 38 / 0.78);
+}
+
+.service-card:hover,
+.process-card:hover,
+.stat-card:hover {
+  transform: translateY(-2px);
+}
+
+.section-band {
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.035),
+    inset 0 -1px 0 rgb(255 255 255 / 0.035);
+}
+
+@supports (animation-timeline: view()) {
+  .reveal-surface {
+    opacity: 0.01;
+    transform: translateY(18px);
+    animation: surface-reveal 700ms ease both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 26%;
+  }
+}
+
+@keyframes surface-reveal {
+  from {
+    opacity: 0.01;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal-surface {
+    opacity: 1;
+    transform: none;
+  }
 }

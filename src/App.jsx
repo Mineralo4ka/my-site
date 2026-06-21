@@ -364,9 +364,12 @@ function ProjectPreview({ project, featured = false }) {
   }
 
   return (
-    <article className="overflow-hidden rounded-lg border border-white/10 bg-neutral-900">
+    <article
+      className="project-card reveal-surface overflow-hidden rounded-lg border border-white/10 bg-neutral-900"
+      style={{ "--project-accent": project.accent }}
+    >
       <div
-        className="relative overflow-hidden bg-neutral-950"
+        className="project-frame relative overflow-hidden bg-neutral-950"
         style={{ aspectRatio: isVertical ? "9 / 16" : "16 / 9" }}
       >
         {hasVideo ? (
@@ -395,7 +398,7 @@ function ProjectPreview({ project, featured = false }) {
           <button
             type="button"
             aria-label={`Смотреть ${project.title}`}
-            className="absolute inset-0 z-10 flex items-center justify-center bg-neutral-950 text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-950"
+            className="group absolute inset-0 z-10 flex items-center justify-center bg-neutral-950 text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-950"
             onClick={handlePlay}
             onMouseEnter={() => {
               if (canUseHoverPreview()) {
@@ -408,7 +411,7 @@ function ProjectPreview({ project, featured = false }) {
               <img
                 src={project.cover}
                 alt={`Обложка ${project.title}`}
-                className="absolute inset-0 h-full w-full object-cover"
+                className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.025]"
                 loading="lazy"
               />
             ) : (
@@ -428,9 +431,9 @@ function ProjectPreview({ project, featured = false }) {
                 aria-hidden="true"
               />
             )}
-            <span className="absolute inset-0 bg-black/35" />
+            <span className="absolute inset-0 bg-black/35 transition duration-500 group-hover:bg-black/20" />
             <span
-              className="relative flex h-16 w-16 items-center justify-center rounded-lg bg-white text-2xl text-neutral-950 shadow-xl transition hover:scale-105"
+              className="play-button relative flex h-16 w-16 items-center justify-center rounded-lg bg-white text-2xl text-neutral-950 shadow-xl transition duration-300 group-hover:scale-105"
             >
               <PlayIcon />
             </span>
@@ -438,6 +441,7 @@ function ProjectPreview({ project, featured = false }) {
         )}
 
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+        <div className="project-accent-sheen pointer-events-none absolute inset-0" />
         {!hasVideo && !featured && (
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
             <span className="flex h-14 w-14 items-center justify-center rounded-lg bg-white text-neutral-950 shadow-xl">
@@ -457,7 +461,7 @@ function ProjectPreview({ project, featured = false }) {
         </div>
       </div>
 
-      <div className="p-5">
+      <div className="project-meta p-5">
         <div className="flex items-start justify-between gap-4">
           <h3 className="text-xl font-black text-white">{project.title}</h3>
           <span className="text-sm font-bold text-neutral-400">{project.year}</span>
@@ -657,12 +661,17 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-white">
+    <div className="site-shell min-h-screen bg-neutral-950 text-white">
       <header className="sticky top-0 z-50 border-b border-white/10 bg-neutral-950/90 backdrop-blur">
         <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4">
-          <a href="#top" className="flex items-center gap-3 font-black tracking-tight">
-            <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-white text-neutral-950">
-              <PlayIcon className="text-sm" />
+          <a href="#top" className="site-logo flex items-center gap-3 font-black tracking-tight">
+            <span className="logo-mark flex h-10 w-10 items-center justify-center rounded-lg">
+              <img
+                src="/images/favicon.ico"
+                alt=""
+                className="h-full w-full object-cover"
+                aria-hidden="true"
+              />
             </span>
             <span>{profile.name}</span>
           </a>
@@ -680,9 +689,9 @@ export default function App() {
       </header>
 
       <main id="top">
-        <section className="px-5 py-16 md:py-24">
+        <section className="hero-section px-5 py-16 md:py-24">
           <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
-            <div>
+            <div className="reveal-surface">
               <p className="text-sm font-bold uppercase tracking-[0.18em] text-neutral-400">
                 Video editor / talking-head / brand content
               </p>
@@ -707,7 +716,7 @@ export default function App() {
                   ["5 лет", "опыта"],
                   ["24 ч", "на первый ответ"],
                 ].map(([value, label]) => (
-                  <div key={label} className="rounded-lg border border-white/10 bg-white/5 p-4">
+                  <div key={label} className="stat-card rounded-lg border border-white/10 bg-white/5 p-4">
                     <dt className="text-2xl font-black">{value}</dt>
                     <dd className="mt-1 text-sm text-neutral-400">{label}</dd>
                   </div>
@@ -715,7 +724,7 @@ export default function App() {
               </dl>
             </div>
 
-            <div className="overflow-hidden rounded-lg border border-white/10 bg-neutral-900">
+            <div className="portrait-card reveal-surface overflow-hidden rounded-lg bg-neutral-900">
               <img
                 src={profile.avatar}
                 alt={`${profile.name}, ${profile.role}`}
@@ -731,9 +740,9 @@ export default function App() {
           </div>
         </section>
 
-        <section id="work" className="border-y border-white/10 bg-white/[0.03] px-5 py-16">
+        <section id="work" className="section-band border-y border-white/10 bg-white/[0.03] px-5 py-16">
           <div className="mx-auto max-w-7xl">
-            <div>
+            <div className="reveal-surface">
               <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                 <div>
                   <h3 className="mt-2 text-3xl font-black md:text-4xl">Вертикальные видео</h3>
@@ -750,7 +759,7 @@ export default function App() {
               </div>
             </div>
 
-            <div className="mt-24 md:mt-32">
+            <div className="reveal-surface mt-24 md:mt-32">
               <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                 <div>
                   <h3 className="mt-2 text-3xl font-black md:text-4xl">Горизонтальные видео</h3>
@@ -771,7 +780,7 @@ export default function App() {
 
         <section id="services" className="px-5 py-20">
           <div className="mx-auto max-w-7xl">
-            <div>
+            <div className="reveal-surface">
               <h2 className="max-w-4xl text-4xl font-black leading-tight md:text-6xl">
                 С чем я могу помочь?
               </h2>
@@ -785,7 +794,7 @@ export default function App() {
               {services.map((service) => (
                 <article
                   key={service.id}
-                  className="relative min-h-[28rem] overflow-hidden rounded-lg border border-white/10 bg-neutral-900 p-7 shadow-2xl shadow-black/20"
+                  className="service-card reveal-surface relative min-h-[28rem] overflow-hidden rounded-lg border border-white/10 bg-neutral-900 p-7 shadow-2xl shadow-black/20"
                 >
                   <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-white/10" />
                   <span className="absolute right-7 top-7 text-sm font-black text-white/70">
@@ -819,7 +828,7 @@ export default function App() {
 
         <section id="process" className="px-5 py-16">
           <div className="mx-auto max-w-7xl">
-            <div className="mb-8">
+            <div className="reveal-surface mb-8">
               <h2 className="text-4xl font-black md:text-5xl">Как строится работа?</h2>
             </div>
 
@@ -827,7 +836,7 @@ export default function App() {
               {process.map((step, index) => (
                 <div
                   key={step.title}
-                  className="rounded-lg border border-white/10 bg-neutral-900 p-6 shadow-xl shadow-black/10"
+                  className="process-card reveal-surface rounded-lg border border-white/10 bg-neutral-900 p-6 shadow-xl shadow-black/10"
                 >
                   <div className="flex items-center gap-4">
                     <span className="text-sm font-black text-white/80">
@@ -844,7 +853,7 @@ export default function App() {
         </section>
 
         <section id="contact" className="px-5 py-20">
-          <div className="mx-auto max-w-7xl overflow-hidden rounded-lg border border-white/10 bg-neutral-900 p-8 text-white shadow-2xl shadow-black/20 md:p-12">
+          <div className="contact-card reveal-surface mx-auto max-w-7xl overflow-hidden rounded-lg border border-white/10 bg-neutral-900 p-8 text-white shadow-2xl shadow-black/20 md:p-12">
             <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
               <div>
                 <h2 className="max-w-4xl text-5xl font-black leading-none tracking-tight md:text-7xl">
