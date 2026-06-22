@@ -55,15 +55,15 @@ video:-webkit-full-screen {
   pointer-events: none;
   content: "";
   background:
-    linear-gradient(115deg, transparent 0 44%, rgb(20 184 166 / 0.07) 50%, transparent 58%),
-    linear-gradient(245deg, transparent 0 52%, rgb(249 115 22 / 0.055) 58%, transparent 66%);
+    linear-gradient(118deg, transparent 0 32%, rgb(20 184 166 / 0.12) 48%, transparent 72%),
+    linear-gradient(242deg, transparent 0 42%, rgb(249 115 22 / 0.095) 60%, transparent 82%);
   background-position:
     center,
     center;
   background-size:
     100% 100%,
     100% 100%;
-  mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.72), transparent 78%);
+  mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.86), rgb(0 0 0 / 0.5) 76%, rgb(0 0 0 / 0.24));
 }
 
 .hero-section {

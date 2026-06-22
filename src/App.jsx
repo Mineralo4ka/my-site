@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 
 const profile = {
   name: "Andrew Pavlenko",
-  role: "Видеомонтажёр для экспертов, брендов и авторов",
+  role: "Видеомонтажёр для бизнеса, экспертов и авторов",
   //email: "yourmail@example.com",
   instagram: "https://www.instagram.com/nehold_creator/",
   telegram: "https://t.me/Nehold",
@@ -25,8 +25,9 @@ const projects = [
     accent: "#f97316",
     video: "/videos/DS_podcast.mp4",
     cover: "/images/covers/DS_codecs.webp",
+    originalUrl: "https://www.youtube.com/watch?v=stCi1eQSEYY",
     description:
-      "Подкаст DeepSchool «Под капотом»: разговор про видеокодеки, AI-модели и тимлидинг с аккуратной склейкой спикеров и брендированными перебивками.",
+      "Подкаст для DeepSchool: чистая склейка спикеров, аккуратные перебивки и спокойный темп для длинного экспертного выпуска.",
   },
   {
     title: "DeepSchool",
@@ -36,8 +37,9 @@ const projects = [
     accent: "#6366f1",
     video: "/videos/DS_15quest.mp4",
     cover: "/images/covers/DS_auto.webp",
+    originalUrl: "https://www.youtube.com/watch?v=gpBkyiwOq88",
     description:
-      "Формат «15 вопросов ML-инженеру» про автономный транспорт: talking-head, титры, именные плашки и спокойная экспертная подача.",
+      "Разговорный выпуск DeepSchool с понятной структурой, титрами и плашками, чтобы сложная тема воспринималась легче.",
   },
   {
     title: "DeepSchool",
@@ -47,8 +49,9 @@ const projects = [
     accent: "#0ea5e9",
     video: "/videos/DS_MOK.mp4",
     cover: "/images/covers/DS_MOK.webp",
+    originalUrl: "https://www.youtube.com/watch?v=P7ndeN0yLig",
     description:
-      "Мок-собеседование CV-инженера: созвон, разбор задачи про искусство, обучающие вставки и чистая структура интервью.",
+      "Интервью в формате мок-собеседования: разбор задачи, чистый монтаж созвона и вставки, которые помогают следить за мыслью.",
   },
   {
     title: "KURS",
@@ -58,8 +61,9 @@ const projects = [
     accent: "#f59e0b",
     video: "/videos/KURS_horizont.mp4",
     cover: "/images/covers/kurs_horizont.webp",
+    originalUrl: "https://www.youtube.com/watch?v=KKgZJRlUcMU",
     description:
-      "Обзор девайсов KURS для бульдога: ведущий в военной стилистике, предметные крупные планы, детали креплений и динамичная демонстрация.",
+      "Обзор продукта KURS: крупные планы, демонстрация деталей и монтаж, который помогает быстро понять пользу устройства.",
   },
   {
     title: "KURS",
@@ -71,7 +75,7 @@ const projects = [
     cover: "/images/covers/KURS_gangsters.webp",
     originalUrl: "https://www.youtube.com/shorts/75chU5_slkI",
     description:
-      "Вертикальная объяснялка KURS о том, почему гангстеры держат пистолеты под углом: ведущий, кино-вставки, титры и быстрый монтаж.",
+      "Короткий объясняющий ролик KURS с быстрым заходом, кино-вставками и титрами, которые удерживают внимание до конца.",
   },
   {
     title: "KURS Animation",
@@ -83,11 +87,11 @@ const projects = [
     cover: "/images/covers/KURS_animation.webp",
     originalUrl: "https://www.youtube.com/shorts/cTog6z753tU",
     description:
-      "Анимационный short KURS про глубину бункера и разные калибры: рисованные схемы, понятная визуализация и темп образовательного Reels.",
+      "Анимационный Shorts для KURS: простая визуализация сложной темы, схемы и темп, подходящий для образовательного контента.",
   },
   {
     title: "A4Food",
-    category: "Tiktok",
+    category: "TikTok",
     year: "2026",
     format: "9:16",
     accent: "#eab308",
@@ -95,11 +99,11 @@ const projects = [
     cover: "/images/covers/A4_drink.webp",
     originalUrl: "https://www.youtube.com/shorts/mxN8SbFI2iA",
     description:
-      "A4Food-ролик с приготовлением напитка: блогерская подача, реакция героев, крупные планы ингредиентов и яркие субтитры.",
+      "Яркий TikTok для A4Food: приготовление напитка, реакции героев и крупные планы, которые делают продукт заметнее.",
   },
    {
     title: "A4Food",
-    category: "Tiktok",
+    category: "TikTok",
     year: "2026",
     format: "9:16",
     accent: "#eab308",
@@ -107,132 +111,139 @@ const projects = [
     cover: "/images/covers/A4_kobyakov.webp",
     originalUrl: "https://www.youtube.com/shorts/sQvOVc_ESzw",
     description:
-      "A4 с Кобяковым, обзор снеков: ведущий, линейка вкусов на столе, брендовые вставки, реакции и быстрый TikTok-темп.",
+      "Обзор снеков с Кобяковым: быстрый темп, реакции, акценты на вкусах и подача, которая подходит для TikTok.",
   },
   {
     title: "GGSel",
     category: "Reels",
-    year: "2026",
+    year: "2025",
     format: "9:16",
     accent: "#38bdf8",
     video: "/videos/ggsel_opros.mp4",
     cover: "/images/covers/ggsel_opros.webp",
     originalUrl: "https://www.instagram.com/reel/DSeyiABjWZb/",
     description:
-      "Уличный опрос GGSel про выбор между деньгами и Steam: живые реакции, брендированные элементы, крупные планы и быстрые склейки.",
+      "Уличный опрос для GGSel: живые реакции, брендовые элементы и быстрый монтаж для лёгкого просмотра в Reels.",
   },
   {
     title: "GGSel",
-    category: "Tiktok",
-    year: "2026",
+    category: "TikTok",
+    year: "2024",
     format: "9:16",
     accent: "#22c55e",
     video: "/videos/ggsel_vicecity.mp4",
     cover: "/images/covers/ggsel_vicecity.webp",
-    originalUrl: "https://www.youtube.com/shorts/M8zkgS2w0RA",
+    originalUrl: "https://www.tiktok.com/@ggsel.net/video/7500908251769212177",
     description:
-      "Игровой ролик GGSel со сравнением GTA San Andreas и Vice City: ведущая, геймплейные вставки, счёт и динамичные мемные акценты.",
+      "Игровой TikTok для GGSel: сравнение GTA, динамичные вставки и подача, которая быстро вовлекает зрителя.",
   },
   {
     title: "BigCity",
     category: "Reels",
     year: "2024",
     format: "9:16",
-    accent: "#9f22c5",
+    accent: "#06b6d4",
     video: "/videos/BigCity_kvartira.mp4",
     cover: "/images/covers/BigCity_kvartira.webp",
     originalUrl: "https://www.youtube.com/shorts/3ASJzRhvYFs",
     description:
-      "Недвижимость BigCity: ролик про рассрочку от застройщиков, ипотеку и проценты с инфографикой, примерами квартир и продающим темпом.",
+      "Reels для недвижимости BigCity: понятное объяснение рассрочки, инфографика и примеры, которые помогают разобраться в оффере.",
   },
   {
     title: "BigCity",
     category: "Reels",
     year: "2024",
     format: "9:16",
-    accent: "#9f22c5",
+    accent: "#0ea5e9",
     video: "/videos/BigCity_moscow.mp4",
     cover: "/images/covers/BigCity_moscow.webp",
     originalUrl: "https://www.youtube.com/shorts/mIBveDn0rIo",
     description:
-      "BigCity о будущем Москвы: ведущий, архивные кадры, карта Нового Арбата и визуализация небоскрёба в коротком городском формате.",
+      "Городской Reels для BigCity: история места, архивные кадры и визуализация, собранные в короткий понятный сюжет.",
   },
   {
     title: "Faina Li",
     category: "Reels",
     year: "2024",
     format: "9:16",
-    accent: "#9f22c5",
+    accent: "#10b981",
     video: "/videos/faina_li.mp4",
     cover: "/images/covers/faina_li.webp",
+    originalUrl: "https://www.youtube.com/shorts/nO9N7Mhypic",
     description:
-      "Ролик про Китайский язык с Фаиной Ли и о том как старики проводят время на пенсиии",
+      "Образовательный Reels для Faina Li: китайский язык, живые примеры и быстрые вставки, которые помогают удержать внимание.",
   },
   {
     title: "MyCSGO",
     category: "Shorts",
     year: "2024",
     format: "9:16",
-    accent: "#9f22c5",
+    accent: "#f97316",
     video: "/videos/MyCSGO.mp4",
     cover: "/images/covers/MyCSGO.webp",
+    originalUrl: "https://www.youtube.com/shorts/BZUQxK2zuz0",
     description:
-      "MyCSGO short с открытием кейсов: ведущий, колесо выбора, скины CS и быстрые реакции под азартный игровой формат.",
+      "Shorts для MyCSGO с кейс-челленджем: счётчик попыток, колесо выбора и реакции, которые держат азарт до финала.",
   },
   {
     title: "MarketCSGO",
     category: "Shorts",
     year: "2024",
     format: "9:16",
-    accent: "#9f22c5",
+    accent: "#3b82f6",
     video: "/videos/MarketCSGO.mp4",
     cover: "/images/covers/MarketCSGO.webp",
+    originalUrl: "https://www.youtube.com/shorts/2g84v49AYy0",
     description:
-      "MarketCSGO short про CS-граффити на Inferno: ведущий, игровые фрагменты, киберспортивные вставки и объясняющие титры.",
+      "Shorts для MarketCSGO: быстрый разбор деталей Inferno, игровые вставки и понятная подача для аудитории CS.",
   },
   {
     title: "Fudziyama",
-    category: "Reels",
+    category: "TikTok",
     year: "2024",
     format: "9:16",
-    accent: "#9f22c5",
+    accent: "#22c55e",
     video: "/videos/fudzi.mp4",
     cover: "/images/covers/fudzi.webp",
+    originalUrl: "https://www.tiktok.com/@sushifuji_global/video/7514661037933595926",
     description:
-      "Fudziyama food-ролик с дегустацией азиатских блюд: острый соус, креветка темпура, реакции героев и сочные крупные планы.",
+      "Food-ролик для Fudziyama: дегустация, реакции героев и аппетитные крупные планы для короткого формата.",
   },
   {
     title: "CubeMarket",
-    category: "Reels",
+    category: "Shorts",
     year: "2026",
     format: "9:16",
-    accent: "#9f22c5",
+    accent: "#ef4444",
     video: "/videos/CubeMarket.mp4",
     cover: "/images/covers/CubeMarket.webp",
+    originalUrl: "https://www.youtube.com/shorts/Hkgow6vGYzc",
     description:
-      "CubeMarket-ролик про мультфильм «Тачки»: нарезка Pixar, ведущий с игрушками, коллекционные машинки и товарный акцент.",
+      "Shorts для CubeMarket: знакомая тема, быстрые вставки и товарный акцент, который мягко ведёт к продукту.",
   },
   {
     title: "Anecole",
-    category: "Tiktok",
+    category: "TikTok",
     year: "2026",
     format: "9:16",
-    accent: "#9f22c5",
+    accent: "#8b5cf6",
     video: "/videos/Anecole.mp4",
     cover: "/images/covers/Anecole.webp",
+    originalUrl: "https://www.tiktok.com/@simonyan_english/video/7645587507375361300?_r=1&_t=ZS-96qnbhhD3xM",
     description:
-      "Anecole short про английский знаменитостей: разбор речи Владимира Познера, субтитры, вставки интервью и образовательный темп.",
+      "Образовательный TikTok для Anecole: разбор английской речи, субтитры и вставки, которые делают урок живее.",
   },
   {
     title: "Алена Котлярова",
     category: "Reels",
     year: "2025",
     format: "9:16",
-    accent: "#9f22c5",
+    accent: "#f59e0b",
     video: "/videos/Alena_dodo.mp4",
     cover: "/images/covers/Alena_dodo.webp",
+    originalUrl: "https://www.instagram.com/alena_kots/reel/DSBBmC4iMTd/",
     description:
-      "Reels Алены Котляровой про китайскую Dodo Pizza: обзор меню, атмосфера заведения, детали упаковки и живой тревел-репортаж.",
+      "Reels для Алёны Котляровой: обзор заведения, детали меню и живой тревел-формат для вовлечения аудитории.",
   },
 ];
 
@@ -240,34 +251,34 @@ const services = [
   {
     id: "01",
     marker: "S",
-    title: "Short-form монтаж",
-    description: "Для Reels, Shorts, TikTok и рекламных вертикальных роликов.",
+    title: "Короткие ролики",
+    description: "Для Reels, Shorts, TikTok и рекламных вертикальных видео.",
     features: [
-      "Хук в первые секунды",
+      "Сильное начало",
       "Читаемые субтитры",
       "Динамичные склейки",
-      "Визуальные акценты",
+      "Акценты на продукте",
       "Экспорт под площадки",
     ],
   },
   {
     id: "02",
     marker: "L",
-    title: "Long-form видео",
-    description: "Для YouTube, подкастов, интервью, обзоров и экспертных выпусков.",
+    title: "Длинные видео",
+    description: "Для YouTube, подкастов, интервью, обзоров и экспертного контента.",
     features: [
       "Структура выпуска",
-      "B-roll и перебивки",
-      "Lower thirds и плашки",
+      "Дополнительные кадры",
+      "Плашки и подписи",
       "Чистка и баланс звука",
-      "Цельная подача",
+      "Логичная подача",
     ],
   },
   {
     id: "03",
     marker: "R",
     title: "Переупаковка контента",
-    description: "Из длинной записи собираю набор коротких материалов для разных платформ.",
+    description: "Из длинной записи получается набор коротких роликов для разных площадок.",
     features: [
       "Выбор сильных фрагментов",
       "Нарезка коротких клипов",
@@ -281,19 +292,19 @@ const services = [
 const process = [
   {
     title: "Бриф",
-    description: "Смотрю исходники, цель ролика, аудиторию и понимаю, какой монтаж сработает лучше.",
+    description: "Разбор задачи, исходников, площадки и цели ролика.",
   },
   {
     title: "Структура",
-    description: "Собираю основу: где начать, что оставить, что убрать и как вести зрителя дальше.",
+    description: "Логика ролика: начало, ключевые смыслы, темп и порядок сцен.",
   },
   {
     title: "Монтаж",
-    description: "Добавляю ритм, титры, звук, графику и делаю ролик плотным, понятным и аккуратным.",
+    description: "Ритм, титры, звук, графика и финальная сборка под выбранный формат.",
   },
   {
     title: "Сдача",
-    description: "Отдаю версии под нужные площадки и вношу правки без хаоса и лишней переписки.",
+    description: "Готовые версии под нужные площадки и аккуратная работа с правками.",
   },
 ];
 
@@ -479,7 +490,7 @@ function ProjectPreview({ project, featured = false }) {
 
   return (
     <article
-      className="project-card reveal-surface overflow-hidden rounded-lg border border-white/10 bg-neutral-900"
+      className="project-card reveal-surface flex h-full flex-col overflow-hidden rounded-lg border border-white/10 bg-neutral-900"
       style={{ "--project-accent": project.accent }}
     >
       <div
@@ -571,30 +582,27 @@ function ProjectPreview({ project, featured = false }) {
           <span className="rounded-lg bg-white/90 px-3 py-1 text-xs font-bold text-neutral-950 backdrop-blur">
             {project.category}
           </span>
-          {!isVertical && (
-            <span className="rounded-lg bg-white px-3 py-1 text-xs font-bold text-neutral-950">
-              {project.format}
-            </span>
-          )}
         </div>
       </div>
 
-      <div className="project-meta p-5">
+      <div className="project-meta flex flex-1 flex-col p-5">
         <div className="flex items-start justify-between gap-4">
           <h3 className="text-xl font-black text-white">{project.title}</h3>
           <span className="text-sm font-bold text-neutral-400">{project.year}</span>
         </div>
         <p className="mt-3 text-sm leading-6 text-neutral-300">{project.description}</p>
         {project.originalUrl && (
-          <a
-            href={project.originalUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-white/15 px-4 text-sm font-black text-white transition hover:bg-white/10"
-          >
-            <ExternalLinkIcon className="h-4 w-4 shrink-0" />
-            <span>Смотреть полное видео</span>
-          </a>
+          <div className="mt-auto pt-5">
+            <a
+              href={project.originalUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-white/15 px-4 text-sm font-black text-white transition hover:bg-white/10"
+            >
+              <ExternalLinkIcon className="h-4 w-4 shrink-0" />
+              <span>Смотреть полное видео</span>
+            </a>
+          </div>
         )}
       </div>
     </article>
@@ -624,10 +632,10 @@ function BriefModal({ isSending, onClose, onSubmit, status }) {
         <div className="flex items-start justify-between gap-5 border-b border-white/10 p-6">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.22em] text-neutral-500">
-              Короткий бриф
+              Бриф на монтаж
             </p>
             <h2 className="mt-2 text-3xl font-black text-white md:text-4xl">
-              Расскажите о проекте
+              Расскажите о задаче
             </h2>
           </div>
           <button
@@ -714,7 +722,7 @@ function BriefModal({ isSending, onClose, onSubmit, status }) {
               disabled={isSending}
             >
               <SendIcon className="h-4 w-4 shrink-0" />
-              <span>{isSending ? "Отправляю..." : "Отправить в Telegram"}</span>
+              <span>{isSending ? "Отправляю..." : "Отправить бриф"}</span>
             </button>
             <button
               type="button"
@@ -722,7 +730,7 @@ function BriefModal({ isSending, onClose, onSubmit, status }) {
               onClick={onClose}
             >
               <ArrowLeftIcon className="h-4 w-4 shrink-0" />
-              <span>Вернуться на сайт</span>
+              <span>Закрыть форму</span>
             </button>
           </div>
         </form>
@@ -762,7 +770,7 @@ export default function App() {
       setBriefStatus("Готово. Бриф отправлен в Telegram.");
     } catch (error) {
       console.error(error);
-      setBriefStatus("Не получилось отправить бриф. Проверьте настройки Telegram-бота.");
+      setBriefStatus("Не получилось отправить бриф. Попробуйте ещё раз или напишите в Telegram.");
     } finally {
       setIsBriefSending(false);
     }
@@ -801,20 +809,20 @@ export default function App() {
           <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
             <div className="reveal-surface">
               <p className="text-sm font-bold uppercase tracking-[0.18em] text-neutral-400">
-                Video editor / talking-head / brand content
+                YouTube / Reels / Shorts / Реклама
               </p>
               <h1 className="mt-5 max-w-4xl text-5xl font-black leading-none tracking-tight sm:text-6xl lg:text-7xl">
-                Монтаж, который держит внимание и усиливает смысл.
+                Монтаж, который удерживает внимание и помогает донести смысл.
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-neutral-300">
-                Превращаю сырой материал в понятные YouTube-выпуски, Reels, Shorts,
-                рекламные ролики и шоурилы для экспертов, авторов и команд.
+                Из исходников получаются понятные YouTube-выпуски, Shorts, Reels и
+                рекламные ролики для экспертов, брендов и авторов.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
                 <ButtonLink href="#work" icon={PlayIcon}>Смотреть работы</ButtonLink>
                 <ButtonLink href="#contact" variant="secondary" icon={MessageIcon}>
-                  Написать
+                  Связаться
                 </ButtonLink>
               </div>
 
@@ -822,7 +830,7 @@ export default function App() {
                 {[
                   ["40+", "проектов"],
                   ["5 лет", "опыта"],
-                  ["24 ч", "на первый ответ"],
+                  ["24 ч", "на оценку проекта"],
                 ].map(([value, label]) => (
                   <div key={label} className="stat-card rounded-lg border border-white/10 bg-white/5 p-4">
                     <dt className="text-2xl font-black">{value}</dt>
@@ -848,7 +856,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="work" className="section-band border-y border-white/10 bg-white/[0.03] px-5 py-16">
+        <section id="work" className="section-band scroll-mt-24 border-y border-white/10 bg-white/[0.03] px-5 py-16 md:py-20">
           <div className="mx-auto max-w-7xl">
             <div className="reveal-surface">
               <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
@@ -867,13 +875,13 @@ export default function App() {
               </div>
             </div>
 
-            <div className="reveal-surface mt-24 md:mt-32">
+            <div className="reveal-surface mt-20 md:mt-28">
               <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                 <div>
                   <h3 className="mt-2 text-3xl font-black md:text-4xl">Горизонтальные видео</h3>
                 </div>
                 <p className="max-w-xl text-neutral-300">
-                  YouTube, рекламные ролики, презентационные видео и long-form в формате 16:9
+                  YouTube, рекламные ролики, презентационные видео и длинные выпуски
                 </p>
               </div>
 
@@ -886,15 +894,15 @@ export default function App() {
           </div>
         </section>
 
-        <section id="services" className="px-5 py-20">
+        <section id="services" className="scroll-mt-24 px-5 py-20">
           <div className="mx-auto max-w-7xl">
             <div className="reveal-surface">
               <h2 className="max-w-4xl text-4xl font-black leading-tight md:text-6xl">
-                С чем я могу помочь?
+                Форматы работы
               </h2>
               <p className="mt-5 max-w-3xl text-lg leading-8 text-neutral-300">
-                Понятные форматы работы для экспертов, брендов и авторов, которым нужен
-                регулярный контент без случайного монтажа
+                Монтаж под регулярный контент, экспертные выпуски, рекламу и короткие
+                ролики для соцсетей.
               </p>
             </div>
 
@@ -934,13 +942,13 @@ export default function App() {
           </div>
         </section>
 
-        <section id="process" className="px-5 py-16">
+        <section id="process" className="scroll-mt-24 px-5 py-16 md:py-20">
           <div className="mx-auto max-w-7xl">
-            <div className="reveal-surface mb-8">
+            <div className="reveal-surface mb-6 md:mb-8">
               <h2 className="text-4xl font-black md:text-5xl">Как строится работа?</h2>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
               {process.map((step, index) => (
                 <div
                   key={step.title}
@@ -952,15 +960,15 @@ export default function App() {
                     </span>
                     <span className="h-px flex-1 bg-white/10" />
                   </div>
-                  <h3 className="mt-12 text-2xl font-black text-white">{step.title}</h3>
-                  <p className="mt-5 leading-7 text-neutral-300">{step.description}</p>
+                  <h3 className="mt-8 text-2xl font-black text-white">{step.title}</h3>
+                  <p className="mt-4 leading-7 text-neutral-300">{step.description}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section id="contact" className="px-5 py-20">
+        <section id="contact" className="scroll-mt-24 px-5 py-20">
           <div className="contact-card reveal-surface mx-auto max-w-7xl overflow-hidden rounded-lg border border-white/10 bg-neutral-900 p-8 text-white shadow-2xl shadow-black/20 md:p-12">
             <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
               <div>
@@ -969,7 +977,8 @@ export default function App() {
                 </h2>
                 <p className="mt-6 max-w-2xl text-lg leading-8 text-white/85">
                   Расскажите, что нужно смонтировать, где будет публикация и какие
-                  исходники уже есть. Я отвечу с направлением монтажа под задачу.
+                  исходники уже есть. По брифу будет понятен формат, объём работы и
+                  следующий шаг.
                 </p>
               </div>
 
@@ -977,8 +986,8 @@ export default function App() {
                 <div className="grid gap-4">
                   {[
                     ["01", "Заполните короткий бриф"],
-                    ["02", "Я оценю задачу и формат"],
-                    ["03", "Вернусь с понятным планом"],
+                    ["02", "Оценка задачи и формата"],
+                    ["03", "Понятный план работы"],
                   ].map(([number, text]) => (
                     <div key={number} className="flex items-center gap-4">
                       <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white text-sm font-black text-neutral-950">
@@ -991,7 +1000,7 @@ export default function App() {
 
                 <div className="mt-6 border-t border-white/10 pt-6">
                   <p className="mb-4 text-sm leading-6 text-white/80">
-                    Форма займёт пару минут и заменит длинную переписку на старте.
+                    Форма занимает пару минут и помогает быстро оценить задачу.
                   </p>
                   <div className="flex flex-col gap-3 sm:flex-row">
                     <button
@@ -1012,7 +1021,7 @@ export default function App() {
                       className="inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-lg border border-white/15 px-5 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-900"
                     >
                       <MessageIcon className="h-4 w-4 shrink-0" />
-                      <span>Написать мне</span>
+                      <span>Написать в Tg</span>
                     </a>
                   </div>
                 </div>
