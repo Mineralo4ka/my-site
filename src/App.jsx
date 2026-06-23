@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const profile = {
   name: "Andrew Pavlenko",
@@ -326,6 +326,23 @@ function ArrowLeftIcon({ className = "" }) {
   );
 }
 
+function ArrowUpIcon({ className = "" }) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m18 15-6-6-6 6" />
+    </svg>
+  );
+}
+
 function BriefIcon({ className = "" }) {
   return (
     <svg
@@ -428,7 +445,7 @@ function XIcon({ className = "" }) {
   );
 }
 
-function ButtonLink({ href, children, variant = "primary", newTab = false, icon: Icon = null }) {
+function ButtonLink({ href, children, variant = "primary", newTab = false, icon: Icon = null, onClick }) {
   const baseClassName =
     "inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-5 text-sm font-bold transition focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-950";
 
@@ -445,6 +462,7 @@ function ButtonLink({ href, children, variant = "primary", newTab = false, icon:
       className={className}
       target={newTab ? "_blank" : undefined}
       rel={newTab ? "noreferrer" : undefined}
+      onClick={onClick}
     >
       {Icon && <Icon className="h-4 w-4 shrink-0" />}
       <span>{children}</span>
@@ -459,11 +477,9 @@ function getHoverPreviewPath(videoPath) {
   return baseName ? `/images/covers/${baseName}-hover.webp` : "";
 }
 
-function canUseHoverPreview() {
-  return window.matchMedia?.("(hover: hover) and (pointer: fine)").matches;
-}
+const hoverPreviewMediaQuery = "(hover: hover) and (pointer: fine)";
 
-function ProjectPreview({ project, featured = false }) {
+function ProjectPreview({ project, featured = false, canLoadHoverPreview = false }) {
   const videoRef = useRef(null);
   const [hasStarted, setHasStarted] = useState(false);
   const [isHoverPreviewVisible, setIsHoverPreviewVisible] = useState(false);
@@ -472,7 +488,8 @@ function ProjectPreview({ project, featured = false }) {
   const hasVideo = Boolean(project.video);
   const shouldShowCover = hasVideo && !hasStarted;
   const hoverPreview = getHoverPreviewPath(project.video);
-  const shouldRenderHoverPreview = shouldShowCover && isHoverPreviewRequested && hoverPreview;
+  const shouldRenderHoverPreview =
+    canLoadHoverPreview && shouldShowCover && isHoverPreviewRequested && hoverPreview;
 
   function handlePlay() {
     const video = videoRef.current;
@@ -490,7 +507,7 @@ function ProjectPreview({ project, featured = false }) {
 
   return (
     <article
-      className="project-card reveal-surface flex h-full flex-col overflow-hidden rounded-lg border border-white/10 bg-neutral-900"
+      className="project-card flex h-full flex-col overflow-hidden rounded-lg border border-white/10 bg-neutral-900"
       style={{ "--project-accent": project.accent }}
     >
       <div
@@ -505,7 +522,6 @@ function ProjectPreview({ project, featured = false }) {
             ref={videoRef}
             className="relative z-10 h-full w-full object-cover"
             src={project.video}
-            poster={project.cover}
             autoPlay={false}
             muted={false}
             loop={isVertical}
@@ -529,7 +545,7 @@ function ProjectPreview({ project, featured = false }) {
             className="group absolute inset-0 z-20 flex items-center justify-center bg-neutral-950 text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-950"
             onClick={handlePlay}
             onMouseEnter={() => {
-              if (canUseHoverPreview()) {
+              if (canLoadHoverPreview) {
                 setIsHoverPreviewRequested(true);
                 setIsHoverPreviewVisible(true);
               }
@@ -627,8 +643,14 @@ function buildBriefMessage(formData) {
 
 function BriefModal({ isSending, onClose, onSubmit, status }) {
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 px-5 py-8 backdrop-blur">
-      <div className="max-h-full w-full max-w-3xl overflow-y-auto rounded-lg border border-white/10 bg-neutral-950 shadow-2xl">
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 px-5 py-8 backdrop-blur"
+      onClick={onClose}
+    >
+      <div
+        className="max-h-full w-full max-w-3xl overflow-y-auto rounded-lg border border-white/10 bg-neutral-950 shadow-2xl"
+        onClick={(event) => event.stopPropagation()}
+      >
         <div className="flex items-start justify-between gap-5 border-b border-white/10 p-6">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.22em] text-neutral-500">
@@ -740,11 +762,69 @@ function BriefModal({ isSending, onClose, onSubmit, status }) {
 }
 
 export default function App() {
+  const contactCardRef = useRef(null);
   const [isBriefOpen, setIsBriefOpen] = useState(false);
   const [isBriefSending, setIsBriefSending] = useState(false);
   const [briefStatus, setBriefStatus] = useState("");
+  const [isScrollTopVisible, setIsScrollTopVisible] = useState(false);
+  const [canLoadHoverPreviews, setCanLoadHoverPreviews] = useState(false);
   const verticalProjects = projects.filter((project) => project.format === "9:16");
   const horizontalProjects = projects.filter((project) => project.format === "16:9");
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia?.(hoverPreviewMediaQuery);
+
+    if (!mediaQuery) {
+      return undefined;
+    }
+
+    function updateHoverPreviewSupport() {
+      setCanLoadHoverPreviews(mediaQuery.matches);
+    }
+
+    updateHoverPreviewSupport();
+    mediaQuery.addEventListener("change", updateHoverPreviewSupport);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateHoverPreviewSupport);
+    };
+  }, []);
+
+  useEffect(() => {
+    function updateScrollTopVisibility() {
+      setIsScrollTopVisible(window.scrollY > 520);
+    }
+
+    updateScrollTopVisibility();
+    window.addEventListener("scroll", updateScrollTopVisibility, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", updateScrollTopVisibility);
+    };
+  }, []);
+
+  function handleScrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function handleContactLinkClick(event) {
+    event.preventDefault();
+
+    const contactCard = contactCardRef.current;
+
+    if (!contactCard) {
+      return;
+    }
+
+    const headerHeight = document.querySelector("header")?.offsetHeight || 0;
+    const topGap = 12;
+    const targetTop = Math.max(
+      0,
+      window.scrollY + contactCard.getBoundingClientRect().top - headerHeight - topGap,
+    );
+
+    window.scrollTo({ top: targetTop, behavior: "smooth" });
+  }
 
   async function handleBriefSubmit(event) {
     event.preventDefault();
@@ -800,12 +880,12 @@ export default function App() {
             ))}
           </div>
 
-          <ButtonLink href="#contact" icon={MessageIcon}>Обсудить проект</ButtonLink>
+          <ButtonLink href="#contact" icon={MessageIcon} onClick={handleContactLinkClick}>Обсудить проект</ButtonLink>
         </nav>
       </header>
 
       <main id="top">
-        <section className="hero-section px-5 py-16 md:py-24">
+        <section className="hero-section px-5 pb-8 pt-16 md:pb-10 md:pt-24">
           <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
             <div className="reveal-surface">
               <p className="text-sm font-bold uppercase tracking-[0.18em] text-neutral-400">
@@ -821,7 +901,12 @@ export default function App() {
 
               <div className="mt-8 flex flex-wrap gap-3">
                 <ButtonLink href="#work" icon={PlayIcon}>Смотреть работы</ButtonLink>
-                <ButtonLink href="#contact" variant="secondary" icon={MessageIcon}>
+                <ButtonLink
+                  href="#contact"
+                  variant="secondary"
+                  icon={MessageIcon}
+                  onClick={handleContactLinkClick}
+                >
                   Связаться
                 </ButtonLink>
               </div>
@@ -856,9 +941,9 @@ export default function App() {
           </div>
         </section>
 
-        <section id="work" className="section-band scroll-mt-24 border-y border-white/10 bg-white/[0.03] px-5 py-16 md:py-20">
+        <section id="work" className="scroll-mt-24 px-5 pb-8 pt-6 md:pb-10 md:pt-8">
           <div className="mx-auto max-w-7xl">
-            <div className="reveal-surface">
+            <div>
               <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                 <div>
                   <h3 className="mt-2 text-3xl font-black md:text-4xl">Вертикальные видео</h3>
@@ -870,12 +955,16 @@ export default function App() {
 
               <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                 {verticalProjects.map((project) => (
-                  <ProjectPreview key={project.video || project.title} project={project} />
+                  <ProjectPreview
+                    key={project.video || project.title}
+                    project={project}
+                    canLoadHoverPreview={canLoadHoverPreviews}
+                  />
                 ))}
               </div>
             </div>
 
-            <div className="reveal-surface mt-20 md:mt-28">
+            <div className="mt-16 md:mt-20">
               <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                 <div>
                   <h3 className="mt-2 text-3xl font-black md:text-4xl">Горизонтальные видео</h3>
@@ -887,14 +976,18 @@ export default function App() {
 
               <div className="grid gap-5 md:grid-cols-2">
                 {horizontalProjects.map((project) => (
-                  <ProjectPreview key={project.video || project.title} project={project} />
+                  <ProjectPreview
+                    key={project.video || project.title}
+                    project={project}
+                    canLoadHoverPreview={canLoadHoverPreviews}
+                  />
                 ))}
               </div>
             </div>
           </div>
         </section>
 
-        <section id="services" className="scroll-mt-24 px-5 py-20">
+        <section id="services" className="scroll-mt-24 px-5 pb-10 pt-6 md:pb-12 md:pt-8">
           <div className="mx-auto max-w-7xl">
             <div className="reveal-surface">
               <h2 className="max-w-4xl text-4xl font-black leading-tight md:text-6xl">
@@ -942,9 +1035,9 @@ export default function App() {
           </div>
         </section>
 
-        <section id="process" className="scroll-mt-24 px-5 py-16 md:py-20">
+        <section id="process" className="scroll-mt-24 px-5 py-10 md:py-12">
           <div className="mx-auto max-w-7xl">
-            <div className="reveal-surface mb-6 md:mb-8">
+            <div className="reveal-surface mb-5 md:mb-6">
               <h2 className="text-4xl font-black md:text-5xl">Как строится работа?</h2>
             </div>
 
@@ -952,7 +1045,7 @@ export default function App() {
               {process.map((step, index) => (
                 <div
                   key={step.title}
-                  className="process-card reveal-surface rounded-lg border border-white/10 bg-neutral-900 p-6 shadow-xl shadow-black/10"
+                  className="process-card reveal-surface rounded-lg border border-white/10 bg-neutral-900 p-5 shadow-xl shadow-black/10 md:p-6"
                 >
                   <div className="flex items-center gap-4">
                     <span className="text-sm font-black text-white/80">
@@ -960,7 +1053,7 @@ export default function App() {
                     </span>
                     <span className="h-px flex-1 bg-white/10" />
                   </div>
-                  <h3 className="mt-8 text-2xl font-black text-white">{step.title}</h3>
+                  <h3 className="mt-6 text-2xl font-black text-white">{step.title}</h3>
                   <p className="mt-4 leading-7 text-neutral-300">{step.description}</p>
                 </div>
               ))}
@@ -968,8 +1061,11 @@ export default function App() {
           </div>
         </section>
 
-        <section id="contact" className="scroll-mt-24 px-5 py-20">
-          <div className="contact-card reveal-surface mx-auto max-w-7xl overflow-hidden rounded-lg border border-white/10 bg-neutral-900 p-8 text-white shadow-2xl shadow-black/20 md:p-12">
+        <section id="contact" className="scroll-mt-24 px-5 pb-16 pt-8 md:pb-20 md:pt-10">
+          <div
+            ref={contactCardRef}
+            className="contact-card reveal-surface mx-auto max-w-7xl overflow-hidden rounded-lg border border-white/10 bg-neutral-900 p-8 text-white shadow-2xl shadow-black/20 md:p-12"
+          >
             <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
               <div>
                 <h2 className="max-w-4xl text-5xl font-black leading-none tracking-tight md:text-7xl">
@@ -982,7 +1078,7 @@ export default function App() {
                 </p>
               </div>
 
-              <div className="rounded-lg border border-white/10 bg-white/[0.04] p-6 backdrop-blur">
+              <div className="w-full">
                 <div className="grid gap-4">
                   {[
                     ["01", "Заполните короткий бриф"],
@@ -1002,10 +1098,10 @@ export default function App() {
                   <p className="mb-4 text-sm leading-6 text-white/80">
                     Форма занимает пару минут и помогает быстро оценить задачу.
                   </p>
-                  <div className="flex flex-col gap-3 sm:flex-row">
+                  <div className="grid gap-3">
                     <button
                       type="button"
-                      className="inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-black uppercase tracking-[0.12em] text-neutral-950 transition hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-900"
+                      className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-black uppercase tracking-[0.12em] text-neutral-950 transition hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-900"
                       onClick={() => {
                         setBriefStatus("");
                         setIsBriefOpen(true);
@@ -1018,10 +1114,10 @@ export default function App() {
                       href={profile.telegram}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-lg border border-white/15 px-5 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-900"
+                      className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg border border-white/15 px-5 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-900"
                     >
                       <MessageIcon className="h-4 w-4 shrink-0" />
-                      <span>Написать в Tg</span>
+                      <span>Написать в Telegram</span>
                     </a>
                   </div>
                 </div>
@@ -1039,6 +1135,19 @@ export default function App() {
           onSubmit={handleBriefSubmit}
         />
       )}
+
+      <button
+        type="button"
+        className={`fixed bottom-5 right-5 z-[80] inline-flex h-12 w-12 items-center justify-center rounded-lg border border-white/15 bg-white text-neutral-950 shadow-2xl shadow-black/35 transition duration-300 hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-950 md:bottom-7 md:right-7 ${
+          isScrollTopVisible
+            ? "translate-y-0 opacity-100"
+            : "pointer-events-none translate-y-3 opacity-0"
+        }`}
+        aria-label="Наверх"
+        onClick={handleScrollToTop}
+      >
+        <ArrowUpIcon className="h-5 w-5" />
+      </button>
 
       <footer className="border-t border-white/10 px-5 py-8 text-center text-sm text-neutral-500">
         © 2026 {profile.name}. All rights reserved.
