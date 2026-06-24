@@ -26,6 +26,7 @@ const projects = [
     video: "/videos/DS_podcast.mp4",
     cover: "/images/covers/DS_codecs.webp",
     originalUrl: "https://www.youtube.com/watch?v=stCi1eQSEYY",
+    viewCount: 337,
     description:
       "Подкаст для DeepSchool: чистая склейка спикеров, аккуратные перебивки и спокойный темп для длинного экспертного выпуска.",
   },
@@ -38,6 +39,7 @@ const projects = [
     video: "/videos/DS_15quest.mp4",
     cover: "/images/covers/DS_auto.webp",
     originalUrl: "https://www.youtube.com/watch?v=gpBkyiwOq88",
+    viewCount: 549,
     description:
       "Разговорный выпуск DeepSchool с понятной структурой, титрами и плашками, чтобы сложная тема воспринималась легче.",
   },
@@ -50,6 +52,7 @@ const projects = [
     video: "/videos/DS_MOK.mp4",
     cover: "/images/covers/DS_MOK.webp",
     originalUrl: "https://www.youtube.com/watch?v=P7ndeN0yLig",
+    viewCount: 846,
     description:
       "Интервью в формате мок-собеседования: разбор задачи, чистый монтаж созвона и вставки, которые помогают следить за мыслью.",
   },
@@ -62,6 +65,7 @@ const projects = [
     video: "/videos/KURS_horizont.mp4",
     cover: "/images/covers/kurs_horizont.webp",
     originalUrl: "https://www.youtube.com/watch?v=KKgZJRlUcMU",
+    viewCount: 11123,
     description:
       "Обзор продукта KURS: крупные планы, демонстрация деталей и монтаж, который помогает быстро понять пользу устройства.",
   },
@@ -74,6 +78,7 @@ const projects = [
     video: "/videos/KURS_gangsters.mp4",
     cover: "/images/covers/KURS_gangsters.webp",
     originalUrl: "https://www.youtube.com/shorts/75chU5_slkI",
+    viewCount: 12919492,
     description:
       "Короткий объясняющий ролик KURS с быстрым заходом, кино-вставками и титрами, которые удерживают внимание до конца.",
   },
@@ -86,6 +91,7 @@ const projects = [
     video: "/videos/KURS_animation.mp4",
     cover: "/images/covers/KURS_animation.webp",
     originalUrl: "https://www.youtube.com/shorts/cTog6z753tU",
+    viewCount: 5552572,
     description:
       "Анимационный Shorts для KURS: простая визуализация сложной темы, схемы и темп, подходящий для образовательного контента.",
   },
@@ -98,6 +104,7 @@ const projects = [
     video: "/videos/A4_drink.mp4",
     cover: "/images/covers/A4_drink.webp",
     originalUrl: "https://www.youtube.com/shorts/mxN8SbFI2iA",
+    viewCount: 1890908,
     description:
       "Яркий TikTok для A4Food: приготовление напитка, реакции героев и крупные планы, которые делают продукт заметнее.",
   },
@@ -110,18 +117,20 @@ const projects = [
     video: "/videos/A4_kobyakov.mp4",
     cover: "/images/covers/A4_kobyakov.webp",
     originalUrl: "https://www.youtube.com/shorts/sQvOVc_ESzw",
+    viewCount: 2571061,
     description:
       "Обзор снеков с Кобяковым: быстрый темп, реакции, акценты на вкусах и подача, которая подходит для TikTok.",
   },
   {
     title: "GGSel",
-    category: "Reels",
+    category: "TikTok",
     year: "2025",
     format: "9:16",
     accent: "#38bdf8",
     video: "/videos/ggsel_opros.mp4",
     cover: "/images/covers/ggsel_opros.webp",
-    originalUrl: "https://www.instagram.com/reel/DSeyiABjWZb/",
+    originalUrl: "https://www.tiktok.com/@ggsel.net/video/7585878823636372754",
+    viewCount: 1800000,
     description:
       "Уличный опрос для GGSel: живые реакции, брендовые элементы и быстрый монтаж для лёгкого просмотра в Reels.",
   },
@@ -134,6 +143,7 @@ const projects = [
     video: "/videos/ggsel_vicecity.mp4",
     cover: "/images/covers/ggsel_vicecity.webp",
     originalUrl: "https://www.tiktok.com/@ggsel.net/video/7500908251769212177",
+    viewCount: 166200,
     description:
       "Игровой TikTok для GGSel: сравнение GTA, динамичные вставки и подача, которая быстро вовлекает зрителя.",
   },
@@ -146,6 +156,7 @@ const projects = [
     video: "/videos/BigCity_kvartira.mp4",
     cover: "/images/covers/BigCity_kvartira.webp",
     originalUrl: "https://www.youtube.com/shorts/3ASJzRhvYFs",
+    viewCount: 2000,
     description:
       "Reels для недвижимости BigCity: понятное объяснение рассрочки, инфографика и примеры, которые помогают разобраться в оффере.",
   },
@@ -158,6 +169,7 @@ const projects = [
     video: "/videos/BigCity_moscow.mp4",
     cover: "/images/covers/BigCity_moscow.webp",
     originalUrl: "https://www.youtube.com/shorts/mIBveDn0rIo",
+    viewCount: 240000,
     description:
       "Городской Reels для BigCity: история места, архивные кадры и визуализация, собранные в короткий понятный сюжет.",
   },
@@ -170,6 +182,7 @@ const projects = [
     video: "/videos/faina_li.mp4",
     cover: "/images/covers/faina_li.webp",
     originalUrl: "https://www.youtube.com/shorts/nO9N7Mhypic",
+    viewCount: 27676,
     description:
       "Образовательный Reels для Faina Li: китайский язык, живые примеры и быстрые вставки, которые помогают удержать внимание.",
   },
@@ -182,6 +195,7 @@ const projects = [
     video: "/videos/MyCSGO.mp4",
     cover: "/images/covers/MyCSGO.webp",
     originalUrl: "https://www.youtube.com/shorts/BZUQxK2zuz0",
+    viewCount: 115492,
     description:
       "Shorts для MyCSGO с кейс-челленджем: счётчик попыток, колесо выбора и реакции, которые держат азарт до финала.",
   },
@@ -194,6 +208,7 @@ const projects = [
     video: "/videos/MarketCSGO.mp4",
     cover: "/images/covers/MarketCSGO.webp",
     originalUrl: "https://www.youtube.com/shorts/2g84v49AYy0",
+    viewCount: 1027619,
     description:
       "Shorts для MarketCSGO: быстрый разбор деталей Inferno, игровые вставки и понятная подача для аудитории CS.",
   },
@@ -206,6 +221,7 @@ const projects = [
     video: "/videos/fudzi.mp4",
     cover: "/images/covers/fudzi.webp",
     originalUrl: "https://www.tiktok.com/@sushifuji_global/video/7514661037933595926",
+    viewCount: 1400000,
     description:
       "Food-ролик для Fudziyama: дегустация, реакции героев и аппетитные крупные планы для короткого формата.",
   },
@@ -218,6 +234,7 @@ const projects = [
     video: "/videos/CubeMarket.mp4",
     cover: "/images/covers/CubeMarket.webp",
     originalUrl: "https://www.youtube.com/shorts/Hkgow6vGYzc",
+    viewCount: 7840,
     description:
       "Shorts для CubeMarket: знакомая тема, быстрые вставки и товарный акцент, который мягко ведёт к продукту.",
   },
@@ -230,6 +247,7 @@ const projects = [
     video: "/videos/Anecole.mp4",
     cover: "/images/covers/Anecole.webp",
     originalUrl: "https://www.tiktok.com/@simonyan_english/video/7645587507375361300?_r=1&_t=ZS-96qnbhhD3xM",
+    viewCount: 288200,
     description:
       "Образовательный TikTok для Anecole: разбор английской речи, субтитры и вставки, которые делают урок живее.",
   },
@@ -242,6 +260,7 @@ const projects = [
     video: "/videos/Alena_dodo.mp4",
     cover: "/images/covers/Alena_dodo.webp",
     originalUrl: "https://www.instagram.com/alena_kots/reel/DSBBmC4iMTd/",
+    viewCount: 1400,
     description:
       "Reels для Алёны Котляровой: обзор заведения, детали меню и живой тревел-формат для вовлечения аудитории.",
   },
@@ -477,6 +496,30 @@ function getHoverPreviewPath(videoPath) {
   return baseName ? `/images/covers/${baseName}-hover.webp` : "";
 }
 
+function formatViewCount(viewCount) {
+  if (typeof viewCount !== "number" || !Number.isFinite(viewCount) || viewCount <= 0) {
+    return null;
+  }
+
+  const step =
+    viewCount >= 1_000_000
+      ? 100_000
+      : viewCount >= 100_000
+        ? 10_000
+        : viewCount >= 1_000
+          ? 1_000
+          : 100;
+  const roundedViewCount = Math.max(step, Math.ceil(viewCount / step) * step);
+
+  if (roundedViewCount >= 1_000_000) {
+    const millionLabel = (roundedViewCount / 1_000_000).toFixed(1).replace(".0", "");
+
+    return `${millionLabel}млн`;
+  }
+
+  return roundedViewCount.toLocaleString("de-DE");
+}
+
 const hoverPreviewMediaQuery = "(hover: hover) and (pointer: fine)";
 
 function ProjectPreview({ project, featured = false, canLoadHoverPreview = false }) {
@@ -490,6 +533,7 @@ function ProjectPreview({ project, featured = false, canLoadHoverPreview = false
   const hoverPreview = getHoverPreviewPath(project.video);
   const shouldRenderHoverPreview =
     canLoadHoverPreview && shouldShowCover && isHoverPreviewRequested && hoverPreview;
+  const viewCountLabel = formatViewCount(project.viewCount);
 
   function handlePlay() {
     const video = videoRef.current;
@@ -595,7 +639,7 @@ function ProjectPreview({ project, featured = false, canLoadHoverPreview = false
           </div>
         )}
         <div className="pointer-events-none absolute left-4 top-4 z-30 flex flex-wrap gap-2">
-          <span className="rounded-lg bg-white/90 px-3 py-1 text-xs font-bold text-neutral-950 backdrop-blur">
+          <span className="project-badge rounded-lg bg-white/90 px-3 py-1 text-xs font-bold text-neutral-950 backdrop-blur">
             {project.category}
           </span>
         </div>
@@ -606,6 +650,12 @@ function ProjectPreview({ project, featured = false, canLoadHoverPreview = false
           <h3 className="text-xl font-black text-white">{project.title}</h3>
           <span className="text-sm font-bold text-neutral-400">{project.year}</span>
         </div>
+        {isVertical && (
+          <div className="mt-4 inline-flex w-fit items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-xs font-black uppercase tracking-[0.14em] text-neutral-300">
+            <span className="text-neutral-500">Просмотры</span>
+            <span className="text-white">{viewCountLabel || "уточняется"}</span>
+          </div>
+        )}
         <p className="mt-3 text-sm leading-6 text-neutral-300">{project.description}</p>
         {project.originalUrl && (
           <div className="mt-auto pt-5">
@@ -648,7 +698,7 @@ function BriefModal({ isSending, onClose, onSubmit, status }) {
       onClick={onClose}
     >
       <div
-        className="max-h-full w-full max-w-3xl overflow-y-auto rounded-lg border border-white/10 bg-neutral-950 shadow-2xl"
+        className="brief-modal-card max-h-full w-full max-w-3xl overflow-y-auto rounded-lg border border-white/10 bg-neutral-950 shadow-2xl"
         onClick={(event) => event.stopPropagation()}
       >
         <div className="flex items-start justify-between gap-5 border-b border-white/10 p-6">
@@ -694,16 +744,19 @@ function BriefModal({ isSending, onClose, onSubmit, status }) {
 
             <label className="grid gap-2 text-sm font-bold text-neutral-200">
               Формат
-              <select
-                name="format"
-                className="min-h-12 rounded-lg border border-white/10 bg-neutral-900 px-4 text-white outline-none transition focus:border-white/40"
-              >
-                <option>Reels / Shorts / TikTok</option>
-                <option>Горизонтальное 16:9</option>
-                <option>Нарезка из длинного видео</option>
-                <option>Реклама / промо</option>
-                <option>Пока не знаю</option>
-              </select>
+              <span className="relative">
+                <select
+                  name="format"
+                  className="min-h-12 w-full appearance-none rounded-lg border border-white/10 bg-neutral-900 pl-4 pr-12 text-white outline-none transition focus:border-white/40"
+                >
+                  <option>Reels / Shorts / TikTok</option>
+                  <option>Горизонтальное 16:9</option>
+                  <option>Нарезка из длинного видео</option>
+                  <option>Реклама / промо</option>
+                  <option>Пока не знаю</option>
+                </select>
+                <ArrowUpIcon className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 rotate-180 text-neutral-300" />
+              </span>
             </label>
 
             <label className="grid gap-2 text-sm font-bold text-neutral-200">
@@ -1138,7 +1191,7 @@ export default function App() {
 
       <button
         type="button"
-        className={`fixed bottom-5 right-5 z-[80] inline-flex h-12 w-12 items-center justify-center rounded-lg border border-white/15 bg-white text-neutral-950 shadow-2xl shadow-black/35 transition duration-300 hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-950 md:bottom-7 md:right-7 ${
+        className={`scroll-top-button fixed bottom-5 right-5 z-[80] inline-flex h-12 w-12 items-center justify-center rounded-lg border border-white/15 bg-white text-neutral-950 shadow-2xl shadow-black/35 transition duration-300 hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-950 md:bottom-7 md:right-7 ${
           isScrollTopVisible
             ? "translate-y-0 opacity-100"
             : "pointer-events-none translate-y-3 opacity-0"

@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+:root {
+  --site-radius: 0.5rem;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -151,7 +155,9 @@ video:-webkit-full-screen {
 .process-card,
 .portrait-card,
 .contact-card,
-.stat-card {
+.stat-card,
+.brief-modal-card {
+  border-radius: var(--site-radius);
   transition:
     border-color 220ms ease,
     background-color 220ms ease,
@@ -163,6 +169,11 @@ video:-webkit-full-screen {
   box-shadow:
     0 22px 60px rgb(0 0 0 / 0.28),
     inset 0 1px 0 rgb(255 255 255 / 0.03);
+}
+
+.project-frame {
+  border-top-left-radius: var(--site-radius);
+  border-top-right-radius: var(--site-radius);
 }
 
 .project-card:hover {
@@ -187,9 +198,15 @@ video:-webkit-full-screen {
 }
 
 .play-button {
+  border-radius: var(--site-radius);
   box-shadow:
     0 16px 40px rgb(0 0 0 / 0.35),
     0 0 0 0 color-mix(in srgb, var(--project-accent) 34%, transparent);
+}
+
+.project-badge,
+.scroll-top-button {
+  border-radius: var(--site-radius);
 }
 
 .project-card:hover .play-button {
