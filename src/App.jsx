@@ -9,13 +9,6 @@ const profile = {
   avatar: "/images/avatar.jpg",
 };
 
-const navItems = [
-  { href: "#work", label: "Работы" },
-  { href: "#services", label: "Услуги" },
-  { href: "#process", label: "Процесс" },
-  { href: "#contact", label: "Контакты" },
-];
-
 const projects = [
   {
     title: "DeepSchool",
@@ -327,6 +320,572 @@ const process = [
   },
 ];
 
+const localeStorageKey = "site-locale";
+const defaultLocale = "ru";
+const locales = ["ru", "en"];
+
+const dict = {
+  ru: {
+    profile: {
+      role: "Видеомонтажёр для бизнеса, экспертов и авторов",
+    },
+    navItems: [
+      { href: "#work", label: "Работы" },
+      { href: "#services", label: "Услуги" },
+      { href: "#process", label: "Процесс" },
+      { href: "#contact", label: "Контакты" },
+    ],
+    header: {
+      contact: "Обсудить проект",
+      languageLabel: "Сменить язык",
+    },
+    hero: {
+      eyebrow: "YouTube / Reels / Shorts / Реклама",
+      title: "Монтаж, который цепляет",
+      description:
+        "Из исходников получаются понятные YouTube-выпуски, Shorts, Reels и рекламные ролики для экспертов, брендов и авторов.",
+      primaryCta: "Смотреть работы",
+      secondaryCta: "Связаться",
+      stats: [
+        ["40+", "проектов"],
+        ["5 лет", "опыта"],
+        ["24 ч", "на оценку проекта"],
+      ],
+    },
+    projects: [
+      {
+        title: "DeepSchool",
+        category: "Подкаст",
+        description:
+          "Подкаст для DeepSchool: чистая склейка спикеров, аккуратные перебивки и спокойный темп для длинного экспертного выпуска.",
+      },
+      {
+        title: "DeepSchool",
+        category: "Разговорное",
+        description:
+          "Разговорный выпуск DeepSchool с понятной структурой, титрами и плашками, чтобы сложная тема воспринималась легче.",
+      },
+      {
+        title: "DeepSchool",
+        category: "Интервью",
+        description:
+          "Интервью в формате мок-собеседования: разбор задачи, чистый монтаж созвона и вставки, которые помогают следить за мыслью.",
+      },
+      {
+        title: "KURS",
+        category: "Обзор",
+        description:
+          "Обзор продукта KURS: крупные планы, демонстрация деталей и монтаж, который помогает быстро понять пользу устройства.",
+      },
+      {
+        title: "KURS",
+        category: "Shorts",
+        description:
+          "Короткий объясняющий ролик KURS с быстрым заходом, кино-вставками и титрами, которые удерживают внимание до конца.",
+      },
+      {
+        title: "KURS Animation",
+        category: "Shorts",
+        description:
+          "Анимационный Shorts для KURS: простая визуализация сложной темы, схемы и темп, подходящий для образовательного контента.",
+      },
+      {
+        title: "A4Food",
+        category: "TikTok",
+        description:
+          "Яркий TikTok для A4Food: приготовление напитка, реакции героев и крупные планы, которые делают продукт заметнее.",
+      },
+      {
+        title: "A4Food",
+        category: "TikTok",
+        description:
+          "Обзор снеков с Кобяковым: быстрый темп, реакции, акценты на вкусах и подача, которая подходит для TikTok.",
+      },
+      {
+        title: "GGSel",
+        category: "TikTok",
+        description:
+          "Уличный опрос для GGSel: живые реакции, брендовые элементы и быстрый монтаж для лёгкого просмотра в Reels.",
+      },
+      {
+        title: "GGSel",
+        category: "TikTok",
+        description:
+          "Игровой TikTok для GGSel: сравнение GTA, динамичные вставки и подача, которая быстро вовлекает зрителя.",
+      },
+      {
+        title: "BigCity",
+        category: "Reels",
+        description:
+          "Reels для недвижимости BigCity: понятное объяснение рассрочки, инфографика и примеры, которые помогают разобраться в оффере.",
+      },
+      {
+        title: "BigCity",
+        category: "Reels",
+        description:
+          "Городской Reels для BigCity: история места, архивные кадры и визуализация, собранные в короткий понятный сюжет.",
+      },
+      {
+        title: "Faina Li",
+        category: "Reels",
+        description:
+          "Образовательный Reels для Faina Li: китайский язык, живые примеры и быстрые вставки, которые помогают удержать внимание.",
+      },
+      {
+        title: "MyCSGO",
+        category: "Shorts",
+        description:
+          "Shorts для MyCSGO с кейс-челленджем: счётчик попыток, колесо выбора и реакции, которые держат азарт до финала.",
+      },
+      {
+        title: "MarketCSGO",
+        category: "Shorts",
+        description:
+          "Shorts для MarketCSGO: быстрый разбор деталей Inferno, игровые вставки и понятная подача для аудитории CS.",
+      },
+      {
+        title: "Fudziyama",
+        category: "TikTok",
+        description:
+          "Food-ролик для Fudziyama: дегустация, реакции героев и аппетитные крупные планы для короткого формата.",
+      },
+      {
+        title: "CubeMarket",
+        category: "Shorts",
+        description:
+          "Shorts для CubeMarket: знакомая тема, быстрые вставки и товарный акцент, который мягко ведёт к продукту.",
+      },
+      {
+        title: "Anecole",
+        category: "TikTok",
+        description:
+          "Образовательный TikTok для Anecole: разбор английской речи, субтитры и вставки, которые делают урок живее.",
+      },
+      {
+        title: "Алена Котлярова",
+        category: "Reels",
+        description:
+          "Reels для Алёны Котляровой: обзор заведения, детали меню и живой тревел-формат для вовлечения аудитории.",
+      },
+    ],
+    work: {
+      verticalTitle: "Вертикальные видео",
+      verticalDescription: "Reels, Shorts и TikTok в формате 9:16 для мобильных площадок",
+      horizontalTitle: "Горизонтальные видео",
+      horizontalDescription: "YouTube, рекламные ролики, презентационные видео и длинные выпуски",
+    },
+    projectPreview: {
+      watchAria: "Смотреть",
+      coverAlt: "Обложка",
+      views: "Просмотры",
+      unknownViews: "уточняется",
+      millionSuffix: "млн",
+      watchFull: "Смотреть полное видео",
+    },
+    services: {
+      title: "Форматы работы",
+      description:
+        "Монтаж под регулярный контент, экспертные выпуски, рекламу и короткие ролики для соцсетей.",
+      items: [
+        {
+          title: "Короткие ролики",
+          description: "Для Reels, Shorts, TikTok и рекламных вертикальных видео.",
+          features: [
+            "Сильное начало",
+            "Читаемые субтитры",
+            "Динамичные склейки",
+            "Акценты на продукте",
+            "Экспорт под площадки",
+          ],
+        },
+        {
+          title: "Длинные видео",
+          description: "Для YouTube, подкастов, интервью, обзоров и экспертного контента.",
+          features: [
+            "Структура выпуска",
+            "Дополнительные кадры",
+            "Плашки и подписи",
+            "Чистка и баланс звука",
+            "Логичная подача",
+          ],
+        },
+        {
+          title: "Переупаковка контента",
+          description: "Из длинной записи получается набор коротких роликов для разных площадок.",
+          features: [
+            "Выбор сильных фрагментов",
+            "Нарезка коротких клипов",
+            "Адаптация форматов",
+            "Единый визуальный стиль",
+            "Подготовка к публикации",
+          ],
+        },
+      ],
+    },
+    process: {
+      title: "Как строится работа?",
+      items: [
+        {
+          title: "Бриф",
+          description: "Разбор задачи, исходников, площадки и цели ролика.",
+        },
+        {
+          title: "Структура",
+          description: "Логика ролика: начало, ключевые смыслы, темп и порядок сцен.",
+        },
+        {
+          title: "Монтаж",
+          description: "Ритм, титры, звук, графика и финальная сборка под выбранный формат.",
+        },
+        {
+          title: "Сдача",
+          description: "Готовые версии под нужные площадки и аккуратная работа с правками.",
+        },
+      ],
+    },
+    contact: {
+      title: "Начнём с короткого брифа",
+      description:
+        "Расскажите, что нужно смонтировать, где будет публикация и какие исходники уже есть. По брифу будет понятен формат, объём работы и следующий шаг.",
+      steps: [
+        ["01", "Заполните короткий бриф"],
+        ["02", "Оценка задачи и формата"],
+        ["03", "Понятный план работы"],
+      ],
+      note: "Форма занимает пару минут и помогает быстро оценить задачу.",
+      briefCta: "Заполнить бриф",
+      telegramCta: "Написать в Telegram",
+    },
+    brief: {
+      eyebrow: "Бриф на монтаж",
+      title: "Расскажите о задаче",
+      close: "Закрыть",
+      closeForm: "Закрыть форму",
+      labels: {
+        name: "Имя",
+        contact: "Контакт",
+        format: "Формат",
+        platform: "Площадка",
+        deadline: "Сроки",
+        task: "Задача",
+      },
+      placeholders: {
+        name: "Как к вам обращаться",
+        contact: "Telegram, Instagram или телефон",
+        platform: "YouTube, Instagram, TikTok...",
+        deadline: "Например: до пятницы",
+        task: "Что нужно смонтировать, какая цель ролика, есть ли референсы?",
+      },
+      formatOptions: [
+        "Reels / Shorts / TikTok",
+        "Горизонтальное 16:9",
+        "Нарезка из длинного видео",
+        "Реклама / промо",
+        "Пока не знаю",
+      ],
+      submit: "Отправить бриф",
+      sendingButton: "Отправляю...",
+      sendingStatus: "Отправляю бриф...",
+      successStatus: "Готово. Бриф отправлен в Telegram.",
+      errorStatus:
+        "Не получилось отправить бриф. Попробуйте ещё раз или напишите в Telegram.",
+      messageTitle: "Новый бриф на монтаж",
+      notSpecified: "Не указано",
+      messageFields: {
+        name: "Имя",
+        contact: "Контакт",
+        format: "Формат",
+        platform: "Площадка",
+        deadline: "Сроки",
+        task: "Задача",
+      },
+    },
+    common: {
+      scrollTop: "Наверх",
+      copyright: "Все права защищены.",
+    },
+  },
+  en: {
+    profile: {
+      role: "Video editor for businesses, experts, and creators",
+    },
+    navItems: [
+      { href: "#work", label: "Work" },
+      { href: "#services", label: "Services" },
+      { href: "#process", label: "Process" },
+      { href: "#contact", label: "Contact" },
+    ],
+    header: {
+      contact: "Discuss a project",
+      languageLabel: "Change language",
+    },
+    hero: {
+      eyebrow: "YouTube / Reels / Shorts / Ads",
+      title: "Editing that hooks",
+      description:
+        "Raw footage becomes clear YouTube episodes, Shorts, Reels, and ad videos for experts, brands, and creators.",
+      primaryCta: "View work",
+      secondaryCta: "Get in touch",
+      stats: [
+        ["40+", "projects"],
+        ["5 years", "experience"],
+        ["24 h", "to estimate a project"],
+      ],
+    },
+    projects: [
+      {
+        title: "DeepSchool",
+        category: "Podcast",
+        description:
+          "A podcast for DeepSchool: clean speaker cuts, polished cutaways, and a calm pace for a long-form expert episode.",
+      },
+      {
+        title: "DeepSchool",
+        category: "Talk",
+        description:
+          "A conversational DeepSchool episode with a clear structure, captions, and visual labels that make a complex topic easier to follow.",
+      },
+      {
+        title: "DeepSchool",
+        category: "Interview",
+        description:
+          "A mock-interview format: task breakdown, clean call editing, and inserts that help viewers follow the thought process.",
+      },
+      {
+        title: "KURS",
+        category: "Review",
+        description:
+          "A product review for KURS: close-ups, detail demos, and editing that quickly explains the device's value.",
+      },
+      {
+        title: "KURS",
+        category: "Shorts",
+        description:
+          "A short explainer for KURS with a fast hook, cinematic inserts, and captions that keep attention to the end.",
+      },
+      {
+        title: "KURS Animation",
+        category: "Shorts",
+        description:
+          "An animated Short for KURS: simple visualization of a complex topic, diagrams, and a pace suited to educational content.",
+      },
+      {
+        title: "A4Food",
+        category: "TikTok",
+        description:
+          "A bright TikTok for A4Food: drink preparation, character reactions, and close-ups that make the product stand out.",
+      },
+      {
+        title: "A4Food",
+        category: "TikTok",
+        description:
+          "A snack review with Kobyakov: fast pacing, reactions, taste accents, and delivery that fits TikTok.",
+      },
+      {
+        title: "GGSel",
+        category: "TikTok",
+        description:
+          "A street interview for GGSel: live reactions, brand elements, and quick editing for easy Reels viewing.",
+      },
+      {
+        title: "GGSel",
+        category: "TikTok",
+        description:
+          "A gaming TikTok for GGSel: GTA comparisons, dynamic inserts, and delivery that pulls viewers in fast.",
+      },
+      {
+        title: "BigCity",
+        category: "Reels",
+        description:
+          "A real-estate Reel for BigCity: a clear installment-plan explanation, infographics, and examples that make the offer easier to understand.",
+      },
+      {
+        title: "BigCity",
+        category: "Reels",
+        description:
+          "An urban Reel for BigCity: local history, archival shots, and visuals shaped into a short, clear story.",
+      },
+      {
+        title: "Faina Li",
+        category: "Reels",
+        description:
+          "An educational Reel for Faina Li: Chinese language, live examples, and quick inserts that help hold attention.",
+      },
+      {
+        title: "MyCSGO",
+        category: "Shorts",
+        description:
+          "A MyCSGO Short built around a case challenge: attempt counter, selection wheel, and reactions that keep the tension to the finale.",
+      },
+      {
+        title: "MarketCSGO",
+        category: "Shorts",
+        description:
+          "A MarketCSGO Short: a quick Inferno detail breakdown, game inserts, and clear delivery for a CS audience.",
+      },
+      {
+        title: "Fudziyama",
+        category: "TikTok",
+        description:
+          "A food video for Fudziyama: tasting, character reactions, and appetizing close-ups for the short format.",
+      },
+      {
+        title: "CubeMarket",
+        category: "Shorts",
+        description:
+          "A CubeMarket Short: a familiar topic, quick inserts, and a product accent that gently leads to the offer.",
+      },
+      {
+        title: "Anecole",
+        category: "TikTok",
+        description:
+          "An educational TikTok for Anecole: English speech breakdown, subtitles, and inserts that make the lesson more lively.",
+      },
+      {
+        title: "Alena Kotlyarova",
+        category: "Reels",
+        description:
+          "A Reel for Alena Kotlyarova: venue review, menu details, and a lively travel-style format for audience engagement.",
+      },
+    ],
+    work: {
+      verticalTitle: "Vertical Videos",
+      verticalDescription: "Reels, Shorts, and TikToks in 9:16 for mobile platforms",
+      horizontalTitle: "Horizontal Videos",
+      horizontalDescription: "YouTube, ads, presentation videos, and long-form episodes",
+    },
+    projectPreview: {
+      watchAria: "Watch",
+      coverAlt: "Cover",
+      views: "Views",
+      unknownViews: "checking",
+      millionSuffix: "M",
+      watchFull: "Watch full video",
+    },
+    services: {
+      title: "Work Formats",
+      description:
+        "Editing for regular content, expert episodes, ads, and short social videos.",
+      items: [
+        {
+          title: "Short videos",
+          description: "For Reels, Shorts, TikTok, and vertical ad videos.",
+          features: [
+            "Strong opening",
+            "Readable subtitles",
+            "Dynamic cuts",
+            "Product accents",
+            "Exports for each platform",
+          ],
+        },
+        {
+          title: "Long-form videos",
+          description: "For YouTube, podcasts, interviews, reviews, and expert content.",
+          features: [
+            "Episode structure",
+            "Additional footage",
+            "Labels and captions",
+            "Audio cleanup and balance",
+            "Clear storytelling",
+          ],
+        },
+        {
+          title: "Content repackaging",
+          description: "A long recording becomes a set of short videos for different platforms.",
+          features: [
+            "Selecting strong moments",
+            "Cutting short clips",
+            "Format adaptation",
+            "Consistent visual style",
+            "Publication-ready exports",
+          ],
+        },
+      ],
+    },
+    process: {
+      title: "How the Work Flows",
+      items: [
+        {
+          title: "Brief",
+          description: "A look at the task, source files, platform, and goal of the video.",
+        },
+        {
+          title: "Structure",
+          description: "The video's logic: opening, key points, pacing, and scene order.",
+        },
+        {
+          title: "Edit",
+          description: "Rhythm, captions, sound, graphics, and final assembly for the chosen format.",
+        },
+        {
+          title: "Delivery",
+          description: "Ready versions for the required platforms and careful revision handling.",
+        },
+      ],
+    },
+    contact: {
+      title: "Let's Start With a Short Brief",
+      description:
+        "Tell me what needs to be edited, where it will be published, and what source materials you already have. The brief makes the format, scope, and next step clear.",
+      steps: [
+        ["01", "Fill out a short brief"],
+        ["02", "Task and format estimate"],
+        ["03", "A clear work plan"],
+      ],
+      note: "The form takes a couple of minutes and helps estimate the task quickly.",
+      briefCta: "Fill out the brief",
+      telegramCta: "Message on Telegram",
+    },
+    brief: {
+      eyebrow: "Editing brief",
+      title: "Tell me about the task",
+      close: "Close",
+      closeForm: "Close form",
+      labels: {
+        name: "Name",
+        contact: "Contact",
+        format: "Format",
+        platform: "Platform",
+        deadline: "Deadline",
+        task: "Task",
+      },
+      placeholders: {
+        name: "How should I address you?",
+        contact: "Telegram, Instagram, or phone",
+        platform: "YouTube, Instagram, TikTok...",
+        deadline: "For example: by Friday",
+        task: "What needs to be edited, what is the video's goal, and do you have references?",
+      },
+      formatOptions: [
+        "Reels / Shorts / TikTok",
+        "Horizontal 16:9",
+        "Cuts from a long video",
+        "Ad / promo",
+        "Not sure yet",
+      ],
+      submit: "Send brief",
+      sendingButton: "Sending...",
+      sendingStatus: "Sending the brief...",
+      successStatus: "Done. The brief has been sent to Telegram.",
+      errorStatus: "Could not send the brief. Please try again or message me on Telegram.",
+      messageTitle: "New editing brief",
+      notSpecified: "Not specified",
+      messageFields: {
+        name: "Name",
+        contact: "Contact",
+        format: "Format",
+        platform: "Platform",
+        deadline: "Deadline",
+        task: "Task",
+      },
+    },
+    common: {
+      scrollTop: "Back to top",
+      copyright: "All rights reserved.",
+    },
+  },
+};
+
 function ArrowLeftIcon({ className = "" }) {
   return (
     <svg
@@ -489,6 +1048,50 @@ function ButtonLink({ href, children, variant = "primary", newTab = false, icon:
   );
 }
 
+function getInitialLocale() {
+  if (typeof window === "undefined") {
+    return defaultLocale;
+  }
+
+  try {
+    const storedLocale = window.localStorage.getItem(localeStorageKey);
+
+    return locales.includes(storedLocale) ? storedLocale : defaultLocale;
+  } catch {
+    return defaultLocale;
+  }
+}
+
+function LanguageSwitch({ locale, onChange, label }) {
+  return (
+    <div
+      className="inline-flex rounded-lg border border-white/10 bg-white/5 p-1"
+      aria-label={label}
+      role="group"
+    >
+      {locales.map((item) => {
+        const isActive = item === locale;
+
+        return (
+          <button
+            key={item}
+            type="button"
+            className={`min-h-9 rounded-md px-3 text-xs font-black uppercase tracking-[0.12em] transition ${
+              isActive
+                ? "bg-white text-neutral-950"
+                : "text-neutral-300 hover:bg-white/10 hover:text-white"
+            }`}
+            aria-pressed={isActive}
+            onClick={() => onChange(item)}
+          >
+            {item}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 function getHoverPreviewPath(videoPath) {
   const fileName = videoPath?.split("/").pop();
   const baseName = fileName?.replace(/\.[^.]+$/, "");
@@ -496,7 +1099,7 @@ function getHoverPreviewPath(videoPath) {
   return baseName ? `/images/covers/${baseName}-hover.webp` : "";
 }
 
-function formatViewCount(viewCount) {
+function formatViewCount(viewCount, locale, labels) {
   if (typeof viewCount !== "number" || !Number.isFinite(viewCount) || viewCount <= 0) {
     return null;
   }
@@ -514,15 +1117,21 @@ function formatViewCount(viewCount) {
   if (roundedViewCount >= 1_000_000) {
     const millionLabel = (roundedViewCount / 1_000_000).toFixed(1).replace(".0", "");
 
-    return `${millionLabel}млн`;
+    return `${millionLabel}${labels.millionSuffix}`;
   }
 
-  return roundedViewCount.toLocaleString("de-DE");
+  return roundedViewCount.toLocaleString(locale === "en" ? "en-US" : "ru-RU");
 }
 
 const hoverPreviewMediaQuery = "(hover: hover) and (pointer: fine)";
 
-function ProjectPreview({ project, featured = false, canLoadHoverPreview = false }) {
+function ProjectPreview({
+  project,
+  labels,
+  locale,
+  featured = false,
+  canLoadHoverPreview = false,
+}) {
   const videoRef = useRef(null);
   const [hasStarted, setHasStarted] = useState(false);
   const [isHoverPreviewVisible, setIsHoverPreviewVisible] = useState(false);
@@ -533,7 +1142,7 @@ function ProjectPreview({ project, featured = false, canLoadHoverPreview = false
   const hoverPreview = getHoverPreviewPath(project.video);
   const shouldRenderHoverPreview =
     canLoadHoverPreview && shouldShowCover && isHoverPreviewRequested && hoverPreview;
-  const viewCountLabel = formatViewCount(project.viewCount);
+  const viewCountLabel = formatViewCount(project.viewCount, locale, labels);
 
   function handlePlay() {
     const video = videoRef.current;
@@ -585,7 +1194,7 @@ function ProjectPreview({ project, featured = false, canLoadHoverPreview = false
         {shouldShowCover && (
           <button
             type="button"
-            aria-label={`Смотреть ${project.title}`}
+            aria-label={`${labels.watchAria} ${project.title}`}
             className="group absolute inset-0 z-20 flex items-center justify-center bg-neutral-950 text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-950"
             onClick={handlePlay}
             onMouseEnter={() => {
@@ -599,7 +1208,7 @@ function ProjectPreview({ project, featured = false, canLoadHoverPreview = false
             {project.cover ? (
               <img
                 src={project.cover}
-                alt={`Обложка ${project.title}`}
+                alt={`${labels.coverAlt} ${project.title}`}
                 className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-[1.025]"
                 loading="lazy"
               />
@@ -652,8 +1261,8 @@ function ProjectPreview({ project, featured = false, canLoadHoverPreview = false
         </div>
         {isVertical && (
           <div className="mt-4 inline-flex w-fit items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-xs font-black uppercase tracking-[0.14em] text-neutral-300">
-            <span className="text-neutral-500">Просмотры</span>
-            <span className="text-white">{viewCountLabel || "уточняется"}</span>
+            <span className="text-neutral-500">{labels.views}</span>
+            <span className="text-white">{viewCountLabel || labels.unknownViews}</span>
           </div>
         )}
         <p className="mt-3 text-sm leading-6 text-neutral-300">{project.description}</p>
@@ -666,7 +1275,7 @@ function ProjectPreview({ project, featured = false, canLoadHoverPreview = false
               className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-white/15 px-4 text-sm font-black text-white transition hover:bg-white/10"
             >
               <ExternalLinkIcon className="h-4 w-4 shrink-0" />
-              <span>Смотреть полное видео</span>
+              <span>{labels.watchFull}</span>
             </a>
           </div>
         )}
@@ -675,23 +1284,23 @@ function ProjectPreview({ project, featured = false, canLoadHoverPreview = false
   );
 }
 
-function buildBriefMessage(formData) {
-  const getValue = (name) => formData.get(name)?.toString().trim() || "Не указано";
+function buildBriefMessage(formData, labels) {
+  const getValue = (name) => formData.get(name)?.toString().trim() || labels.notSpecified;
 
   return [
-    "Новый бриф на монтаж",
+    labels.messageTitle,
     "",
-    `Имя: ${getValue("name")}`,
-    `Контакт: ${getValue("contact")}`,
-    `Формат: ${getValue("format")}`,
-    `Площадка: ${getValue("platform")}`,
-    `Сроки: ${getValue("deadline")}`,
+    `${labels.messageFields.name}: ${getValue("name")}`,
+    `${labels.messageFields.contact}: ${getValue("contact")}`,
+    `${labels.messageFields.format}: ${getValue("format")}`,
+    `${labels.messageFields.platform}: ${getValue("platform")}`,
+    `${labels.messageFields.deadline}: ${getValue("deadline")}`,
     "",
-    `Задача: ${getValue("task")}`,
+    `${labels.messageFields.task}: ${getValue("task")}`,
   ].join("\n");
 }
 
-function BriefModal({ isSending, onClose, onSubmit, status }) {
+function BriefModal({ content, isSending, onClose, onSubmit, status }) {
   return (
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 px-5 py-8 backdrop-blur"
@@ -704,10 +1313,10 @@ function BriefModal({ isSending, onClose, onSubmit, status }) {
         <div className="flex items-start justify-between gap-5 border-b border-white/10 p-6">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.22em] text-neutral-500">
-              Бриф на монтаж
+              {content.eyebrow}
             </p>
             <h2 className="mt-2 text-3xl font-black text-white md:text-4xl">
-              Расскажите о задаче
+              {content.title}
             </h2>
           </div>
           <button
@@ -716,74 +1325,72 @@ function BriefModal({ isSending, onClose, onSubmit, status }) {
             onClick={onClose}
           >
             <XIcon className="h-4 w-4 shrink-0" />
-            <span>Закрыть</span>
+            <span>{content.close}</span>
           </button>
         </div>
 
         <form className="grid gap-5 p-6" onSubmit={onSubmit}>
           <div className="grid gap-4 md:grid-cols-2">
             <label className="grid gap-2 text-sm font-bold text-neutral-200">
-              Имя
+              {content.labels.name}
               <input
                 name="name"
                 className="min-h-12 rounded-lg border border-white/10 bg-white/5 px-4 text-white outline-none transition focus:border-white/40"
-                placeholder="Как к вам обращаться"
+                placeholder={content.placeholders.name}
                 required
               />
             </label>
 
             <label className="grid gap-2 text-sm font-bold text-neutral-200">
-              Контакт
+              {content.labels.contact}
               <input
                 name="contact"
                 className="min-h-12 rounded-lg border border-white/10 bg-white/5 px-4 text-white outline-none transition focus:border-white/40"
-                placeholder="Telegram, Instagram или телефон"
+                placeholder={content.placeholders.contact}
                 required
               />
             </label>
 
             <label className="grid gap-2 text-sm font-bold text-neutral-200">
-              Формат
+              {content.labels.format}
               <span className="relative">
                 <select
                   name="format"
                   className="min-h-12 w-full appearance-none rounded-lg border border-white/10 bg-neutral-900 pl-4 pr-12 text-white outline-none transition focus:border-white/40"
                 >
-                  <option>Reels / Shorts / TikTok</option>
-                  <option>Горизонтальное 16:9</option>
-                  <option>Нарезка из длинного видео</option>
-                  <option>Реклама / промо</option>
-                  <option>Пока не знаю</option>
+                  {content.formatOptions.map((option) => (
+                    <option key={option}>{option}</option>
+                  ))}
                 </select>
                 <ArrowUpIcon className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 rotate-180 text-neutral-300" />
               </span>
             </label>
 
             <label className="grid gap-2 text-sm font-bold text-neutral-200">
-              Площадка
+              {content.labels.platform}
               <input
                 name="platform"
                 className="min-h-12 rounded-lg border border-white/10 bg-white/5 px-4 text-white outline-none transition focus:border-white/40"
-                placeholder="YouTube, Instagram, TikTok..."
+                placeholder={content.placeholders.platform}
               />
             </label>
 
             <label className="grid gap-2 text-sm font-bold text-neutral-200">
-              Сроки
+              {content.labels.deadline}
               <input
                 name="deadline"
                 className="min-h-12 rounded-lg border border-white/10 bg-white/5 px-4 text-white outline-none transition focus:border-white/40"
-                placeholder="Например: до пятницы"
+                placeholder={content.placeholders.deadline}
               />
             </label>
           </div>
 
           <label className="grid gap-2 text-sm font-bold text-neutral-200">
-            Задача
+            {content.labels.task}
             <textarea
               name="task"
               className="min-h-32 resize-y rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white outline-none transition focus:border-white/40"
-              placeholder="Что нужно смонтировать, какая цель ролика, есть ли референсы?"
+              placeholder={content.placeholders.task}
               required
             />
           </label>
@@ -797,7 +1404,7 @@ function BriefModal({ isSending, onClose, onSubmit, status }) {
               disabled={isSending}
             >
               <SendIcon className="h-4 w-4 shrink-0" />
-              <span>{isSending ? "Отправляю..." : "Отправить бриф"}</span>
+              <span>{isSending ? content.sendingButton : content.submit}</span>
             </button>
             <button
               type="button"
@@ -805,7 +1412,7 @@ function BriefModal({ isSending, onClose, onSubmit, status }) {
               onClick={onClose}
             >
               <ArrowLeftIcon className="h-4 w-4 shrink-0" />
-              <span>Закрыть форму</span>
+              <span>{content.closeForm}</span>
             </button>
           </div>
         </form>
@@ -816,13 +1423,46 @@ function BriefModal({ isSending, onClose, onSubmit, status }) {
 
 export default function App() {
   const contactCardRef = useRef(null);
+  const [locale, setLocale] = useState(getInitialLocale);
   const [isBriefOpen, setIsBriefOpen] = useState(false);
   const [isBriefSending, setIsBriefSending] = useState(false);
   const [briefStatus, setBriefStatus] = useState("");
   const [isScrollTopVisible, setIsScrollTopVisible] = useState(false);
   const [canLoadHoverPreviews, setCanLoadHoverPreviews] = useState(false);
-  const verticalProjects = projects.filter((project) => project.format === "9:16");
-  const horizontalProjects = projects.filter((project) => project.format === "16:9");
+  const t = dict[locale] || dict[defaultLocale];
+  const localizedProjects = projects.map((project, index) => ({
+    ...project,
+    ...t.projects[index],
+  }));
+  const localizedServices = services.map((service, index) => ({
+    ...service,
+    ...t.services.items[index],
+  }));
+  const localizedProcess = process.map((step, index) => ({
+    ...step,
+    ...t.process.items[index],
+  }));
+  const verticalProjects = localizedProjects.filter((project) => project.format === "9:16");
+  const horizontalProjects = localizedProjects.filter((project) => project.format === "16:9");
+
+  function handleLocaleChange(nextLocale) {
+    if (!locales.includes(nextLocale)) {
+      return;
+    }
+
+    try {
+      window.localStorage.setItem(localeStorageKey, nextLocale);
+    } catch {
+      // The UI can still switch languages if storage is unavailable.
+    }
+
+    setLocale(nextLocale);
+    setBriefStatus("");
+  }
+
+  useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia?.(hoverPreviewMediaQuery);
@@ -883,10 +1523,10 @@ export default function App() {
     event.preventDefault();
 
     const form = event.currentTarget;
-    const message = buildBriefMessage(new FormData(form));
+    const message = buildBriefMessage(new FormData(form), t.brief);
 
     setIsBriefSending(true);
-    setBriefStatus("Отправляю бриф...");
+    setBriefStatus(t.brief.sendingStatus);
 
     try {
       const response = await fetch("/api/brief", {
@@ -900,10 +1540,10 @@ export default function App() {
       }
 
       form.reset();
-      setBriefStatus("Готово. Бриф отправлен в Telegram.");
+      setBriefStatus(t.brief.successStatus);
     } catch (error) {
       console.error(error);
-      setBriefStatus("Не получилось отправить бриф. Попробуйте ещё раз или напишите в Telegram.");
+      setBriefStatus(t.brief.errorStatus);
     } finally {
       setIsBriefSending(false);
     }
@@ -926,50 +1566,66 @@ export default function App() {
           </a>
 
           <div className="hidden items-center gap-5 text-sm text-neutral-300 md:flex">
-            {navItems.map((item) => (
+            {t.navItems.map((item) => (
               <a key={item.href} href={item.href} className="transition hover:text-white">
                 {item.label}
               </a>
             ))}
           </div>
 
-          <ButtonLink href="#contact" icon={MessageIcon} onClick={handleContactLinkClick}>Обсудить проект</ButtonLink>
+          <div className="flex items-center gap-2">
+            <LanguageSwitch
+              locale={locale}
+              label={t.header.languageLabel}
+              onChange={handleLocaleChange}
+            />
+            <a
+              href="#contact"
+              className="inline-flex min-h-11 w-11 items-center justify-center rounded-lg bg-white text-neutral-950 transition hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-950 sm:hidden"
+              aria-label={t.header.contact}
+              onClick={handleContactLinkClick}
+            >
+              <MessageIcon className="h-4 w-4 shrink-0" />
+            </a>
+            <div className="hidden sm:block">
+              <ButtonLink href="#contact" icon={MessageIcon} onClick={handleContactLinkClick}>
+                {t.header.contact}
+              </ButtonLink>
+            </div>
+          </div>
         </nav>
       </header>
 
       <main id="top">
         <section className="hero-section px-5 pb-8 pt-16 md:pb-10 md:pt-24">
-          <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
-            <div className="reveal-surface">
-              <p className="text-sm font-bold uppercase tracking-[0.18em] text-neutral-400">
-                YouTube / Reels / Shorts / Реклама
-              </p>
-              <h1 className="mt-5 max-w-4xl text-5xl font-black leading-none tracking-tight sm:text-6xl lg:text-7xl">
-                Монтаж, который удерживает внимание и помогает донести смысл.
-              </h1>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-neutral-300">
-                Из исходников получаются понятные YouTube-выпуски, Shorts, Reels и
-                рекламные ролики для экспертов, брендов и авторов.
-              </p>
+          <div className="mx-auto grid max-w-7xl items-stretch gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-[120px]">
+            <div className="reveal-surface flex h-full flex-col justify-between">
+              <div>
+                <p className="text-sm font-bold uppercase tracking-[0.18em] text-neutral-400">
+                  {t.hero.eyebrow}
+                </p>
+                <h1 className="mt-5 max-w-4xl text-5xl font-black leading-none tracking-tight sm:text-[62px]">
+                  {t.hero.title}
+                </h1>
+                <p className="mt-6 max-w-2xl text-lg leading-8 text-neutral-300">
+                  {t.hero.description}
+                </p>
 
-              <div className="mt-8 flex flex-wrap gap-3">
-                <ButtonLink href="#work" icon={PlayIcon}>Смотреть работы</ButtonLink>
-                <ButtonLink
-                  href="#contact"
-                  variant="secondary"
-                  icon={MessageIcon}
-                  onClick={handleContactLinkClick}
-                >
-                  Связаться
-                </ButtonLink>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <ButtonLink href="#work" icon={PlayIcon}>{t.hero.primaryCta}</ButtonLink>
+                  <ButtonLink
+                    href="#contact"
+                    variant="secondary"
+                    icon={MessageIcon}
+                    onClick={handleContactLinkClick}
+                  >
+                    {t.hero.secondaryCta}
+                  </ButtonLink>
+                </div>
               </div>
 
               <dl className="mt-10 grid max-w-xl grid-cols-3 gap-3">
-                {[
-                  ["40+", "проектов"],
-                  ["5 лет", "опыта"],
-                  ["24 ч", "на оценку проекта"],
-                ].map(([value, label]) => (
+                {t.hero.stats.map(([value, label]) => (
                   <div key={label} className="stat-card rounded-lg border border-white/10 bg-white/5 p-4">
                     <dt className="text-2xl font-black">{value}</dt>
                     <dd className="mt-1 text-sm text-neutral-400">{label}</dd>
@@ -981,12 +1637,12 @@ export default function App() {
             <div className="portrait-card reveal-surface overflow-hidden rounded-lg bg-neutral-900">
               <img
                 src={profile.avatar}
-                alt={`${profile.name}, ${profile.role}`}
-                className="aspect-square w-full object-cover object-[center_35%]"
+                alt={`${profile.name}, ${t.profile.role}`}
+                className="h-[410px] w-full object-cover object-[center_35%]"
               />
               <div className="border-t border-white/10 p-5">
                 <p className="text-sm uppercase tracking-[0.18em] text-neutral-400">
-                  {profile.role}
+                  {t.profile.role}
                 </p>
                 <h2 className="mt-2 text-3xl font-black">{profile.name}</h2>
               </div>
@@ -999,10 +1655,10 @@ export default function App() {
             <div>
               <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                 <div>
-                  <h3 className="mt-2 text-3xl font-black md:text-4xl">Вертикальные видео</h3>
+                  <h3 className="mt-2 text-3xl font-black md:text-4xl">{t.work.verticalTitle}</h3>
                 </div>
                 <p className="max-w-xl text-neutral-300">
-                  Reels, Shorts и TikTok в формате 9:16 для мобильных площадок
+                  {t.work.verticalDescription}
                 </p>
               </div>
 
@@ -1011,6 +1667,8 @@ export default function App() {
                   <ProjectPreview
                     key={project.video || project.title}
                     project={project}
+                    labels={t.projectPreview}
+                    locale={locale}
                     canLoadHoverPreview={canLoadHoverPreviews}
                   />
                 ))}
@@ -1020,10 +1678,10 @@ export default function App() {
             <div className="mt-16 md:mt-20">
               <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                 <div>
-                  <h3 className="mt-2 text-3xl font-black md:text-4xl">Горизонтальные видео</h3>
+                  <h3 className="mt-2 text-3xl font-black md:text-4xl">{t.work.horizontalTitle}</h3>
                 </div>
                 <p className="max-w-xl text-neutral-300">
-                  YouTube, рекламные ролики, презентационные видео и длинные выпуски
+                  {t.work.horizontalDescription}
                 </p>
               </div>
 
@@ -1032,6 +1690,8 @@ export default function App() {
                   <ProjectPreview
                     key={project.video || project.title}
                     project={project}
+                    labels={t.projectPreview}
+                    locale={locale}
                     canLoadHoverPreview={canLoadHoverPreviews}
                   />
                 ))}
@@ -1044,16 +1704,15 @@ export default function App() {
           <div className="mx-auto max-w-7xl">
             <div className="reveal-surface">
               <h2 className="max-w-4xl text-4xl font-black leading-tight md:text-6xl">
-                Форматы работы
+                {t.services.title}
               </h2>
               <p className="mt-5 max-w-3xl text-lg leading-8 text-neutral-300">
-                Монтаж под регулярный контент, экспертные выпуски, рекламу и короткие
-                ролики для соцсетей.
+                {t.services.description}
               </p>
             </div>
 
             <div className="mt-12 grid gap-5 lg:grid-cols-3">
-              {services.map((service) => (
+              {localizedServices.map((service) => (
                 <article
                   key={service.id}
                   className="service-card reveal-surface relative min-h-[28rem] overflow-hidden rounded-lg border border-white/10 bg-neutral-900 p-7 shadow-2xl shadow-black/20"
@@ -1091,11 +1750,11 @@ export default function App() {
         <section id="process" className="scroll-mt-24 px-5 py-10 md:py-12">
           <div className="mx-auto max-w-7xl">
             <div className="reveal-surface mb-5 md:mb-6">
-              <h2 className="text-4xl font-black md:text-5xl">Как строится работа?</h2>
+              <h2 className="text-4xl font-black md:text-5xl">{t.process.title}</h2>
             </div>
 
             <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-              {process.map((step, index) => (
+              {localizedProcess.map((step, index) => (
                 <div
                   key={step.title}
                   className="process-card reveal-surface rounded-lg border border-white/10 bg-neutral-900 p-5 shadow-xl shadow-black/10 md:p-6"
@@ -1122,22 +1781,16 @@ export default function App() {
             <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
               <div>
                 <h2 className="max-w-4xl text-5xl font-black leading-none tracking-tight md:text-7xl">
-                  Начнём с короткого брифа
+                  {t.contact.title}
                 </h2>
                 <p className="mt-6 max-w-2xl text-lg leading-8 text-white/85">
-                  Расскажите, что нужно смонтировать, где будет публикация и какие
-                  исходники уже есть. По брифу будет понятен формат, объём работы и
-                  следующий шаг.
+                  {t.contact.description}
                 </p>
               </div>
 
               <div className="w-full">
                 <div className="grid gap-4">
-                  {[
-                    ["01", "Заполните короткий бриф"],
-                    ["02", "Оценка задачи и формата"],
-                    ["03", "Понятный план работы"],
-                  ].map(([number, text]) => (
+                  {t.contact.steps.map(([number, text]) => (
                     <div key={number} className="flex items-center gap-4">
                       <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white text-sm font-black text-neutral-950">
                         {number}
@@ -1149,7 +1802,7 @@ export default function App() {
 
                 <div className="mt-6 border-t border-white/10 pt-6">
                   <p className="mb-4 text-sm leading-6 text-white/80">
-                    Форма занимает пару минут и помогает быстро оценить задачу.
+                    {t.contact.note}
                   </p>
                   <div className="grid gap-3">
                     <button
@@ -1161,7 +1814,7 @@ export default function App() {
                       }}
                     >
                       <BriefIcon className="h-4 w-4 shrink-0" />
-                      <span>Заполнить бриф</span>
+                      <span>{t.contact.briefCta}</span>
                     </button>
                     <a
                       href={profile.telegram}
@@ -1170,7 +1823,7 @@ export default function App() {
                       className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg border border-white/15 px-5 text-sm font-black uppercase tracking-[0.12em] text-white transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-900"
                     >
                       <MessageIcon className="h-4 w-4 shrink-0" />
-                      <span>Написать в Telegram</span>
+                      <span>{t.contact.telegramCta}</span>
                     </a>
                   </div>
                 </div>
@@ -1182,6 +1835,7 @@ export default function App() {
 
       {isBriefOpen && (
         <BriefModal
+          content={t.brief}
           isSending={isBriefSending}
           status={briefStatus}
           onClose={() => setIsBriefOpen(false)}
@@ -1196,14 +1850,14 @@ export default function App() {
             ? "translate-y-0 opacity-100"
             : "pointer-events-none translate-y-3 opacity-0"
         }`}
-        aria-label="Наверх"
+        aria-label={t.common.scrollTop}
         onClick={handleScrollToTop}
       >
         <ArrowUpIcon className="h-5 w-5" />
       </button>
 
       <footer className="border-t border-white/10 px-5 py-8 text-center text-sm text-neutral-500">
-        © 2026 {profile.name}. All rights reserved.
+        © 2026 {profile.name}. {t.common.copyright}
       </footer>
     </div>
   );
