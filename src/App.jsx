@@ -880,7 +880,7 @@ const dict = {
       },
     },
     common: {
-      scrollTop: "Back to top",
+      scrollTop: "Top",
       copyright: "All rights reserved.",
     },
   },
@@ -1442,7 +1442,9 @@ export default function App() {
     ...step,
     ...t.process.items[index],
   }));
-  const verticalProjects = localizedProjects.filter((project) => project.format === "9:16");
+  const verticalProjects = localizedProjects
+    .filter((project) => project.format === "9:16")
+    .toSorted((firstProject, secondProject) => secondProject.viewCount - firstProject.viewCount);
   const horizontalProjects = localizedProjects.filter((project) => project.format === "16:9");
 
   function handleLocaleChange(nextLocale) {
@@ -1845,7 +1847,7 @@ export default function App() {
 
       <button
         type="button"
-        className={`scroll-top-button fixed bottom-5 right-5 z-[80] inline-flex h-12 w-12 items-center justify-center rounded-lg border border-white/15 bg-white text-neutral-950 shadow-2xl shadow-black/35 transition duration-300 hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-950 md:bottom-7 md:right-7 ${
+        className={`scroll-top-button fixed bottom-5 right-5 z-[80] inline-flex h-14 w-14 items-center justify-center gap-2 rounded-lg border border-white/15 bg-white text-sm font-black uppercase tracking-[0.12em] text-neutral-950 shadow-2xl shadow-black/35 transition duration-300 hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-950 md:bottom-8 md:right-[max(1.25rem,calc((100vw-80rem)/2-13rem))] md:h-16 md:w-auto md:px-6 ${
           isScrollTopVisible
             ? "translate-y-0 opacity-100"
             : "pointer-events-none translate-y-3 opacity-0"
@@ -1853,7 +1855,8 @@ export default function App() {
         aria-label={t.common.scrollTop}
         onClick={handleScrollToTop}
       >
-        <ArrowUpIcon className="h-5 w-5" />
+        <span className="hidden md:inline">{t.common.scrollTop}</span>
+        <ArrowUpIcon className="h-6 w-6 md:h-7 md:w-7" />
       </button>
 
       <footer className="border-t border-white/10 px-5 py-8 text-center text-sm text-neutral-500">
