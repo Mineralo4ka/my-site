@@ -577,7 +577,7 @@ const dict = {
         task: "Что нужно смонтировать, какая цель ролика, есть ли референсы?",
       },
       formatOptions: [
-        "Reels / Shorts / TikTok",
+        "Вертикальное видео",
         "Горизонтальное 16:9",
         "Нарезка из длинного видео",
         "Реклама / промо",
@@ -587,6 +587,11 @@ const dict = {
       sendingButton: "Отправляю...",
       sendingStatus: "Отправляю бриф...",
       successStatus: "Готово. Бриф отправлен в Telegram.",
+      successEyebrow: "Бриф отправлен",
+      successTitle: "Спасибо за заявку!",
+      successDescription:
+        "Я получил ваш бриф и свяжусь с вами по указанному контакту, чтобы обсудить детали монтажа.",
+      successClose: "Отлично",
       errorStatus:
         "Не получилось отправить бриф. Попробуйте ещё раз или напишите в Telegram.",
       messageTitle: "Новый бриф на монтаж",
@@ -857,7 +862,7 @@ const dict = {
         task: "What needs to be edited, what is the video's goal, and do you have references?",
       },
       formatOptions: [
-        "Reels / Shorts / TikTok",
+        "Vertical video",
         "Horizontal 16:9",
         "Cuts from a long video",
         "Ad / promo",
@@ -867,6 +872,11 @@ const dict = {
       sendingButton: "Sending...",
       sendingStatus: "Sending the brief...",
       successStatus: "Done. The brief has been sent to Telegram.",
+      successEyebrow: "Brief sent",
+      successTitle: "Thank you for your request!",
+      successDescription:
+        "I received your brief and will contact you using the details provided to discuss the edit.",
+      successClose: "Great",
       errorStatus: "Could not send the brief. Please try again or message me on Telegram.",
       messageTitle: "New editing brief",
       notSpecified: "Not specified",
@@ -1001,6 +1011,23 @@ function SendIcon({ className = "" }) {
     >
       <path d="m22 2-7 20-4-9-9-4Z" />
       <path d="M22 2 11 13" />
+    </svg>
+  );
+}
+
+function CheckIcon({ className = "" }) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m5 12 4 4L19 6" />
     </svg>
   );
 }
@@ -1378,9 +1405,9 @@ function BriefModal({ content, isSending, onClose, onSubmit, status }) {
             <label className="grid gap-2 text-sm font-bold text-neutral-200">
               {content.labels.deadline}
               <input
+                type="date"
                 name="deadline"
-                className="min-h-12 rounded-lg border border-white/10 bg-white/5 px-4 text-white outline-none transition focus:border-white/40"
-                placeholder={content.placeholders.deadline}
+                className="min-h-12 rounded-lg border border-white/10 bg-white/5 px-4 text-white [color-scheme:dark] outline-none transition focus:border-white/40"
               />
             </label>
           </div>
@@ -1421,10 +1448,51 @@ function BriefModal({ content, isSending, onClose, onSubmit, status }) {
   );
 }
 
+function BriefSuccessModal({ content, onClose }) {
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 px-5 py-8 backdrop-blur"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="brief-success-title"
+      onClick={onClose}
+    >
+      <div
+        className="brief-modal-card relative w-full max-w-lg overflow-hidden rounded-lg border border-white/10 bg-neutral-950 p-8 text-center shadow-2xl md:p-10"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(20,184,166,0.18),transparent_52%)]" />
+        <div className="relative">
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-lg border border-teal-300/25 bg-teal-400/10 text-teal-300 shadow-[0_0_40px_rgba(20,184,166,0.16)]">
+            <CheckIcon className="h-8 w-8" />
+          </div>
+          <p className="mt-6 text-xs font-black uppercase tracking-[0.22em] text-teal-300">
+            {content.successEyebrow}
+          </p>
+          <h2 id="brief-success-title" className="mt-3 text-3xl font-black text-white md:text-4xl">
+            {content.successTitle}
+          </h2>
+          <p className="mx-auto mt-4 max-w-md text-base leading-7 text-neutral-300">
+            {content.successDescription}
+          </p>
+          <button
+            type="button"
+            className="mt-7 inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-white px-6 text-sm font-black uppercase tracking-[0.12em] text-neutral-950 transition hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-950"
+            onClick={onClose}
+          >
+            {content.successClose}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   const contactCardRef = useRef(null);
   const [locale, setLocale] = useState(getInitialLocale);
   const [isBriefOpen, setIsBriefOpen] = useState(false);
+  const [isBriefSuccessOpen, setIsBriefSuccessOpen] = useState(false);
   const [isBriefSending, setIsBriefSending] = useState(false);
   const [briefStatus, setBriefStatus] = useState("");
   const [isScrollTopVisible, setIsScrollTopVisible] = useState(false);
@@ -1542,7 +1610,9 @@ export default function App() {
       }
 
       form.reset();
-      setBriefStatus(t.brief.successStatus);
+      setBriefStatus("");
+      setIsBriefOpen(false);
+      setIsBriefSuccessOpen(true);
     } catch (error) {
       console.error(error);
       setBriefStatus(t.brief.errorStatus);
@@ -1812,6 +1882,7 @@ export default function App() {
                       className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-black uppercase tracking-[0.12em] text-neutral-950 transition hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-900"
                       onClick={() => {
                         setBriefStatus("");
+                        setIsBriefSuccessOpen(false);
                         setIsBriefOpen(true);
                       }}
                     >
@@ -1842,6 +1913,13 @@ export default function App() {
           status={briefStatus}
           onClose={() => setIsBriefOpen(false)}
           onSubmit={handleBriefSubmit}
+        />
+      )}
+
+      {isBriefSuccessOpen && (
+        <BriefSuccessModal
+          content={t.brief}
+          onClose={() => setIsBriefSuccessOpen(false)}
         />
       )}
 

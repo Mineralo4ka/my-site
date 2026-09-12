@@ -53,6 +53,7 @@ Dockerfile                  Runtime-only Docker image, copies dist and server
 compose.yaml                Docker Compose service binding 127.0.0.1:3000
 scripts/deploy.sh           Incremental deploy script
 scripts/deploy.cmd          Windows wrapper for Git Bash
+scripts/deploy-macos.sh     macOS deploy script for the current server
 .env.local                  Local/server secrets. Do not commit.
 .env.example                Example env file
 ```
@@ -216,6 +217,27 @@ RESTART_CONTAINER=0 scripts/deploy.cmd
 FORCE_RESTART=1 scripts/deploy.cmd
 REMOTE_DIR=/custom/path scripts/deploy.cmd
 ```
+
+On macOS, use the separate script configured for the current server:
+
+```bash
+scripts/deploy-macos.sh
+```
+
+Its default target is:
+
+```text
+root@13.143.244.250:/opt/nehold-creator
+```
+
+The macOS script uses `~/.ssh/nehold_creator` by default. Override it when needed:
+
+```bash
+SSH_KEY=/custom/path/to/key scripts/deploy-macos.sh
+```
+
+The macOS script preserves `/opt/nehold-creator/.env.local` on the server and
+stops before uploading if that file is missing.
 
 ## Server Layout
 
