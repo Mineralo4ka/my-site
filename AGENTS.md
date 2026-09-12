@@ -96,6 +96,9 @@ Frontend:
 
 - `buildBriefMessage(formData)` creates the message text.
 - `handleBriefSubmit` posts `{ text }` to `/api/brief`.
+- the deadline field uses the native `input type="date"` system calendar;
+- after a successful submission, the brief form closes and a separate success modal opens;
+- after a failed submission, the form stays open and preserves the entered values.
 
 Backend:
 

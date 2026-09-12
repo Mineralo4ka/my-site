@@ -896,24 +896,6 @@ const dict = {
   },
 };
 
-function ArrowLeftIcon({ className = "" }) {
-  return (
-    <svg
-      aria-hidden="true"
-      className={className}
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m12 19-7-7 7-7" />
-      <path d="M19 12H5" />
-    </svg>
-  );
-}
-
 function ArrowUpIcon({ className = "" }) {
   return (
     <svg
@@ -1337,23 +1319,23 @@ function BriefModal({ content, isSending, onClose, onSubmit, status }) {
         className="brief-modal-card max-h-full w-full max-w-3xl overflow-y-auto rounded-lg border border-white/10 bg-neutral-950 shadow-2xl"
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="flex items-start justify-between gap-5 border-b border-white/10 p-6">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-neutral-500">
+        <div className="border-b border-white/10 p-6">
+          <div className="flex items-center justify-between gap-4">
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-neutral-500 md:text-base">
               {content.eyebrow}
             </p>
-            <h2 className="mt-2 text-3xl font-black text-white md:text-4xl">
-              {content.title}
-            </h2>
+            <button
+              type="button"
+              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg border border-white/10 px-3 py-2 text-sm font-bold text-neutral-300 transition hover:bg-white/10 hover:text-white"
+              onClick={onClose}
+            >
+              <XIcon className="h-4 w-4 shrink-0" />
+              <span>{content.close}</span>
+            </button>
           </div>
-          <button
-            type="button"
-            className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/10 px-3 py-2 text-sm font-bold text-neutral-300 transition hover:bg-white/10 hover:text-white"
-            onClick={onClose}
-          >
-            <XIcon className="h-4 w-4 shrink-0" />
-            <span>{content.close}</span>
-          </button>
+          <h2 className="mt-2 whitespace-nowrap text-[clamp(1.3rem,6.5vw,2.25rem)] font-black tracking-tight text-white">
+            {content.title}
+          </h2>
         </div>
 
         <form className="grid gap-5 p-6" onSubmit={onSubmit}>
@@ -1438,7 +1420,7 @@ function BriefModal({ content, isSending, onClose, onSubmit, status }) {
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/15 px-6 text-sm font-black text-white transition hover:bg-white/10"
               onClick={onClose}
             >
-              <ArrowLeftIcon className="h-4 w-4 shrink-0" />
+              <XIcon className="h-4 w-4 shrink-0" />
               <span>{content.closeForm}</span>
             </button>
           </div>
@@ -1625,7 +1607,14 @@ export default function App() {
     <div className="site-shell min-h-screen bg-neutral-950 text-white">
       <header className="sticky top-0 z-50 border-b border-white/10 bg-neutral-950/90 backdrop-blur">
         <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4">
-          <a href="#top" className="site-logo flex items-center gap-3 font-black tracking-tight">
+          <a
+            href="#top"
+            className="site-logo flex items-center gap-3 font-black tracking-tight"
+            onClick={(event) => {
+              event.preventDefault();
+              handleScrollToTop();
+            }}
+          >
             <span className="logo-mark flex h-10 w-10 items-center justify-center rounded-lg">
               <img
                 src="/images/favicon.ico"
@@ -1669,7 +1658,7 @@ export default function App() {
       </header>
 
       <main id="top">
-        <section className="hero-section px-5 pb-8 pt-16 md:pb-10 md:pt-24">
+        <section className="hero-section px-5 pb-8 pt-8 md:pb-10 md:pt-12">
           <div className="mx-auto grid max-w-7xl items-stretch gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-[120px]">
             <div className="reveal-surface flex h-full flex-col justify-between">
               <div>
