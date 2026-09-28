@@ -9,251 +9,333 @@ const profile = {
   avatar: "/images/avatar.jpg",
 };
 
+const clients = {
+  deepSchool: {
+    name: "DeepSchool",
+    url: "https://www.youtube.com/@deep_school",
+    avatar: "/images/clients/deepschool.jpg",
+  },
+  kurs: {
+    name: "Завод KURS",
+    url: "https://www.youtube.com/@kurs9798",
+    avatar: "/images/clients/kurs.jpg",
+  },
+  a4Food: {
+    name: "A4FOOD",
+    url: "https://www.youtube.com/@A4FOOOD",
+    avatar: "/images/clients/a4food.jpg",
+  },
+  ggsel: {
+    name: "ggsel – цифровой маркетплейс",
+    url: "https://www.tiktok.com/@ggsel.net",
+    avatar: "/images/clients/ggsel.jpg",
+  },
+  bigCity: {
+    name: "Роман Поляков / BIG CITY — Новостройки Москвы",
+    url: "https://www.youtube.com/@bigcity-8674",
+    avatar: "/images/clients/bigcity.jpg",
+  },
+  fainaLi: {
+    name: "Китайский язык с Фаиной Ли",
+    url: "https://www.youtube.com/@bamboobridgeacademy",
+    avatar: "/images/clients/faina-li.jpg",
+  },
+  myCsgo: {
+    name: "MyCSGO",
+    url: "https://www.youtube.com/@mycsgo",
+    avatar: "/images/clients/mycsgo.jpg",
+  },
+  marketCsgo: {
+    name: "Market.СSGO",
+    url: "https://www.youtube.com/@marketcsgocom",
+    avatar: "/images/clients/marketcsgocom.jpg",
+  },
+  fudziyama: {
+    name: "Фудзияма Global",
+    url: "https://www.tiktok.com/@sushifuji_global",
+    avatar: "/images/clients/fudziyama.jpg",
+  },
+  cubeMarket: {
+    name: "Интернет-магазин Кубмаркет",
+    url: "https://www.youtube.com/@%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D0%9A%D1%83%D0%B1%D0%BC%D0%B0%D1%80%D0%BA%D0%B5%D1%82",
+    avatar: "/images/clients/cubemarket.jpg",
+  },
+  simonyanEnglish: {
+    name: "simonyan_english",
+    url: "https://www.tiktok.com/@simonyan_english",
+    avatar: "/images/clients/simonyan-english.jpg",
+  },
+  alenaKotlyarova: {
+    name: "Алена Котлярова",
+    url: "https://www.instagram.com/alena_kots/",
+    avatar: "/images/clients/alena-kotlyarova.jpg",
+  },
+};
+
 const projects = [
   {
-    title: "DeepSchool",
+    title: "Что под капотом у видеокодеков, генеративных моделей и тимлидов? | Подкаст с Ильдаром Идрисовым",
     category: "Подкаст",
     year: "2026",
     format: "16:9",
     accent: "#f97316",
     video: "/videos/DS_podcast.mp4",
     cover: "/images/covers/DS_codecs.webp",
+    client: clients.deepSchool,
     originalUrl: "https://www.youtube.com/watch?v=stCi1eQSEYY",
-    viewCount: 337,
+    viewCount: 373,
     description:
       "Подкаст для DeepSchool: чистая склейка спикеров, аккуратные перебивки и спокойный темп для длинного экспертного выпуска.",
   },
   {
-    title: "DeepSchool",
+    title: "«Вопросы эксперту» | Антон Семенюта, ML-инженер команды Восприятия Автономного Транспорта в Яндекс",
     category: "Разговорное",
     year: "2025",
     format: "16:9",
     accent: "#6366f1",
     video: "/videos/DS_15quest.mp4",
     cover: "/images/covers/DS_auto.webp",
+    client: clients.deepSchool,
     originalUrl: "https://www.youtube.com/watch?v=gpBkyiwOq88",
-    viewCount: 549,
+    viewCount: 619,
     description:
       "Разговорный выпуск DeepSchool с понятной структурой, титрами и плашками, чтобы сложная тема воспринималась легче.",
   },
   {
-    title: "DeepSchool",
+    title: "Собеседование по Computer Vision | мок-интервью",
     category: "Интервью",
     year: "2026",
     format: "16:9",
     accent: "#0ea5e9",
     video: "/videos/DS_MOK.mp4",
     cover: "/images/covers/DS_MOK.webp",
+    client: clients.deepSchool,
     originalUrl: "https://www.youtube.com/watch?v=P7ndeN0yLig",
-    viewCount: 846,
+    viewCount: 1525,
     description:
       "Интервью в формате мок-собеседования: разбор задачи, чистый монтаж созвона и вставки, которые помогают следить за мыслью.",
   },
   {
-    title: "KURS",
+    title: "ОБЗОР ДЕВАЙСОВ НА БУЛЬДОГ",
     category: "Обзор",
     year: "2025",
     format: "16:9",
     accent: "#f59e0b",
     video: "/videos/KURS_horizont.mp4",
     cover: "/images/covers/kurs_horizont.webp",
+    client: clients.kurs,
     originalUrl: "https://www.youtube.com/watch?v=KKgZJRlUcMU",
-    viewCount: 11123,
+    viewCount: 14249,
     description:
       "Обзор продукта KURS: крупные планы, демонстрация деталей и монтаж, который помогает быстро понять пользу устройства.",
   },
   {
-    title: "KURS",
+    title: "ПОЧЕМУ ГАНГСТЕРЫ ДЕРЖАТ ПИСТОЛЕТЫ ПОД УГЛОМ?",
     category: "Shorts",
     year: "2025",
     format: "9:16",
     accent: "#14b8a6",
     video: "/videos/KURS_gangsters.mp4",
     cover: "/images/covers/KURS_gangsters.webp",
+    client: clients.kurs,
     originalUrl: "https://www.youtube.com/shorts/75chU5_slkI",
-    viewCount: 12919492,
+    viewCount: 13009766,
     description:
       "Короткий объясняющий ролик KURS с быстрым заходом, кино-вставками и титрами, которые удерживают внимание до конца.",
   },
   {
-    title: "KURS Animation",
+    title: "НАСКОЛЬКО ГЛУБОКИМ ДОЛЖЕН БЫТЬ БУНКЕР, ЧТОБЫ ВЫЖИТЬ?",
     category: "Shorts",
     year: "2026",
     format: "9:16",
     accent: "#ec4899",
     video: "/videos/KURS_animation.mp4",
     cover: "/images/covers/KURS_animation.webp",
+    client: clients.kurs,
     originalUrl: "https://www.youtube.com/shorts/cTog6z753tU",
-    viewCount: 5552572,
+    viewCount: 5558460,
     description:
       "Анимационный Shorts для KURS: простая визуализация сложной темы, схемы и темп, подходящий для образовательного контента.",
   },
   {
-    title: "A4Food",
+    title: "СЕКРЕТНЫЙ ВКУС ГАЗИРОВКИ А4 РАЗБЛОКИРОВАН",
     category: "TikTok",
     year: "2026",
     format: "9:16",
     accent: "#eab308",
     video: "/videos/A4_drink.mp4",
     cover: "/images/covers/A4_drink.webp",
+    client: clients.a4Food,
     originalUrl: "https://www.youtube.com/shorts/mxN8SbFI2iA",
-    viewCount: 1890908,
+    viewCount: 2016456,
     description:
       "Яркий TikTok для A4Food: приготовление напитка, реакции героев и крупные планы, которые делают продукт заметнее.",
   },
    {
-    title: "A4Food",
+    title: "КОБЯКОВ ИЩЕТ ЧИПСЫ А4 С ЗАКРЫТЫМИ ГЛАЗАМИ",
     category: "TikTok",
     year: "2026",
     format: "9:16",
     accent: "#eab308",
     video: "/videos/A4_kobyakov.mp4",
     cover: "/images/covers/A4_kobyakov.webp",
+    client: clients.a4Food,
     originalUrl: "https://www.youtube.com/shorts/sQvOVc_ESzw",
-    viewCount: 2571061,
+    viewCount: 3747486,
     description:
       "Обзор снеков с Кобяковым: быстрый темп, реакции, акценты на вкусах и подача, которая подходит для TikTok.",
   },
   {
-    title: "GGSel",
+    title: "Геймеры, без шуток… отдали бы?",
     category: "TikTok",
     year: "2025",
     format: "9:16",
     accent: "#38bdf8",
     video: "/videos/ggsel_opros.mp4",
     cover: "/images/covers/ggsel_opros.webp",
+    client: clients.ggsel,
     originalUrl: "https://www.tiktok.com/@ggsel.net/video/7585878823636372754",
     viewCount: 1800000,
     description:
       "Уличный опрос для GGSel: живые реакции, брендовые элементы и быстрый монтаж для лёгкого просмотра в Reels.",
   },
   {
-    title: "GGSel",
+    title: "Vice City vs San Andreas",
     category: "TikTok",
     year: "2024",
     format: "9:16",
     accent: "#22c55e",
     video: "/videos/ggsel_vicecity.mp4",
     cover: "/images/covers/ggsel_vicecity.webp",
+    client: clients.ggsel,
     originalUrl: "https://www.tiktok.com/@ggsel.net/video/7500908251769212177",
-    viewCount: 166200,
+    viewCount: 180700,
     description:
       "Игровой TikTok для GGSel: сравнение GTA, динамичные вставки и подача, которая быстро вовлекает зрителя.",
   },
   {
-    title: "BigCity",
+    title: "Все, что ты не знал о рассрочке от застройщиков",
     category: "Reels",
     year: "2024",
     format: "9:16",
     accent: "#06b6d4",
     video: "/videos/BigCity_kvartira.mp4",
     cover: "/images/covers/BigCity_kvartira.webp",
+    client: clients.bigCity,
     originalUrl: "https://www.youtube.com/shorts/3ASJzRhvYFs",
-    viewCount: 2000,
+    viewCount: 1847,
     description:
       "Reels для недвижимости BigCity: понятное объяснение рассрочки, инфографика и примеры, которые помогают разобраться в оффере.",
   },
   {
-    title: "BigCity",
+    title: "Как изменится Москва в ближайшие 5 лет?",
     category: "Reels",
     year: "2024",
     format: "9:16",
     accent: "#0ea5e9",
     video: "/videos/BigCity_moscow.mp4",
     cover: "/images/covers/BigCity_moscow.webp",
+    client: clients.bigCity,
     originalUrl: "https://www.youtube.com/shorts/mIBveDn0rIo",
-    viewCount: 240000,
+    viewCount: 23616,
     description:
       "Городской Reels для BigCity: история места, архивные кадры и визуализация, собранные в короткий понятный сюжет.",
   },
   {
-    title: "Faina Li",
+    title: "КАК ПРОЯВЛЯЮТСЯ ЭМОЦИИ У КИТАЙЦЕВ?",
     category: "Reels",
     year: "2024",
     format: "9:16",
     accent: "#10b981",
     video: "/videos/faina_li.mp4",
     cover: "/images/covers/faina_li.webp",
+    client: clients.fainaLi,
     originalUrl: "https://www.youtube.com/shorts/nO9N7Mhypic",
-    viewCount: 27676,
+    viewCount: 27694,
     description:
       "Образовательный Reels для Faina Li: китайский язык, живые примеры и быстрые вставки, которые помогают удержать внимание.",
   },
   {
-    title: "MyCSGO",
+    title: "ОТКРЫВАЮ КЕЙСЫ ПОКА НЕ ВЫПАДЕТ АГЕНТ ДЭРРИЛ",
     category: "Shorts",
     year: "2024",
     format: "9:16",
     accent: "#f97316",
     video: "/videos/MyCSGO.mp4",
     cover: "/images/covers/MyCSGO.webp",
+    client: clients.myCsgo,
     originalUrl: "https://www.youtube.com/shorts/BZUQxK2zuz0",
-    viewCount: 115492,
+    viewCount: 129481,
     description:
       "Shorts для MyCSGO с кейс-челленджем: счётчик попыток, колесо выбора и реакции, которые держат азарт до финала.",
   },
   {
-    title: "MarketCSGO",
+    title: "А ты знал, что этих вещей в КС больше нет?",
     category: "Shorts",
     year: "2024",
     format: "9:16",
     accent: "#3b82f6",
     video: "/videos/MarketCSGO.mp4",
     cover: "/images/covers/MarketCSGO.webp",
+    client: clients.marketCsgo,
     originalUrl: "https://www.youtube.com/shorts/2g84v49AYy0",
-    viewCount: 1027619,
+    viewCount: 1027999,
     description:
       "Shorts для MarketCSGO: быстрый разбор деталей Inferno, игровые вставки и понятная подача для аудитории CS.",
   },
   {
-    title: "Fudziyama",
+    title: "ИГРАЕМ СНОВА",
     category: "TikTok",
     year: "2024",
     format: "9:16",
     accent: "#22c55e",
     video: "/videos/fudzi.mp4",
     cover: "/images/covers/fudzi.webp",
+    client: clients.fudziyama,
     originalUrl: "https://www.tiktok.com/@sushifuji_global/video/7514661037933595926",
     viewCount: 1400000,
     description:
       "Food-ролик для Fudziyama: дегустация, реакции героев и аппетитные крупные планы для короткого формата.",
   },
   {
-    title: "CubeMarket",
+    title: "ПОЧЕМУ «ТАЧКИ» — ЭТО ЧЕСТНО?",
     category: "Shorts",
     year: "2026",
     format: "9:16",
     accent: "#ef4444",
     video: "/videos/CubeMarket.mp4",
     cover: "/images/covers/CubeMarket.webp",
+    client: clients.cubeMarket,
     originalUrl: "https://www.youtube.com/shorts/Hkgow6vGYzc",
-    viewCount: 7840,
+    viewCount: 9054,
     description:
       "Shorts для CubeMarket: знакомая тема, быстрые вставки и товарный акцент, который мягко ведёт к продукту.",
   },
   {
-    title: "Anecole",
+    title: "КАК ВЛАДИМИР ПОЗНЕР РАЗГОВАРИВАЕТ НА АНГЛИЙСКОМ?",
     category: "TikTok",
     year: "2026",
     format: "9:16",
     accent: "#8b5cf6",
     video: "/videos/Anecole.mp4",
     cover: "/images/covers/Anecole.webp",
+    client: clients.simonyanEnglish,
     originalUrl: "https://www.tiktok.com/@simonyan_english/video/7645587507375361300?_r=1&_t=ZS-96qnbhhD3xM",
-    viewCount: 288200,
+    viewCount: 326100,
     description:
       "Образовательный TikTok для Anecole: разбор английской речи, субтитры и вставки, которые делают урок живее.",
   },
   {
-    title: "Алена Котлярова",
+    title: "КАК ВЫГЛЯДИТ КИТАЙСКИЙ ДОДО?",
     category: "Reels",
     year: "2025",
     format: "9:16",
     accent: "#f59e0b",
     video: "/videos/Alena_dodo.mp4",
     cover: "/images/covers/Alena_dodo.webp",
+    client: clients.alenaKotlyarova,
     originalUrl: "https://www.instagram.com/alena_kots/reel/DSBBmC4iMTd/",
-    viewCount: 1400,
+    viewCount: 441,
     description:
       "Reels для Алёны Котляровой: обзор заведения, детали меню и живой тревел-формат для вовлечения аудитории.",
   },
@@ -390,25 +472,25 @@ const dict = {
           "Анимационный Shorts для KURS: простая визуализация сложной темы, схемы и темп, подходящий для образовательного контента.",
       },
       {
-        title: "A4Food",
+        title: "СЕКРЕТНЫЙ ВКУС ГАЗИРОВКИ А4 РАЗБЛОКИРОВАН",
         category: "TikTok",
         description:
           "Яркий TikTok для A4Food: приготовление напитка, реакции героев и крупные планы, которые делают продукт заметнее.",
       },
       {
-        title: "A4Food",
+        title: "КОБЯКОВ ИЩЕТ ЧИПСЫ А4 С ЗАКРЫТЫМИ ГЛАЗАМИ",
         category: "TikTok",
         description:
           "Обзор снеков с Кобяковым: быстрый темп, реакции, акценты на вкусах и подача, которая подходит для TikTok.",
       },
       {
-        title: "GGSel",
+        title: "Геймеры, без шуток… отдали бы?",
         category: "TikTok",
         description:
           "Уличный опрос для GGSel: живые реакции, брендовые элементы и быстрый монтаж для лёгкого просмотра в Reels.",
       },
       {
-        title: "GGSel",
+        title: "Vice City vs San Andreas",
         category: "TikTok",
         description:
           "Игровой TikTok для GGSel: сравнение GTA, динамичные вставки и подача, которая быстро вовлекает зрителя.",
@@ -471,16 +553,22 @@ const dict = {
     work: {
       verticalTitle: "Вертикальные видео",
       verticalDescription: "Reels, Shorts и TikTok в формате 9:16 для мобильных площадок",
+      showMoreVertical: "Показать ещё видео",
+      showLessVertical: "Скрыть дополнительные видео",
       horizontalTitle: "Горизонтальные видео",
       horizontalDescription: "YouTube, рекламные ролики, презентационные видео и длинные выпуски",
     },
     projectPreview: {
       watchAria: "Смотреть",
       coverAlt: "Обложка",
-      views: "Просмотры",
+      client: "Клиент",
+      views: "просмотров",
       unknownViews: "уточняется",
       millionSuffix: "млн",
-      watchFull: "Смотреть полное видео",
+      thousandSuffix: "тыс.",
+      billionSuffix: "млрд",
+      watchOn: "Смотреть в",
+      watchFull: "Смотреть видео",
     },
     services: {
       title: "Форматы работы",
@@ -675,25 +763,25 @@ const dict = {
           "An animated Short for KURS: simple visualization of a complex topic, diagrams, and a pace suited to educational content.",
       },
       {
-        title: "A4Food",
+        title: "СЕКРЕТНЫЙ ВКУС ГАЗИРОВКИ А4 РАЗБЛОКИРОВАН",
         category: "TikTok",
         description:
           "A bright TikTok for A4Food: drink preparation, character reactions, and close-ups that make the product stand out.",
       },
       {
-        title: "A4Food",
+        title: "КОБЯКОВ ИЩЕТ ЧИПСЫ А4 С ЗАКРЫТЫМИ ГЛАЗАМИ",
         category: "TikTok",
         description:
           "A snack review with Kobyakov: fast pacing, reactions, taste accents, and delivery that fits TikTok.",
       },
       {
-        title: "GGSel",
+        title: "Геймеры, без шуток… отдали бы?",
         category: "TikTok",
         description:
           "A street interview for GGSel: live reactions, brand elements, and quick editing for easy Reels viewing.",
       },
       {
-        title: "GGSel",
+        title: "Vice City vs San Andreas",
         category: "TikTok",
         description:
           "A gaming TikTok for GGSel: GTA comparisons, dynamic inserts, and delivery that pulls viewers in fast.",
@@ -756,16 +844,22 @@ const dict = {
     work: {
       verticalTitle: "Vertical Videos",
       verticalDescription: "Reels, Shorts, and TikToks in 9:16 for mobile platforms",
+      showMoreVertical: "Show more videos",
+      showLessVertical: "Hide additional videos",
       horizontalTitle: "Horizontal Videos",
       horizontalDescription: "YouTube, ads, presentation videos, and long-form episodes",
     },
     projectPreview: {
       watchAria: "Watch",
       coverAlt: "Cover",
-      views: "Views",
+      client: "Client",
+      views: "views",
       unknownViews: "checking",
       millionSuffix: "M",
-      watchFull: "Watch full video",
+      thousandSuffix: "K",
+      billionSuffix: "B",
+      watchOn: "Watch on",
+      watchFull: "Watch video",
     },
     services: {
       title: "Work Formats",
@@ -954,6 +1048,104 @@ function ExternalLinkIcon({ className = "" }) {
   );
 }
 
+function ViewsTrendIcon({ className = "" }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="m4 16 6-6 4 4 6-7" />
+      <path d="M15 7h5v5" />
+    </svg>
+  );
+}
+
+function ChevronDownIcon({ className = "" }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="m6 9 6 6 6-6" />
+    </svg>
+  );
+}
+
+function YouTubeIcon({ className = "" }) {
+  return (
+    <span
+      className={`inline-flex items-center justify-center rounded-md bg-[#ff0033] ${className}`}
+      aria-hidden="true"
+    >
+      <svg viewBox="0 0 24 24" className="h-[55%] w-[55%] fill-white">
+        <path d="M20.6 7.1a2.9 2.9 0 0 0-2-2C16.8 4.6 12 4.6 12 4.6s-4.8 0-6.6.5a2.9 2.9 0 0 0-2 2A30 30 0 0 0 3 12a30 30 0 0 0 .4 4.9 2.9 2.9 0 0 0 2 2c1.8.5 6.6.5 6.6.5s4.8 0 6.6-.5a2.9 2.9 0 0 0 2-2A30 30 0 0 0 21 12a30 30 0 0 0-.4-4.9ZM10.2 15.2V8.8l5.4 3.2-5.4 3.2Z" />
+      </svg>
+    </span>
+  );
+}
+
+function TikTokIcon({ className = "" }) {
+  return (
+    <span
+      className={`inline-flex items-center justify-center rounded-md bg-neutral-950 ring-1 ring-white/15 ${className}`}
+      aria-hidden="true"
+    >
+      <svg viewBox="0 0 24 24" className="h-[62%] w-[62%] fill-white">
+        <path d="M15.4 3c.2 1.8 1.2 3.2 3 4.1.7.4 1.4.6 2.2.6v3.4a9.2 9.2 0 0 1-5.2-1.6v6.3a5.8 5.8 0 1 1-5-5.7v3.5a2.4 2.4 0 1 0 1.6 2.2V3h3.4Z" />
+      </svg>
+    </span>
+  );
+}
+
+function InstagramIcon({ className = "" }) {
+  return (
+    <span
+      className={`inline-flex items-center justify-center rounded-md bg-gradient-to-br from-[#833ab4] via-[#fd1d1d] to-[#fcb045] ${className}`}
+      aria-hidden="true"
+    >
+      <svg viewBox="0 0 24 24" className="h-[62%] w-[62%] fill-none stroke-white stroke-[2.2]">
+        <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.7" r="1" className="fill-white stroke-none" />
+      </svg>
+    </span>
+  );
+}
+
+function getSocialPlatform(url) {
+  try {
+    const hostname = new URL(url).hostname.replace(/^www\./, "");
+
+    if (hostname === "youtube.com" || hostname === "youtu.be") {
+      return { name: "YouTube", Icon: YouTubeIcon };
+    }
+
+    if (hostname === "tiktok.com") {
+      return { name: "TikTok", Icon: TikTokIcon };
+    }
+
+    if (hostname === "instagram.com") {
+      return { name: "Instagram", Icon: InstagramIcon };
+    }
+  } catch {
+    return null;
+  }
+
+  return null;
+}
+
 function MessageIcon({ className = "" }) {
   return (
     <svg
@@ -1057,6 +1249,113 @@ function ButtonLink({ href, children, variant = "primary", newTab = false, icon:
   );
 }
 
+function AnimatedStat({ value, delay = 0 }) {
+  const valueRef = useRef(null);
+  const match = value.match(/^(\d+)(.*)$/);
+  const targetValue = match ? Number(match[1]) : null;
+  const suffix = match?.[2] || "";
+
+  useEffect(() => {
+    const valueElement = valueRef.current;
+
+    if (!valueElement || targetValue === null) {
+      return undefined;
+    }
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      valueElement.textContent = value;
+      return undefined;
+    }
+
+    let animationFrameId;
+    let startTime;
+    const duration = 1100;
+
+    valueElement.textContent = `0${suffix}`;
+
+    function animate(timestamp) {
+      startTime ??= timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+      const currentValue = Math.round(targetValue * easedProgress);
+
+      valueElement.textContent = `${currentValue}${suffix}`;
+
+      if (progress < 1) {
+        animationFrameId = window.requestAnimationFrame(animate);
+      }
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      animationFrameId = window.requestAnimationFrame(animate);
+    }, delay);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      window.cancelAnimationFrame(animationFrameId);
+    };
+  }, [delay, suffix, targetValue, value]);
+
+  return (
+    <span ref={valueRef} aria-label={value}>
+      {targetValue === null ? value : `0${suffix}`}
+    </span>
+  );
+}
+
+function TypedHeadline({ text }) {
+  const prefersReducedMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const [visibleCharacterCount, setVisibleCharacterCount] = useState(
+    prefersReducedMotion ? Array.from(text).length : 0,
+  );
+  const [isCursorVisible, setIsCursorVisible] = useState(!prefersReducedMotion);
+  const visibleText = Array.from(text).slice(0, visibleCharacterCount).join("");
+
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      return undefined;
+    }
+
+    const characterCount = Array.from(text).length;
+    let cursorTimeoutId;
+    const typingIntervalId = window.setInterval(() => {
+      setVisibleCharacterCount((currentCount) => {
+        const nextCount = Math.min(currentCount + 1, characterCount);
+
+        if (nextCount === characterCount) {
+          window.clearInterval(typingIntervalId);
+          cursorTimeoutId = window.setTimeout(() => setIsCursorVisible(false), 900);
+        }
+
+        return nextCount;
+      });
+    }, 65);
+
+    return () => {
+      window.clearInterval(typingIntervalId);
+      window.clearTimeout(cursorTimeoutId);
+    };
+  }, [prefersReducedMotion, text]);
+
+  return (
+    <span className="relative inline-block" aria-label={text}>
+      <span className="invisible" aria-hidden="true">
+        {text}
+      </span>
+      <span className="absolute inset-x-0 top-0" aria-hidden="true">
+        {visibleText}
+        <span
+          className={`ml-1 inline-block h-[0.82em] w-[3px] translate-y-[0.06em] rounded-full bg-white align-baseline transition-opacity duration-300 ${
+            isCursorVisible ? "animate-[pulse_0.8s_ease-in-out_infinite] opacity-100" : "opacity-0"
+          }`}
+        />
+      </span>
+    </span>
+  );
+}
+
 function getInitialLocale() {
   if (typeof window === "undefined") {
     return defaultLocale;
@@ -1113,26 +1412,63 @@ function formatViewCount(viewCount, locale, labels) {
     return null;
   }
 
-  const step =
-    viewCount >= 1_000_000
-      ? 100_000
-      : viewCount >= 100_000
-        ? 10_000
-        : viewCount >= 1_000
-          ? 1_000
-          : 100;
-  const roundedViewCount = Math.max(step, Math.ceil(viewCount / step) * step);
+  const units = [
+    { value: 1_000_000_000, suffix: labels.billionSuffix },
+    { value: 1_000_000, suffix: labels.millionSuffix },
+    { value: 1_000, suffix: labels.thousandSuffix },
+  ];
+  const unit = units.find((item) => viewCount >= item.value);
 
-  if (roundedViewCount >= 1_000_000) {
-    const millionLabel = (roundedViewCount / 1_000_000).toFixed(1).replace(".0", "");
+  if (unit) {
+    const compactValue = Math.floor((viewCount / unit.value) * 10) / 10;
+    const compactLabel = compactValue.toLocaleString(locale === "en" ? "en-US" : "ru-RU", {
+      maximumFractionDigits: 1,
+    });
 
-    return `${millionLabel}${labels.millionSuffix}`;
+    return `${compactLabel}+ ${unit.suffix}`;
   }
 
-  return roundedViewCount.toLocaleString(locale === "en" ? "en-US" : "ru-RU");
+  return viewCount.toLocaleString(locale === "en" ? "en-US" : "ru-RU");
 }
 
 const hoverPreviewMediaQuery = "(hover: hover) and (pointer: fine)";
+
+function ProjectTitle({ title }) {
+  const titleRef = useRef(null);
+  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
+
+  function showTooltipIfTruncated() {
+    const titleElement = titleRef.current;
+
+    if (!titleElement) {
+      return;
+    }
+
+    const isTruncated = titleElement.scrollHeight > titleElement.clientHeight + 1;
+    setIsTooltipVisible(isTruncated);
+  }
+
+  return (
+    <div
+      className="relative min-w-0 flex-1"
+      onMouseEnter={showTooltipIfTruncated}
+      onMouseLeave={() => setIsTooltipVisible(false)}
+    >
+      <h3 ref={titleRef} className="line-clamp-2 text-xl font-black text-white">
+        {title}
+      </h3>
+      {isTooltipVisible && (
+        <div
+          role="tooltip"
+          className="pointer-events-none absolute left-0 top-full z-50 mt-2 w-full rounded-lg border border-white/15 bg-neutral-800/95 p-3 text-sm font-bold leading-5 text-white shadow-2xl backdrop-blur"
+        >
+          <span className="absolute -top-1.5 left-5 h-3 w-3 rotate-45 border-l border-t border-white/15 bg-neutral-800" />
+          <span className="relative">{title}</span>
+        </div>
+      )}
+    </div>
+  );
+}
 
 function ProjectPreview({
   project,
@@ -1152,6 +1488,8 @@ function ProjectPreview({
   const shouldRenderHoverPreview =
     canLoadHoverPreview && shouldShowCover && isHoverPreviewRequested && hoverPreview;
   const viewCountLabel = formatViewCount(project.viewCount, locale, labels);
+  const socialPlatform = project.originalUrl ? getSocialPlatform(project.originalUrl) : null;
+  const SocialPlatformIcon = socialPlatform?.Icon;
 
   function handlePlay() {
     const video = videoRef.current;
@@ -1256,24 +1594,43 @@ function ProjectPreview({
             </span>
           </div>
         )}
-        <div className="pointer-events-none absolute left-4 top-4 z-30 flex flex-wrap gap-2">
-          <span className="project-badge rounded-lg bg-white/90 px-3 py-1 text-xs font-bold text-neutral-950 backdrop-blur">
-            {project.category}
-          </span>
-        </div>
       </div>
 
       <div className="project-meta flex flex-1 flex-col p-5">
         <div className="flex items-start justify-between gap-4">
-          <h3 className="text-xl font-black text-white">{project.title}</h3>
-          <span className="text-sm font-bold text-neutral-400">{project.year}</span>
+          <ProjectTitle title={project.title} />
+          <span className="shrink-0 text-sm font-bold text-neutral-400">{project.year}</span>
         </div>
-        {isVertical && (
-          <div className="mt-4 inline-flex w-fit items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-xs font-black uppercase tracking-[0.14em] text-neutral-300">
-            <span className="text-neutral-500">{labels.views}</span>
-            <span className="text-white">{viewCountLabel || labels.unknownViews}</span>
-          </div>
+        {project.client && (
+          <a
+            href={project.client.url}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-4 flex w-fit max-w-full items-center gap-3 rounded-lg border border-white/10 bg-white/[0.03] p-2 pr-3 transition hover:border-white/20 hover:bg-white/[0.07]"
+            aria-label={`${labels.client}: ${project.client.name}`}
+          >
+            <img
+              src={project.client.avatar}
+              alt=""
+              className="h-9 w-9 shrink-0 rounded-full object-cover ring-1 ring-white/15"
+              loading="lazy"
+            />
+            <span className="min-w-0">
+              <span className="block text-[10px] font-bold uppercase tracking-[0.14em] text-neutral-500">
+                {labels.client}
+              </span>
+              <span className="mt-0.5 block text-sm font-black leading-5 text-white">
+                {project.client.name}
+              </span>
+            </span>
+            <ExternalLinkIcon className="ml-auto h-3.5 w-3.5 shrink-0 text-neutral-500" />
+          </a>
         )}
+        <div className="mt-4 inline-flex w-fit items-center gap-2 rounded-lg border border-sky-400/25 bg-sky-400/[0.08] px-3 py-2 text-sm font-black text-sky-100">
+          <ViewsTrendIcon className="h-4 w-4 shrink-0 text-sky-400" />
+          <span>{viewCountLabel || labels.unknownViews}</span>
+          <span className="text-sky-200/70">{labels.views}</span>
+        </div>
         <p className="mt-3 text-sm leading-6 text-neutral-300">{project.description}</p>
         {project.originalUrl && (
           <div className="mt-auto pt-5">
@@ -1281,10 +1638,20 @@ function ProjectPreview({
               href={project.originalUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-white/15 px-4 text-sm font-black text-white transition hover:bg-white/10"
+              className="inline-flex min-h-11 items-center justify-center gap-2.5 rounded-lg border border-white/15 px-3 text-sm font-black text-white transition hover:border-white/25 hover:bg-white/10"
+              aria-label={
+                socialPlatform
+                  ? `${labels.watchOn} ${socialPlatform.name}`
+                  : labels.watchFull
+              }
             >
-              <ExternalLinkIcon className="h-4 w-4 shrink-0" />
-              <span>{labels.watchFull}</span>
+              {SocialPlatformIcon && <SocialPlatformIcon className="h-8 w-8 shrink-0" />}
+              <span>
+                {socialPlatform
+                  ? `${labels.watchOn} ${socialPlatform.name}`
+                  : labels.watchFull}
+              </span>
+              <ExternalLinkIcon className="h-4 w-4 shrink-0 text-neutral-400" />
             </a>
           </div>
         )}
@@ -1479,10 +1846,12 @@ export default function App() {
   const [briefStatus, setBriefStatus] = useState("");
   const [isScrollTopVisible, setIsScrollTopVisible] = useState(false);
   const [canLoadHoverPreviews, setCanLoadHoverPreviews] = useState(false);
+  const [areExtraVerticalProjectsVisible, setAreExtraVerticalProjectsVisible] = useState(false);
   const t = dict[locale] || dict[defaultLocale];
   const localizedProjects = projects.map((project, index) => ({
     ...project,
     ...t.projects[index],
+    title: project.title,
   }));
   const localizedServices = services.map((service, index) => ({
     ...service,
@@ -1495,7 +1864,21 @@ export default function App() {
   const verticalProjects = localizedProjects
     .filter((project) => project.format === "9:16")
     .toSorted((firstProject, secondProject) => secondProject.viewCount - firstProject.viewCount);
-  const horizontalProjects = localizedProjects.filter((project) => project.format === "16:9");
+  const hiddenVerticalProjectCount = 3;
+  const hasExtraVerticalProjects = verticalProjects.length > hiddenVerticalProjectCount;
+  const primaryVerticalProjects = hasExtraVerticalProjects
+    ? verticalProjects.slice(0, -hiddenVerticalProjectCount)
+    : verticalProjects;
+  const extraVerticalProjects = hasExtraVerticalProjects
+    ? verticalProjects.slice(-hiddenVerticalProjectCount)
+    : [];
+  const horizontalProjects = localizedProjects
+    .filter((project) => project.format === "16:9")
+    .toSorted(
+      (firstProject, secondProject) =>
+        Number(secondProject.video === "/videos/KURS_horizont.mp4") -
+        Number(firstProject.video === "/videos/KURS_horizont.mp4"),
+    );
 
   function handleLocaleChange(nextLocale) {
     if (!locales.includes(nextLocale)) {
@@ -1666,7 +2049,7 @@ export default function App() {
                   {t.hero.eyebrow}
                 </p>
                 <h1 className="mt-5 max-w-4xl text-5xl font-black leading-none tracking-tight sm:text-[62px]">
-                  {t.hero.title}
+                  <TypedHeadline key={locale} text={t.hero.title} />
                 </h1>
                 <p className="mt-6 max-w-2xl text-lg leading-8 text-neutral-300">
                   {t.hero.description}
@@ -1686,9 +2069,11 @@ export default function App() {
               </div>
 
               <dl className="mt-10 grid max-w-xl grid-cols-3 gap-3">
-                {t.hero.stats.map(([value, label]) => (
+                {t.hero.stats.map(([value, label], index) => (
                   <div key={label} className="stat-card rounded-lg border border-white/10 bg-white/5 p-4">
-                    <dt className="text-2xl font-black">{value}</dt>
+                    <dt className="text-2xl font-black tabular-nums">
+                      <AnimatedStat value={value} delay={index * 140} />
+                    </dt>
                     <dd className="mt-1 text-sm text-neutral-400">{label}</dd>
                   </div>
                 ))}
@@ -1724,7 +2109,7 @@ export default function App() {
               </div>
 
               <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                {verticalProjects.map((project) => (
+                {primaryVerticalProjects.map((project) => (
                   <ProjectPreview
                     key={project.video || project.title}
                     project={project}
@@ -1734,6 +2119,77 @@ export default function App() {
                   />
                 ))}
               </div>
+              {hasExtraVerticalProjects && (
+                <>
+                  {areExtraVerticalProjectsVisible ? (
+                    <div
+                      id="extra-vertical-projects"
+                      className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+                    >
+                      {extraVerticalProjects.map((project) => (
+                        <ProjectPreview
+                          key={project.video || project.title}
+                          project={project}
+                          labels={t.projectPreview}
+                          locale={locale}
+                          canLoadHoverPreview={canLoadHoverPreviews}
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <div
+                      id="extra-vertical-projects"
+                      className="relative mt-5 h-28 overflow-hidden sm:h-36"
+                      aria-hidden="true"
+                    >
+                      <div className="grid grid-cols-3 gap-2 sm:gap-5">
+                        {extraVerticalProjects.map((project) => (
+                          <div
+                            key={project.video || project.title}
+                            className="h-80 overflow-hidden rounded-lg border border-white/10 bg-neutral-900"
+                          >
+                            <img
+                              src={project.cover}
+                              alt=""
+                              className="h-full w-full object-cover object-top"
+                              loading="lazy"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-neutral-950/40 to-neutral-950/90" />
+                    </div>
+                  )}
+                  <div
+                    className={`relative z-10 flex justify-center ${
+                      areExtraVerticalProjectsVisible
+                        ? "mt-8"
+                        : "-mt-5"
+                    }`}
+                  >
+                    <button
+                      type="button"
+                      className="inline-flex min-h-12 items-center justify-center gap-2.5 rounded-lg border border-white/15 bg-neutral-900 px-5 text-sm font-black text-white shadow-xl shadow-black/30 transition hover:border-white/25 hover:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-950"
+                      aria-expanded={areExtraVerticalProjectsVisible}
+                      aria-controls="extra-vertical-projects"
+                      onClick={() =>
+                        setAreExtraVerticalProjectsVisible((isVisible) => !isVisible)
+                      }
+                    >
+                      <span>
+                        {areExtraVerticalProjectsVisible
+                          ? t.work.showLessVertical
+                          : t.work.showMoreVertical}
+                      </span>
+                      <ChevronDownIcon
+                        className={`h-4 w-4 transition-transform duration-300 ${
+                          areExtraVerticalProjectsVisible ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
 
             <div className="mt-16 md:mt-20">
@@ -1783,11 +2239,7 @@ export default function App() {
                     {service.id}
                   </span>
 
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-white/15 bg-white text-lg font-black text-neutral-950">
-                    {service.marker}
-                  </div>
-
-                  <h3 className="mt-12 text-2xl font-black text-white">{service.title}</h3>
+                  <h3 className="mt-8 text-2xl font-black text-white">{service.title}</h3>
                   <p className="mt-4 min-h-16 leading-7 text-neutral-300">
                     {service.description}
                   </p>

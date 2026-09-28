@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-if [[ "$(uname -s)" != "Darwin" ]]; then
-  echo "This deploy script is intended for macOS only." >&2
-  exit 1
-fi
+case "$(uname -s)" in
+  Darwin|MINGW*|MSYS*) ;;
+  *)
+    echo "This deploy script is intended for macOS or Git Bash on Windows." >&2
+    exit 1
+    ;;
+esac
 
 SERVER_USER="${SERVER_USER:-root}"
 SERVER_HOST="${SERVER_HOST:-13.143.244.250}"
