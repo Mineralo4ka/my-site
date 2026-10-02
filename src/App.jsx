@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react";
 const profile = {
   name: "Andrew Pavlenko",
   role: "Видеомонтажёр для бизнеса, экспертов и авторов",
-  //email: "yourmail@example.com",
   instagram: "https://www.instagram.com/nehold_creator/",
   telegram: "https://t.me/Nehold",
   avatar: "/images/avatar.jpg",
@@ -69,6 +68,21 @@ const clients = {
     name: "Алена Котлярова",
     url: "https://www.instagram.com/alena_kots/",
     avatar: "/images/clients/alena-kotlyarova.jpg",
+  },
+  yandexProkat: {
+    name: "Яндекс Прокат",
+    url: "https://www.instagram.com/yandex.prokat/",
+    avatar: "/images/clients/yandex-prokat.webp",
+  },
+  motoTripAltay: {
+    name: "mototrip_altay",
+    url: "https://www.instagram.com/mototrip_altay/",
+    avatar: "/images/clients/altay_harley.jpg",
+  },
+  edinCenter: {
+    name: "Единый Центр Защиты",
+    url: "https://www.youtube.com/@EdinCenterRu",
+    avatar: "/images/clients/ecz.webp",
   },
 };
 
@@ -339,6 +353,76 @@ const projects = [
     description:
       "Reels для Алёны Котляровой: обзор заведения, детали меню и живой тревел-формат для вовлечения аудитории.",
   },
+  {
+    title: "ВОЗВРАЩЕНИЕ РЕВОЛЬВЕРА LOM 13",
+    category: "Shorts",
+    year: "2024",
+    format: "9:16",
+    accent: "#14b8a6",
+    video: "/videos/KURS_revolver.mp4",
+    cover: "/images/covers/KURS_revolver.webp",
+    client: clients.kurs,
+    originalUrl: "https://www.youtube.com/shorts/RcLmfrGHO7Q",
+    viewCount: 21732296,
+    description:
+      "Shorts для KURS о травматическом револьвере LOM 13: демонстрация устройства, крупные планы деталей и наглядные испытания в динамичном вертикальном формате.",
+  },
+  {
+    title: "КИСЛОТРУБКИ: ОТ ПРОИЗВОДСТВА ДО ДЕГУСТАЦИИ",
+    category: "Shorts",
+    year: "2026",
+    format: "9:16",
+    accent: "#eab308",
+    video: "/videos/A4_Vlad.mp4",
+    cover: "/images/covers/A4_Vlad.webp",
+    client: clients.a4Food,
+    originalUrl: "https://www.youtube.com/shorts/08KtzGcj6AM",
+    viewCount: 6635398,
+    description:
+      "Shorts для A4FOOD с экскурсией по производству кислотрубок: этапы изготовления, работа линии и финальная дегустация в динамичном вертикальном формате.",
+  },
+  {
+    title: "ЯНДЕКС ПРОКАТ: TOYOTA CAMRY",
+    category: "Reels",
+    year: "2026",
+    format: "9:16",
+    accent: "#ccff00",
+    video: "/videos/Yandex_Camri.mp4",
+    cover: "/images/covers/Yandex_Camri.webp",
+    client: clients.yandexProkat,
+    originalUrl: "https://www.instagram.com/reel/DcESLNNoGym/",
+    viewCount: 2330,
+    description:
+      "Динамичный Reels о поездке на Toyota Camry из Яндекс Проката: знакомство с автомобилем, крупные планы экстерьера и съёмка впечатлений за рулём.",
+  },
+  {
+    title: "МОТОТРИП ПО АЛТАЮ: СЪЁМКИ ФИЛЬМА",
+    category: "Reels",
+    year: "2026",
+    format: "9:16",
+    accent: "#facc15",
+    video: "/videos/Altay_Harley.mp4",
+    cover: "/images/covers/Altay_Harley.webp",
+    client: clients.motoTripAltay,
+    originalUrl: "https://www.instagram.com/reel/DdRmqSZovZX/",
+    viewCount: 2000,
+    description:
+      "Reels о мотопутешествии и съёмках фильма на Алтае: колонна мотоциклистов на горных дорогах, рафтинг и масштабные природные пейзажи.",
+  },
+  {
+    title: "КАК ДЖОННИ ДЕПП СПУСТИЛ $650 МЛН?",
+    category: "Shorts",
+    year: "2025",
+    format: "9:16",
+    accent: "#f59e0b",
+    video: "/videos/ECZ.mp4",
+    cover: "/images/covers/ECZ.webp",
+    client: clients.edinCenter,
+    originalUrl: "https://www.youtube.com/shorts/v883KWy1ym4",
+    viewCount: 2267,
+    description:
+      "Финансово-правовой Shorts о тратах Джонни Деппа: ведущий в кадре, крупные субтитры и узнаваемые кино-вставки поддерживают динамичную подачу истории.",
+  },
 ];
 
 const services = [
@@ -549,12 +633,44 @@ const dict = {
         description:
           "Reels для Алёны Котляровой: обзор заведения, детали меню и живой тревел-формат для вовлечения аудитории.",
       },
+      {
+        title: "ВОЗВРАЩЕНИЕ РЕВОЛЬВЕРА LOM 13",
+        category: "Shorts",
+        description:
+          "Shorts для KURS о травматическом револьвере LOM 13: демонстрация устройства, крупные планы деталей и наглядные испытания в динамичном вертикальном формате.",
+      },
+      {
+        title: "КИСЛОТРУБКИ: ОТ ПРОИЗВОДСТВА ДО ДЕГУСТАЦИИ",
+        category: "Shorts",
+        description:
+          "Shorts для A4FOOD с экскурсией по производству кислотрубок: этапы изготовления, работа линии и финальная дегустация в динамичном вертикальном формате.",
+      },
+      {
+        title: "ЯНДЕКС ПРОКАТ: TOYOTA CAMRY",
+        category: "Reels",
+        description:
+          "Динамичный Reels о поездке на Toyota Camry из Яндекс Проката: знакомство с автомобилем, крупные планы экстерьера и съёмка впечатлений за рулём.",
+      },
+      {
+        title: "МОТОТРИП ПО АЛТАЮ: СЪЁМКИ ФИЛЬМА",
+        category: "Reels",
+        description:
+          "Reels о мотопутешествии и съёмках фильма на Алтае: колонна мотоциклистов на горных дорогах, рафтинг и масштабные природные пейзажи.",
+      },
+      {
+        title: "КАК ДЖОННИ ДЕПП СПУСТИЛ $650 МЛН?",
+        category: "Shorts",
+        description:
+          "Финансово-правовой Shorts о тратах Джонни Деппа: ведущий в кадре, крупные субтитры и узнаваемые кино-вставки поддерживают динамичную подачу истории.",
+      },
     ],
     work: {
       verticalTitle: "Вертикальные видео",
       verticalDescription: "Reels, Shorts и TikTok в формате 9:16 для мобильных площадок",
       showMoreVertical: "Показать ещё видео",
       showLessVertical: "Скрыть дополнительные видео",
+      showMoreHorizontal: "Показать ещё видео",
+      showLessHorizontal: "Скрыть дополнительные видео",
       horizontalTitle: "Горизонтальные видео",
       horizontalDescription: "YouTube, рекламные ролики, презентационные видео и длинные выпуски",
     },
@@ -648,7 +764,6 @@ const dict = {
       eyebrow: "Бриф на монтаж",
       title: "Расскажите о задаче",
       close: "Закрыть",
-      closeForm: "Закрыть форму",
       labels: {
         name: "Имя",
         contact: "Контакт",
@@ -840,12 +955,44 @@ const dict = {
         description:
           "A Reel for Alena Kotlyarova: venue review, menu details, and a lively travel-style format for audience engagement.",
       },
+      {
+        title: "THE RETURN OF THE LOM 13 REVOLVER",
+        category: "Shorts",
+        description:
+          "A KURS Short about the LOM 13 traumatic revolver, featuring a product demonstration, close-up details, and visual durability tests in a fast-paced vertical format.",
+      },
+      {
+        title: "SOUR STRAWS: FROM PRODUCTION TO TASTING",
+        category: "Shorts",
+        description:
+          "An A4FOOD Short touring the sour-straw production process, from the manufacturing line to the final tasting, presented in a fast-paced vertical format.",
+      },
+      {
+        title: "YANDEX RENT: TOYOTA CAMRY",
+        category: "Reels",
+        description:
+          "A fast-paced Reel about a Toyota Camry rental experience, combining an introduction to the car, exterior close-ups, and impressions from behind the wheel.",
+      },
+      {
+        title: "ALTAI MOTORCYCLE TRIP: FILM SHOOT",
+        category: "Reels",
+        description:
+          "A Reel about a motorcycle journey and film shoot in Altai, featuring riders on mountain roads, rafting, and sweeping natural landscapes.",
+      },
+      {
+        title: "HOW DID JOHNNY DEPP BLOW $650 MILLION?",
+        category: "Shorts",
+        description:
+          "A financial and legal Short about Johnny Depp's spending, combining an on-camera presenter, bold captions, and recognizable movie inserts for a fast-paced story.",
+      },
     ],
     work: {
       verticalTitle: "Vertical Videos",
       verticalDescription: "Reels, Shorts, and TikToks in 9:16 for mobile platforms",
       showMoreVertical: "Show more videos",
       showLessVertical: "Hide additional videos",
+      showMoreHorizontal: "Show more videos",
+      showLessHorizontal: "Hide additional videos",
       horizontalTitle: "Horizontal Videos",
       horizontalDescription: "YouTube, ads, presentation videos, and long-form episodes",
     },
@@ -939,7 +1086,6 @@ const dict = {
       eyebrow: "Editing brief",
       title: "Tell me about the task",
       close: "Close",
-      closeForm: "Close form",
       labels: {
         name: "Name",
         contact: "Contact",
@@ -1269,7 +1415,7 @@ function AnimatedStat({ value, delay = 0 }) {
 
     let animationFrameId;
     let startTime;
-    const duration = 1100;
+    const duration = 2200;
 
     valueElement.textContent = `0${suffix}`;
 
@@ -1432,6 +1578,39 @@ function formatViewCount(viewCount, locale, labels) {
 }
 
 const hoverPreviewMediaQuery = "(hover: hover) and (pointer: fine)";
+const visibleProjectRowCount = 5;
+
+function moveProjectAfter(projectList, projectVideo, precedingVideo) {
+  const project = projectList.find((item) => item.video === projectVideo);
+
+  if (!project || !projectList.some((item) => item.video === precedingVideo)) {
+    return projectList;
+  }
+
+  return projectList
+    .filter((item) => item.video !== projectVideo)
+    .flatMap((item) => (item.video === precedingVideo ? [item, project] : [item]));
+}
+
+function getVerticalProjectColumnCount() {
+  if (typeof window === "undefined") {
+    return 1;
+  }
+
+  if (window.matchMedia("(min-width: 1024px)").matches) {
+    return 3;
+  }
+
+  return window.matchMedia("(min-width: 640px)").matches ? 2 : 1;
+}
+
+function getHorizontalProjectColumnCount() {
+  if (typeof window === "undefined") {
+    return 1;
+  }
+
+  return window.matchMedia("(min-width: 768px)").matches ? 2 : 1;
+}
 
 function ProjectTitle({ title }) {
   const titleRef = useRef(null);
@@ -1782,14 +1961,6 @@ function BriefModal({ content, isSending, onClose, onSubmit, status }) {
               <SendIcon className="h-4 w-4 shrink-0" />
               <span>{isSending ? content.sendingButton : content.submit}</span>
             </button>
-            <button
-              type="button"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-white/15 px-6 text-sm font-black text-white transition hover:bg-white/10"
-              onClick={onClose}
-            >
-              <XIcon className="h-4 w-4 shrink-0" />
-              <span>{content.closeForm}</span>
-            </button>
           </div>
         </form>
       </div>
@@ -1847,6 +2018,13 @@ export default function App() {
   const [isScrollTopVisible, setIsScrollTopVisible] = useState(false);
   const [canLoadHoverPreviews, setCanLoadHoverPreviews] = useState(false);
   const [areExtraVerticalProjectsVisible, setAreExtraVerticalProjectsVisible] = useState(false);
+  const [areExtraHorizontalProjectsVisible, setAreExtraHorizontalProjectsVisible] = useState(false);
+  const [verticalProjectColumnCount, setVerticalProjectColumnCount] = useState(
+    getVerticalProjectColumnCount,
+  );
+  const [horizontalProjectColumnCount, setHorizontalProjectColumnCount] = useState(
+    getHorizontalProjectColumnCount,
+  );
   const t = dict[locale] || dict[defaultLocale];
   const localizedProjects = projects.map((project, index) => ({
     ...project,
@@ -1861,17 +2039,19 @@ export default function App() {
     ...step,
     ...t.process.items[index],
   }));
-  const verticalProjects = localizedProjects
+  const verticalProjectsByViews = localizedProjects
     .filter((project) => project.format === "9:16")
     .toSorted((firstProject, secondProject) => secondProject.viewCount - firstProject.viewCount);
-  const hiddenVerticalProjectCount = 3;
-  const hasExtraVerticalProjects = verticalProjects.length > hiddenVerticalProjectCount;
-  const primaryVerticalProjects = hasExtraVerticalProjects
-    ? verticalProjects.slice(0, -hiddenVerticalProjectCount)
-    : verticalProjects;
-  const extraVerticalProjects = hasExtraVerticalProjects
-    ? verticalProjects.slice(-hiddenVerticalProjectCount)
-    : [];
+  const verticalProjects = moveProjectAfter(
+    verticalProjectsByViews,
+    "/videos/Yandex_Camri.mp4",
+    "/videos/A4_drink.mp4",
+  );
+  const visibleVerticalProjectCount = visibleProjectRowCount * verticalProjectColumnCount;
+  const hasExtraVerticalProjects = verticalProjects.length > visibleVerticalProjectCount;
+  const primaryVerticalProjects = verticalProjects.slice(0, visibleVerticalProjectCount);
+  const extraVerticalProjects = verticalProjects.slice(visibleVerticalProjectCount);
+  const verticalProjectTeasers = extraVerticalProjects.slice(0, verticalProjectColumnCount);
   const horizontalProjects = localizedProjects
     .filter((project) => project.format === "16:9")
     .toSorted(
@@ -1879,6 +2059,11 @@ export default function App() {
         Number(secondProject.video === "/videos/KURS_horizont.mp4") -
         Number(firstProject.video === "/videos/KURS_horizont.mp4"),
     );
+  const visibleHorizontalProjectCount = visibleProjectRowCount * horizontalProjectColumnCount;
+  const hasExtraHorizontalProjects = horizontalProjects.length > visibleHorizontalProjectCount;
+  const primaryHorizontalProjects = horizontalProjects.slice(0, visibleHorizontalProjectCount);
+  const extraHorizontalProjects = horizontalProjects.slice(visibleHorizontalProjectCount);
+  const horizontalProjectTeasers = extraHorizontalProjects.slice(0, horizontalProjectColumnCount);
 
   function handleLocaleChange(nextLocale) {
     if (!locales.includes(nextLocale)) {
@@ -1915,6 +2100,30 @@ export default function App() {
 
     return () => {
       mediaQuery.removeEventListener("change", updateHoverPreviewSupport);
+    };
+  }, []);
+
+  useEffect(() => {
+    const mediaQueries = [
+      window.matchMedia("(min-width: 640px)"),
+      window.matchMedia("(min-width: 768px)"),
+      window.matchMedia("(min-width: 1024px)"),
+    ];
+
+    function updateProjectColumnCounts() {
+      setVerticalProjectColumnCount(getVerticalProjectColumnCount());
+      setHorizontalProjectColumnCount(getHorizontalProjectColumnCount());
+    }
+
+    updateProjectColumnCounts();
+    mediaQueries.forEach((mediaQuery) =>
+      mediaQuery.addEventListener("change", updateProjectColumnCounts),
+    );
+
+    return () => {
+      mediaQueries.forEach((mediaQuery) =>
+        mediaQuery.removeEventListener("change", updateProjectColumnCounts),
+      );
     };
   }, []);
 
@@ -2072,7 +2281,7 @@ export default function App() {
                 {t.hero.stats.map(([value, label], index) => (
                   <div key={label} className="stat-card rounded-lg border border-white/10 bg-white/5 p-4">
                     <dt className="text-2xl font-black tabular-nums">
-                      <AnimatedStat value={value} delay={index * 140} />
+                      <AnimatedStat value={value} delay={index * 280} />
                     </dt>
                     <dd className="mt-1 text-sm text-neutral-400">{label}</dd>
                   </div>
@@ -2121,32 +2330,18 @@ export default function App() {
               </div>
               {hasExtraVerticalProjects && (
                 <>
-                  {areExtraVerticalProjectsVisible ? (
-                    <div
-                      id="extra-vertical-projects"
-                      className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
-                    >
-                      {extraVerticalProjects.map((project) => (
-                        <ProjectPreview
-                          key={project.video || project.title}
-                          project={project}
-                          labels={t.projectPreview}
-                          locale={locale}
-                          canLoadHoverPreview={canLoadHoverPreviews}
-                        />
-                      ))}
-                    </div>
-                  ) : (
-                    <div
-                      id="extra-vertical-projects"
-                      className="relative mt-5 h-28 overflow-hidden sm:h-36"
-                      aria-hidden="true"
-                    >
-                      <div className="grid grid-cols-3 gap-2 sm:gap-5">
-                        {extraVerticalProjects.map((project) => (
+                  {!areExtraVerticalProjectsVisible && (
+                    <div className="relative mt-5 h-32 overflow-hidden sm:h-40" aria-hidden="true">
+                      <div
+                        className="grid items-start gap-5"
+                        style={{
+                          gridTemplateColumns: `repeat(${verticalProjectTeasers.length}, minmax(0, 1fr))`,
+                        }}
+                      >
+                        {verticalProjectTeasers.map((project) => (
                           <div
-                            key={project.video || project.title}
-                            className="h-80 overflow-hidden rounded-lg border border-white/10 bg-neutral-900"
+                            key={`vertical-teaser-${project.video || project.title}`}
+                            className="aspect-[9/16] overflow-hidden rounded-lg border border-white/10 bg-neutral-900"
                           >
                             <img
                               src={project.cover}
@@ -2157,14 +2352,29 @@ export default function App() {
                           </div>
                         ))}
                       </div>
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-neutral-950/40 to-neutral-950/90" />
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-neutral-950/5 via-neutral-950/55 to-neutral-950" />
                     </div>
                   )}
                   <div
+                    id="extra-vertical-projects"
+                    className={`mt-5 gap-5 sm:grid-cols-2 lg:grid-cols-3 ${
+                      areExtraVerticalProjectsVisible ? "grid" : "hidden"
+                    }`}
+                    aria-hidden={!areExtraVerticalProjectsVisible}
+                  >
+                    {extraVerticalProjects.map((project) => (
+                      <ProjectPreview
+                        key={project.video || project.title}
+                        project={project}
+                        labels={t.projectPreview}
+                        locale={locale}
+                        canLoadHoverPreview={canLoadHoverPreviews}
+                      />
+                    ))}
+                  </div>
+                  <div
                     className={`relative z-10 flex justify-center ${
-                      areExtraVerticalProjectsVisible
-                        ? "mt-8"
-                        : "-mt-5"
+                      areExtraVerticalProjectsVisible ? "mt-8" : "-mt-6"
                     }`}
                   >
                     <button
@@ -2203,7 +2413,7 @@ export default function App() {
               </div>
 
               <div className="grid gap-5 md:grid-cols-2">
-                {horizontalProjects.map((project) => (
+                {primaryHorizontalProjects.map((project) => (
                   <ProjectPreview
                     key={project.video || project.title}
                     project={project}
@@ -2213,6 +2423,78 @@ export default function App() {
                   />
                 ))}
               </div>
+              {hasExtraHorizontalProjects && (
+                <>
+                  {!areExtraHorizontalProjectsVisible && (
+                    <div className="relative mt-5 h-24 overflow-hidden sm:h-32" aria-hidden="true">
+                      <div
+                        className="grid items-start gap-5"
+                        style={{
+                          gridTemplateColumns: `repeat(${horizontalProjectTeasers.length}, minmax(0, 1fr))`,
+                        }}
+                      >
+                        {horizontalProjectTeasers.map((project) => (
+                          <div
+                            key={`horizontal-teaser-${project.video || project.title}`}
+                            className="aspect-video overflow-hidden rounded-lg border border-white/10 bg-neutral-900"
+                          >
+                            <img
+                              src={project.cover}
+                              alt=""
+                              className="h-full w-full object-cover object-top"
+                              loading="lazy"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-neutral-950/5 via-neutral-950/55 to-neutral-950" />
+                    </div>
+                  )}
+                  <div
+                    id="extra-horizontal-projects"
+                    className={`mt-5 gap-5 md:grid-cols-2 ${
+                      areExtraHorizontalProjectsVisible ? "grid" : "hidden"
+                    }`}
+                    aria-hidden={!areExtraHorizontalProjectsVisible}
+                  >
+                    {extraHorizontalProjects.map((project) => (
+                      <ProjectPreview
+                        key={project.video || project.title}
+                        project={project}
+                        labels={t.projectPreview}
+                        locale={locale}
+                        canLoadHoverPreview={canLoadHoverPreviews}
+                      />
+                    ))}
+                  </div>
+                  <div
+                    className={`relative z-10 flex justify-center ${
+                      areExtraHorizontalProjectsVisible ? "mt-8" : "-mt-6"
+                    }`}
+                  >
+                    <button
+                      type="button"
+                      className="inline-flex min-h-12 items-center justify-center gap-2.5 rounded-lg border border-white/15 bg-neutral-900 px-5 text-sm font-black text-white shadow-xl shadow-black/30 transition hover:border-white/25 hover:bg-neutral-800 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-950"
+                      aria-expanded={areExtraHorizontalProjectsVisible}
+                      aria-controls="extra-horizontal-projects"
+                      onClick={() =>
+                        setAreExtraHorizontalProjectsVisible((isVisible) => !isVisible)
+                      }
+                    >
+                      <span>
+                        {areExtraHorizontalProjectsVisible
+                          ? t.work.showLessHorizontal
+                          : t.work.showMoreHorizontal}
+                      </span>
+                      <ChevronDownIcon
+                        className={`h-4 w-4 transition-transform duration-300 ${
+                          areExtraHorizontalProjectsVisible ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </section>
