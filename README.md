@@ -67,7 +67,8 @@ TELEGRAM_CHAT_ID=ваш_chat_id
 5. Запустите контейнер:
 
 ```bash
-docker compose up -d --build
+DOCKER_BUILDKIT=0 docker build -t nehold-creator-nehold-creator:latest .
+docker compose up -d --no-build --force-recreate
 ```
 
 6. Проверьте:
@@ -82,7 +83,8 @@ Nginx на сервере должен проксировать домен на 
 Обновление сайта после новой локальной сборки и загрузки `dist`:
 
 ```bash
-docker compose up -d --build
+DOCKER_BUILDKIT=0 docker build -t nehold-creator-nehold-creator:latest .
+docker compose up -d --no-build --force-recreate
 ```
 
 Логи:

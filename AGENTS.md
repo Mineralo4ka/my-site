@@ -15,7 +15,7 @@ This is a one-page portfolio site for Andrew Pavlenko, a video editor. The site 
 - brief/contact CTA;
 - modal brief form that sends requests to Telegram;
 - Yandex.Metrika counter;
-- Docker-based deployment to a FastVPS server.
+- Docker-based deployment to a VPS server.
 
 The live domain is:
 
@@ -51,9 +51,9 @@ public/images/avatar.jpg    Hero/profile image
 public/images/favicon.ico   Site favicon
 Dockerfile                  Runtime-only Docker image, copies dist and server
 compose.yaml                Docker Compose service binding 127.0.0.1:3000
-scripts/deploy.sh           Incremental deploy script
+scripts/deploy.sh           Cross-platform wrapper for the current deploy script
 scripts/deploy.cmd          Windows wrapper for Git Bash
-scripts/deploy-macos.sh     macOS deploy script for the current server
+scripts/deploy-macos.sh     Incremental deploy script for macOS and Git Bash on Windows
 .env.local                  Local/server secrets. Do not commit.
 .env.example                Example env file
 ```
@@ -218,18 +218,19 @@ The Windows wrapper calls Git Bash:
 C:\Program Files\Git\bin\bash.exe
 ```
 
-`scripts/deploy.sh` does:
+The deploy script does:
 
 - `npm run build`;
 - hashes deploy files;
 - uploads only changed files to the VPS;
 - removes stale remote files tracked by `.deploy-manifest`;
-- runs `docker compose up -d --build` only when deploy files changed.
+- builds the Docker image directly with the lower-memory legacy builder;
+- recreates the container only when deploy files changed.
 
 Default server target:
 
 ```text
-root@5.45.122.81:/root/public_html
+root@13.143.244.250:/opt/nehold-creator
 ```
 
 Useful deploy flags:
@@ -240,7 +241,7 @@ FORCE_RESTART=1 scripts/deploy.cmd
 REMOTE_DIR=/custom/path scripts/deploy.cmd
 ```
 
-On macOS, use the separate script configured for the current server:
+On macOS, run the same deploy implementation directly:
 
 ```bash
 scripts/deploy-macos.sh
@@ -252,13 +253,13 @@ Its default target is:
 root@13.143.244.250:/opt/nehold-creator
 ```
 
-The macOS script uses `~/.ssh/nehold_creator` by default. Override it when needed:
+The deploy script uses `~/.ssh/nehold_creator` by default. Override it when needed:
 
 ```bash
 SSH_KEY=/custom/path/to/key scripts/deploy-macos.sh
 ```
 
-The macOS script preserves `/opt/nehold-creator/.env.local` on the server and
+The deploy script preserves `/opt/nehold-creator/.env.local` on the server and
 stops before uploading if that file is missing.
 
 ## Server Layout
@@ -266,7 +267,7 @@ stops before uploading if that file is missing.
 On the VPS:
 
 ```text
-/root/public_html
+/opt/nehold-creator
 ```
 
 contains:
@@ -294,13 +295,13 @@ http://127.0.0.1:3000
 
 ## Nginx Notes
 
-FastVPS has provider-managed Nginx config. Be careful.
+The VPS has an Nginx config in front of the application. Be careful.
 
 Important:
 
 - prefer `sudo systemctl reload nginx`;
 - avoid `sudo systemctl restart nginx` unless the user explicitly accepts the risk;
-- do not edit provider FastVPS default SSL blocks unless absolutely necessary;
+- do not edit provider-managed default SSL blocks unless absolutely necessary;
 - always run `sudo nginx -t` before reload.
 
 Working checks:

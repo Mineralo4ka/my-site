@@ -167,11 +167,8 @@ else
 fi
 
 if [[ "$RESTART_CONTAINER" == "1" && ( "$changed_count" -gt 0 || "$removed_count" -gt 0 || "$FORCE_RESTART" == "1" ) ]]; then
-  echo "Rebuilding and restarting Docker container..."
-  if ! ssh "${SSH_ARGS[@]}" "$SSH_TARGET" "cd '$REMOTE_DIR' && docker compose up -d --build"; then
-    echo "BuildKit failed. Retrying with the lower-memory legacy builder..."
-    ssh "${SSH_ARGS[@]}" "$SSH_TARGET" "cd '$REMOTE_DIR' && DOCKER_BUILDKIT=0 docker build -t nehold-creator-nehold-creator:latest . && docker compose up -d --no-build --force-recreate"
-  fi
+  echo "Rebuilding with the lower-memory legacy builder and restarting Docker container..."
+  ssh "${SSH_ARGS[@]}" "$SSH_TARGET" "cd '$REMOTE_DIR' && DOCKER_BUILDKIT=0 docker build -t nehold-creator-nehold-creator:latest . && docker compose up -d --no-build --force-recreate"
 elif [[ "$RESTART_CONTAINER" == "1" ]]; then
   echo "Container restart skipped because there were no deploy changes."
 else
