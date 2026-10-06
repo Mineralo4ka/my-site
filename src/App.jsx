@@ -1612,7 +1612,7 @@ function getHorizontalProjectColumnCount() {
   return window.matchMedia("(min-width: 768px)").matches ? 2 : 1;
 }
 
-function ProjectTitle({ title }) {
+function ProjectTitle({ title, singleLine = false }) {
   const titleRef = useRef(null);
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
@@ -1623,7 +1623,9 @@ function ProjectTitle({ title }) {
       return;
     }
 
-    const isTruncated = titleElement.scrollHeight > titleElement.clientHeight + 1;
+    const isTruncated =
+      titleElement.scrollHeight > titleElement.clientHeight + 1 ||
+      titleElement.scrollWidth > titleElement.clientWidth + 1;
     setIsTooltipVisible(isTruncated);
   }
 
@@ -1633,7 +1635,10 @@ function ProjectTitle({ title }) {
       onMouseEnter={showTooltipIfTruncated}
       onMouseLeave={() => setIsTooltipVisible(false)}
     >
-      <h3 ref={titleRef} className="line-clamp-2 text-xl font-black text-white">
+      <h3
+        ref={titleRef}
+        className={`${singleLine ? "truncate" : "project-title-vertical"} text-xl font-black text-white`}
+      >
         {title}
       </h3>
       {isTooltipVisible && (
@@ -1646,6 +1651,23 @@ function ProjectTitle({ title }) {
         </div>
       )}
     </div>
+  );
+}
+
+function BriefCtaButton({ label, onClick, floating = false }) {
+  return (
+    <button
+      type="button"
+      className={`inline-flex items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-black uppercase tracking-[0.12em] text-neutral-950 transition hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 ${
+        floating
+          ? "min-h-14 border border-white/15 shadow-2xl shadow-black/35 focus:ring-offset-neutral-950 md:min-h-16 md:px-6"
+          : "min-h-12 w-full focus:ring-offset-neutral-900"
+      }`}
+      onClick={onClick}
+    >
+      <BriefIcon className="h-4 w-4 shrink-0" />
+      <span>{label}</span>
+    </button>
   );
 }
 
@@ -1777,38 +1799,42 @@ function ProjectPreview({
 
       <div className="project-meta flex flex-1 flex-col p-5">
         <div className="flex items-start justify-between gap-4">
-          <ProjectTitle title={project.title} />
+          <ProjectTitle title={project.title} singleLine={!isVertical} />
           <span className="shrink-0 text-sm font-bold text-neutral-400">{project.year}</span>
         </div>
-        {project.client && (
-          <a
-            href={project.client.url}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-4 flex w-fit max-w-full items-center gap-3 rounded-lg border border-white/10 bg-white/[0.03] p-2 pr-3 transition hover:border-white/20 hover:bg-white/[0.07]"
-            aria-label={`${labels.client}: ${project.client.name}`}
+        <div className="mt-4 flex items-stretch gap-2">
+          {project.client && (
+            <a
+              href={project.client.url}
+              target="_blank"
+              rel="noreferrer"
+              className="flex min-w-0 flex-[0_1_auto] items-center gap-3 rounded-lg border border-white/10 bg-white/[0.03] p-2 pr-3 transition hover:border-white/20 hover:bg-white/[0.07] md:w-fit md:max-w-full"
+              aria-label={`${labels.client}: ${project.client.name}`}
+            >
+              <img
+                src={project.client.avatar}
+                alt=""
+                className="h-9 w-9 shrink-0 rounded-full object-cover ring-1 ring-white/15"
+                loading="lazy"
+              />
+              <span className="min-w-0">
+                <span className="hidden text-[10px] font-bold uppercase tracking-[0.14em] text-neutral-500 md:block">
+                  {labels.client}
+                </span>
+                <span className="block truncate whitespace-nowrap text-sm font-black leading-5 text-white md:mt-0.5">
+                  {project.client.name}
+                </span>
+              </span>
+              <ExternalLinkIcon className="ml-auto hidden h-3.5 w-3.5 shrink-0 text-neutral-500 md:block" />
+            </a>
+          )}
+          <div
+            className="inline-flex min-h-[3.25rem] w-fit shrink-0 items-center gap-2 rounded-lg border border-sky-400/25 bg-sky-400/[0.08] px-3 py-2 text-sm font-black text-sky-100"
+            aria-label={`${viewCountLabel || labels.unknownViews} ${labels.views}`}
           >
-            <img
-              src={project.client.avatar}
-              alt=""
-              className="h-9 w-9 shrink-0 rounded-full object-cover ring-1 ring-white/15"
-              loading="lazy"
-            />
-            <span className="min-w-0">
-              <span className="block text-[10px] font-bold uppercase tracking-[0.14em] text-neutral-500">
-                {labels.client}
-              </span>
-              <span className="mt-0.5 block text-sm font-black leading-5 text-white">
-                {project.client.name}
-              </span>
-            </span>
-            <ExternalLinkIcon className="ml-auto h-3.5 w-3.5 shrink-0 text-neutral-500" />
-          </a>
-        )}
-        <div className="mt-4 inline-flex w-fit items-center gap-2 rounded-lg border border-sky-400/25 bg-sky-400/[0.08] px-3 py-2 text-sm font-black text-sky-100">
-          <ViewsTrendIcon className="h-4 w-4 shrink-0 text-sky-400" />
-          <span>{viewCountLabel || labels.unknownViews}</span>
-          <span className="text-sky-200/70">{labels.views}</span>
+            <ViewsTrendIcon className="h-4 w-4 shrink-0 text-sky-400" />
+            <span>{viewCountLabel || labels.unknownViews}</span>
+          </div>
         </div>
         <p className="mt-3 text-sm leading-6 text-neutral-300">{project.description}</p>
         {project.originalUrl && (
@@ -1858,104 +1884,112 @@ function buildBriefMessage(formData, labels) {
 function BriefModal({ content, isSending, onClose, onSubmit, status }) {
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 px-5 py-8 backdrop-blur"
+      className="fixed inset-0 z-[100] flex items-stretch justify-center bg-black/80 backdrop-blur md:items-center md:px-5 md:py-8"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="brief-title"
       onClick={onClose}
     >
       <div
-        className="brief-modal-card max-h-full w-full max-w-3xl overflow-y-auto rounded-lg border border-white/10 bg-neutral-950 shadow-2xl"
+        className="brief-modal-card flex h-dvh max-h-none w-full flex-col overflow-hidden rounded-none border-0 bg-neutral-950 shadow-2xl md:h-auto md:max-h-full md:max-w-3xl md:rounded-lg md:border md:border-white/10"
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="border-b border-white/10 p-6">
+        <div className="brief-modal-header shrink-0 border-b border-white/10 p-5 md:p-6">
           <div className="flex items-center justify-between gap-4">
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-neutral-500 md:text-base">
+            <p className="brief-modal-eyebrow text-xs font-black uppercase tracking-[0.22em] text-neutral-500 md:text-base">
               {content.eyebrow}
             </p>
             <button
               type="button"
-              className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg border border-white/10 px-3 py-2 text-sm font-bold text-neutral-300 transition hover:bg-white/10 hover:text-white"
+              className="brief-modal-close inline-flex shrink-0 items-center justify-center gap-2 rounded-lg border border-white/10 px-3 py-2 text-sm font-bold text-neutral-300 transition hover:bg-white/10 hover:text-white"
               onClick={onClose}
             >
               <XIcon className="h-4 w-4 shrink-0" />
               <span>{content.close}</span>
             </button>
           </div>
-          <h2 className="mt-2 whitespace-nowrap text-[clamp(1.3rem,6.5vw,2.25rem)] font-black tracking-tight text-white">
+          <h2
+            id="brief-title"
+            className="brief-modal-title mt-2 max-w-full whitespace-normal text-[clamp(1.3rem,6.5vw,2.25rem)] font-black tracking-tight text-white md:whitespace-nowrap"
+          >
             {content.title}
           </h2>
         </div>
 
-        <form className="grid gap-5 p-6" onSubmit={onSubmit}>
-          <div className="grid gap-4 md:grid-cols-2">
-            <label className="grid gap-2 text-sm font-bold text-neutral-200">
-              {content.labels.name}
-              <input
-                name="name"
-                className="min-h-12 rounded-lg border border-white/10 bg-white/5 px-4 text-white outline-none transition focus:border-white/40"
-                placeholder={content.placeholders.name}
+        <form className="flex min-h-0 flex-1 flex-col" onSubmit={onSubmit}>
+          <div className="brief-form-fields grid min-h-0 flex-1 gap-5 overflow-hidden p-5 md:overflow-y-auto md:overscroll-contain md:p-6 md:pb-0">
+            <div className="brief-form-grid grid gap-4 md:grid-cols-2">
+              <label className="brief-form-label grid gap-2 text-sm font-bold text-neutral-200">
+                {content.labels.name}
+                <input
+                  name="name"
+                  className="brief-form-control min-h-12 rounded-lg border border-white/10 bg-white/5 px-4 text-white outline-none transition focus:border-white/40"
+                  placeholder={content.placeholders.name}
+                  required
+                />
+              </label>
+
+              <label className="brief-form-label grid gap-2 text-sm font-bold text-neutral-200">
+                {content.labels.contact}
+                <input
+                  name="contact"
+                  className="brief-form-control min-h-12 rounded-lg border border-white/10 bg-white/5 px-4 text-white outline-none transition focus:border-white/40"
+                  placeholder={content.placeholders.contact}
+                  required
+                />
+              </label>
+
+              <label className="brief-form-label grid gap-2 text-sm font-bold text-neutral-200">
+                {content.labels.format}
+                <span className="relative">
+                  <select
+                    name="format"
+                    className="brief-form-control min-h-12 w-full appearance-none rounded-lg border border-white/10 bg-neutral-900 pl-4 pr-12 text-white outline-none transition focus:border-white/40"
+                  >
+                    {content.formatOptions.map((option) => (
+                      <option key={option}>{option}</option>
+                    ))}
+                  </select>
+                  <ArrowUpIcon className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 rotate-180 text-neutral-300" />
+                </span>
+              </label>
+
+              <label className="brief-form-label grid gap-2 text-sm font-bold text-neutral-200">
+                {content.labels.platform}
+                <input
+                  name="platform"
+                  className="brief-form-control min-h-12 rounded-lg border border-white/10 bg-white/5 px-4 text-white outline-none transition focus:border-white/40"
+                  placeholder={content.placeholders.platform}
+                />
+              </label>
+
+              <label className="brief-form-label grid gap-2 text-sm font-bold text-neutral-200">
+                {content.labels.deadline}
+                <input
+                  type="date"
+                  name="deadline"
+                  className="brief-form-control min-h-12 rounded-lg border border-white/10 bg-white/5 px-4 text-white [color-scheme:dark] outline-none transition focus:border-white/40"
+                />
+              </label>
+            </div>
+
+            <label className="brief-form-label brief-task-label grid gap-2 text-sm font-bold text-neutral-200">
+              {content.labels.task}
+              <textarea
+                name="task"
+                className="brief-form-control brief-task-control min-h-32 resize-y rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white outline-none transition focus:border-white/40"
+                placeholder={content.placeholders.task}
                 required
               />
             </label>
 
-            <label className="grid gap-2 text-sm font-bold text-neutral-200">
-              {content.labels.contact}
-              <input
-                name="contact"
-                className="min-h-12 rounded-lg border border-white/10 bg-white/5 px-4 text-white outline-none transition focus:border-white/40"
-                placeholder={content.placeholders.contact}
-                required
-              />
-            </label>
-
-            <label className="grid gap-2 text-sm font-bold text-neutral-200">
-              {content.labels.format}
-              <span className="relative">
-                <select
-                  name="format"
-                  className="min-h-12 w-full appearance-none rounded-lg border border-white/10 bg-neutral-900 pl-4 pr-12 text-white outline-none transition focus:border-white/40"
-                >
-                  {content.formatOptions.map((option) => (
-                    <option key={option}>{option}</option>
-                  ))}
-                </select>
-                <ArrowUpIcon className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 rotate-180 text-neutral-300" />
-              </span>
-            </label>
-
-            <label className="grid gap-2 text-sm font-bold text-neutral-200">
-              {content.labels.platform}
-              <input
-                name="platform"
-                className="min-h-12 rounded-lg border border-white/10 bg-white/5 px-4 text-white outline-none transition focus:border-white/40"
-                placeholder={content.placeholders.platform}
-              />
-            </label>
-
-            <label className="grid gap-2 text-sm font-bold text-neutral-200">
-              {content.labels.deadline}
-              <input
-                type="date"
-                name="deadline"
-                className="min-h-12 rounded-lg border border-white/10 bg-white/5 px-4 text-white [color-scheme:dark] outline-none transition focus:border-white/40"
-              />
-            </label>
+            {status && <p className="text-sm font-medium text-neutral-300">{status}</p>}
           </div>
 
-          <label className="grid gap-2 text-sm font-bold text-neutral-200">
-            {content.labels.task}
-            <textarea
-              name="task"
-              className="min-h-32 resize-y rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-white outline-none transition focus:border-white/40"
-              placeholder={content.placeholders.task}
-              required
-            />
-          </label>
-
-          {status && <p className="text-sm font-medium text-neutral-300">{status}</p>}
-
-          <div className="flex flex-col gap-3 sm:flex-row">
+          <div className="brief-form-footer shrink-0 border-t border-white/10 bg-neutral-950 px-5 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] md:border-t-0 md:px-6 md:pb-6 md:pt-5">
             <button
               type="submit"
-              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-neutral-950 transition hover:bg-neutral-200 disabled:cursor-not-allowed disabled:opacity-60"
+              className="brief-submit-button inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-white px-6 text-sm font-black text-neutral-950 transition hover:bg-neutral-200 disabled:cursor-not-allowed disabled:opacity-60 md:w-auto"
               disabled={isSending}
             >
               <SendIcon className="h-4 w-4 shrink-0" />
@@ -2010,11 +2044,13 @@ function BriefSuccessModal({ content, onClose }) {
 
 export default function App() {
   const contactCardRef = useRef(null);
+  const briefActionsRef = useRef(null);
   const [locale, setLocale] = useState(getInitialLocale);
   const [isBriefOpen, setIsBriefOpen] = useState(false);
   const [isBriefSuccessOpen, setIsBriefSuccessOpen] = useState(false);
   const [isBriefSending, setIsBriefSending] = useState(false);
   const [briefStatus, setBriefStatus] = useState("");
+  const [isBriefButtonDocked, setIsBriefButtonDocked] = useState(false);
   const [isScrollTopVisible, setIsScrollTopVisible] = useState(false);
   const [canLoadHoverPreviews, setCanLoadHoverPreviews] = useState(false);
   const [areExtraVerticalProjectsVisible, setAreExtraVerticalProjectsVisible] = useState(false);
@@ -2140,8 +2176,31 @@ export default function App() {
     };
   }, []);
 
+  useEffect(() => {
+    const briefActions = briefActionsRef.current;
+
+    if (!briefActions || !("IntersectionObserver" in window)) {
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsBriefButtonDocked(entry.isIntersecting),
+      { threshold: 0.01 },
+    );
+
+    observer.observe(briefActions);
+
+    return () => observer.disconnect();
+  }, []);
+
   function handleScrollToTop() {
     window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function handleOpenBrief() {
+    setBriefStatus("");
+    setIsBriefSuccessOpen(false);
+    setIsBriefOpen(true);
   }
 
   function handleContactLinkClick(event) {
@@ -2510,23 +2569,23 @@ export default function App() {
               </p>
             </div>
 
-            <div className="mt-12 grid gap-5 lg:grid-cols-3">
+            <div className="mt-10 grid gap-4 md:grid-cols-3 lg:mt-12 lg:gap-5">
               {localizedServices.map((service) => (
                 <article
                   key={service.id}
-                  className="service-card reveal-surface relative min-h-[28rem] overflow-hidden rounded-lg border border-white/10 bg-neutral-900 p-7 shadow-2xl shadow-black/20"
+                  className="service-card reveal-surface relative overflow-hidden rounded-lg border border-white/10 bg-neutral-900 p-6 shadow-2xl shadow-black/20 md:p-5 xl:p-7"
                 >
                   <div className="absolute -right-12 -top-12 h-32 w-32 rounded-full bg-white/10" />
-                  <span className="absolute right-7 top-7 text-sm font-black text-white/70">
-                    {service.id}
+                  <span className="absolute right-5 top-5 text-2xl font-black text-white/70 xl:right-7 xl:top-7">
+                    {service.marker}
                   </span>
 
-                  <h3 className="mt-8 text-2xl font-black text-white">{service.title}</h3>
-                  <p className="mt-4 min-h-16 leading-7 text-neutral-300">
+                  <h3 className="mt-6 text-2xl font-black text-white xl:mt-8">{service.title}</h3>
+                  <p className="mt-3 leading-7 text-neutral-300 xl:mt-4">
                     {service.description}
                   </p>
 
-                  <ul className="mt-8 space-y-4">
+                  <ul className="mt-5 space-y-3 xl:mt-6">
                     {service.features.map((feature) => (
                       <li key={feature} className="flex gap-3 text-sm leading-6 text-neutral-200">
                         <span className="mt-0.5 font-black text-white" aria-hidden="true">
@@ -2599,19 +2658,10 @@ export default function App() {
                   <p className="mb-4 text-sm leading-6 text-white/80">
                     {t.contact.note}
                   </p>
-                  <div className="grid gap-3">
-                    <button
-                      type="button"
-                      className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg bg-white px-5 text-sm font-black uppercase tracking-[0.12em] text-neutral-950 transition hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-900"
-                      onClick={() => {
-                        setBriefStatus("");
-                        setIsBriefSuccessOpen(false);
-                        setIsBriefOpen(true);
-                      }}
-                    >
-                      <BriefIcon className="h-4 w-4 shrink-0" />
-                      <span>{t.contact.briefCta}</span>
-                    </button>
+                  <div ref={briefActionsRef} className="grid gap-3">
+                    {isBriefButtonDocked && (
+                      <BriefCtaButton label={t.contact.briefCta} onClick={handleOpenBrief} />
+                    )}
                     <a
                       href={profile.telegram}
                       target="_blank"
@@ -2646,19 +2696,41 @@ export default function App() {
         />
       )}
 
-      <button
-        type="button"
-        className={`scroll-top-button fixed bottom-5 right-5 z-[80] inline-flex h-14 w-14 items-center justify-center gap-2 rounded-lg border border-white/15 bg-white text-sm font-black uppercase tracking-[0.12em] text-neutral-950 shadow-2xl shadow-black/35 transition duration-300 hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-950 md:bottom-8 md:right-[max(1.25rem,calc((100vw-80rem)/2-13rem))] md:h-16 md:w-auto md:px-6 ${
-          isScrollTopVisible
-            ? "translate-y-0 opacity-100"
-            : "pointer-events-none translate-y-3 opacity-0"
+      <div
+        className={`fixed bottom-5 right-5 z-[80] flex items-center transition-[gap] duration-300 ease-out md:bottom-8 md:right-[max(1.25rem,calc((100vw-80rem)/2-13rem))] ${
+          isScrollTopVisible && !isBriefButtonDocked ? "gap-3" : "gap-0"
         }`}
-        aria-label={t.common.scrollTop}
-        onClick={handleScrollToTop}
       >
-        <span className="hidden md:inline">{t.common.scrollTop}</span>
-        <ArrowUpIcon className="h-6 w-6 md:h-7 md:w-7" />
-      </button>
+        {!isBriefButtonDocked && (
+          <BriefCtaButton
+            label={t.contact.briefCta}
+            onClick={handleOpenBrief}
+            floating
+          />
+        )}
+
+        <div
+          className={`grid overflow-hidden transition-[grid-template-columns] duration-300 ease-out ${
+            isScrollTopVisible ? "grid-cols-[1fr]" : "grid-cols-[0fr]"
+          }`}
+        >
+          <div className="min-w-0 overflow-hidden">
+            <button
+              type="button"
+              className={`scroll-top-button inline-flex h-14 w-14 items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-white/15 bg-white text-sm font-black uppercase tracking-[0.12em] text-neutral-950 shadow-2xl shadow-black/35 transition duration-300 hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-neutral-950 md:h-16 md:w-auto md:px-6 ${
+                isScrollTopVisible
+                  ? "translate-y-0 opacity-100"
+                  : "pointer-events-none translate-y-3 opacity-0"
+              }`}
+              aria-label={t.common.scrollTop}
+              onClick={handleScrollToTop}
+            >
+              <span className="hidden md:inline">{t.common.scrollTop}</span>
+              <ArrowUpIcon className="h-6 w-6 md:h-7 md:w-7" />
+            </button>
+          </div>
+        </div>
+      </div>
 
       <footer className="border-t border-white/10 px-5 py-8 text-center text-sm text-neutral-500">
         © 2026 {profile.name}. {t.common.copyright}
