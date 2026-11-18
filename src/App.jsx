@@ -195,7 +195,7 @@ const projects = [
     cover: "/images/covers/A4_kobyakov.webp",
     client: clients.a4Food,
     originalUrl: "https://www.youtube.com/shorts/sQvOVc_ESzw",
-    viewCount: 3747486,
+    viewCount: 4000000,
     description:
       "Обзор снеков с Кобяковым: быстрый темп, реакции, акценты на вкусах и подача, которая подходит для TikTok.",
   },
@@ -377,7 +377,7 @@ const projects = [
     cover: "/images/covers/A4_Vlad.webp",
     client: clients.a4Food,
     originalUrl: "https://www.youtube.com/shorts/08KtzGcj6AM",
-    viewCount: 6635398,
+    viewCount: 9300000,
     description:
       "Shorts для A4FOOD с экскурсией по производству кислотрубок: этапы изготовления, работа линии и финальная дегустация в динамичном вертикальном формате.",
   },
